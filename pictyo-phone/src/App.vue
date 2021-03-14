@@ -2,18 +2,24 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!--sing-up/-->
+    <router-view/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+//import SingIn from './components/singIn.vue'
+//import singUp from './components/singUp.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    //singUp,
+  },
 }
+
 </script>
 
 <style>

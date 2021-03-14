@@ -1,32 +1,23 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <form action="http://83.40.114.7:8082/api/login" method="POST">
+        <ul>
+            <li>
+                <label for="name">Username: </label>
+                <input type="text" id="name" name="name" required>
+            </li>
+            <li>
+                <label for="pass">Password: </label>
+                <input type="password" id="pass" name="pass" required>
+            </li>
+            <li>
+                <button type="button" id="boton" value="save">Sing in</button>
+            </li>
+            <li>
+                <router-link to="singUp.vue">Sing Up!</router-link>
+            </li>
+        </ul>
+    </form>
   </div>
 </template>
 
@@ -41,6 +32,48 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ form {
+    margin: 0 auto;
+    width: 400px;
+    padding: 1em;
+  border: 1px solid black;
+  border-radius: 1em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  form li + li {
+    margin-top: 1em;
+ }
+
+  label {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+  }
+
+  input{
+    font: 1em sans-serif;
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid black;
+  }
+
+  input:focus{
+    border-color: #999;
+  }
+
+  .button {
+    padding-left: 90px;
+  }
+
+  button{
+    margin-left: .5em;
+  }
 h3 {
   margin: 40px 0 0;
 }
