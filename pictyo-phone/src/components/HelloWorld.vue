@@ -1,20 +1,22 @@
 <template>
   <div class="hello">
-    <form action="http://83.40.114.7:8082/api/login" method="POST">
+    <form>
         <ul>
             <li>
                 <label for="name">Username: </label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name">
             </li>
             <li>
                 <label for="pass">Password: </label>
-                <input type="password" id="pass" name="pass" required>
+                <input type="password" id="pass" name="pass">
             </li>
             <li>
                 <button type="button" id="boton" value="save">Sing in</button>
             </li>
             <li>
-                <router-link to="singUp.vue">Sing Up!</router-link>
+              <button @click="goTo('/singUp')">Register</button>
+              <Router/>
+              <app-router></app-router>
             </li>
         </ul>
     </form>
@@ -22,15 +24,23 @@
 </template>
 
 <script>
+import Router from "./Router";
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  components: {
+    Router
+  },
+  methods: {
+    goTo(route){
+      window.location = "/singUp";
+      console.log(route);
+    }
   }
-}
+};
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
  form {
     margin: 0 auto;
