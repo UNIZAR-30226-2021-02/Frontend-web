@@ -1,24 +1,31 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <!--sing-up/-->
-    <router-view/>
+    <HelloWorld/>
+    <!--button @click="goTo('./components/HelloWorld.vue')">Main Page</button>
+    <button @click="goTo('./components/singUp.vue')">Register</button>
+    <app-router></app-router-->
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-//import SingIn from './components/singIn.vue'
+//import AppRouter from './components/Router.vue'
 //import singUp from './components/singUp.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    //singUp,
+    //AppRouter,
+    //singUp
   },
-}
+  methods: {
+    goTo(route){
+      window.location=route;
+    }
+  }
+};
 
 </script>
 
