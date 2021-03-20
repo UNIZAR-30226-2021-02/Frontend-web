@@ -1,22 +1,20 @@
 <template>
   <div class="hello">
-    <form>
+    <form action="http://83.40.114.7:8082/api/login" method="POST">
         <ul>
             <li>
                 <label for="name">Username: </label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" required>
             </li>
             <li>
                 <label for="pass">Password: </label>
-                <input type="password" id="pass" name="pass">
+                <input type="password" id="pass" name="pass" required>
             </li>
             <li>
                 <button type="button" id="boton" value="save">Sing in</button>
             </li>
             <li>
-              <button @click="goTo('/singUp')">Register</button>
-              <Router/>
-              <app-router></app-router>
+                <router-link to="/register">Sign Up</router-link>
             </li>
         </ul>
     </form>
@@ -24,23 +22,15 @@
 </template>
 
 <script>
-import Router from "./Router";
-
 export default {
-  name: 'HelloWorld',
-  components: {
-    Router
-  },
-  methods: {
-    goTo(route){
-      window.location = "/singUp";
-      console.log(route);
-    }
+  name: 'SignIn',
+  props: {
+    msg: String
   }
-};
-
+}
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
  form {
     margin: 0 auto;

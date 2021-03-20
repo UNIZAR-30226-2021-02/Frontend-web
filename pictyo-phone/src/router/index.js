@@ -1,27 +1,27 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Page1 from '@/components/Helloworld.vue'
-import Page2 from '@/components/singUp.vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-    routes: [
-        {
-            path: "/",
-            redirect: {
-                name: "Helloworld.vue"
-            }
-        },
-        {
-            path: '/Helloworld.vue',
-            name: 'Helloworld.vue',
-            component: HelloWorld
-        },
-        {
-            path: '/singUp.vue',
-            name: 'singUp.vue',
-            component: singUp
-        }
-    ]
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/register',
+    name: 'register',
+    // route level code-splitting
+    // this generates a separate chunk (register.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "register" */ '../views/register.vue')
+  }
+]
+
+const router = new VueRouter({
+  routes
 })
+
+export default router
