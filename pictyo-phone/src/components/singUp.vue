@@ -23,16 +23,13 @@
                 </li>
 
             </ul>
-            <router-link to="./">Back</router-link>
+            <router-link to="./" tag="button">Back</router-link>
         </form>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'singUp',
-    props: {
-        msg: String
-    }
+    name: 'singUp'
 };
 </script>

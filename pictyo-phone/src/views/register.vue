@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <sing-up msg="Welcome to Your Vue.js App"/>
+    <sing-up />
   </div>
 </template>
 
