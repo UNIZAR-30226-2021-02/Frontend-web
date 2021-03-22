@@ -11,10 +11,10 @@
                 <input type="password" id="pass" name="pass" required>
             </li>
             <li>
-                <button type="button" id="boton" value="save">Sing in</button>
+                <router-link to="/MiPerfil" tag="button">Sign in</router-link>
             </li>
             <li>
-                <router-link to="/register">Sign Up</router-link>
+                <router-link to="/register" tag="button">Sign Up</router-link>
             </li>
         </ul>
     </form>
@@ -23,10 +23,7 @@
 
 <script>
 export default {
-  name: 'SignIn',
-  props: {
-    msg: String
-  }
+  name: 'SignIn'
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Gartic logo" src="../assets/logo.png">
-    <SignIn msg=""/>
+    <SignIn />
   </div>
 </template>
 
