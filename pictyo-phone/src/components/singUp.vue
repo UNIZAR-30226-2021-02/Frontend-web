@@ -4,11 +4,11 @@
             <ul>
                 <li>
                     <label class="form-label" for="#email">Email: </label>
-                    <input v-model="email"  class="form-input" type="email" id="email" required placeholder="Email">
+                    <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email">
                 </li>
                 <li>
                     <label  class="form-label" for="#username">Username: </label>
-                    <input v-model="username" class="form-input" type="text" id="name" required placeholder="Username">
+                    <input v-model="nombre" class="form-input" type="text" id="name" required placeholder="Username">
                 </li>
                 <li>
                     <label class="form-label" for="#password">Password: </label>
@@ -80,16 +80,16 @@ import auth from "@/logic/auth"
             },
 
             register() {
-                console.log(this.email);
-                console.log(this.username);
+                console.log(this.mail);
+                console.log(this.nombre);
                 console.log(this.password);
                 console.log(this.rpass);
             },
 
             created() {
                 let post = {
-                    nombre: this.username,
-                    mail: this.email,
+                    nombre: this.nombre,
+                    mail: this.mail,
                     password: this.password
                 };
                 axios.post("http://localhost:8080/api/register", post).then((result) => {
@@ -107,9 +107,9 @@ import auth from "@/logic/auth"
             },
 
             prueba() {
-                auth.register(this.username, this.email, this.password).then(response =>{
+                auth.register(this.nombre, this.mail, this.password).then(response =>{
                     console.log(response);
-                })
+                }).catch(()=>{});
             }
 
             /*Manera alternativa y asincrona (quitar methods)
