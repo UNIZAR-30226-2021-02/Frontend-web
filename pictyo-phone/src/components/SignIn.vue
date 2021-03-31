@@ -24,7 +24,6 @@
 </template>
 
 <script>
-//import apikit/*, {setClientToken}*/ from '@/util/APIKIT'
 import auth from "@/logic/auth"
 
 export default {
@@ -55,7 +54,7 @@ export default {
     login() {
       auth.login(this.user, this.password).then(response =>{
         console.log(response);
-      })
+      }).catch(() =>{this.error=true;})
     }
 
   }
