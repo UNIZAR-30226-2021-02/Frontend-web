@@ -1,6 +1,6 @@
 <template>
     <div id="sing-up">
-        <form action class="form" @submit.prevent="registrar">
+        <form action class="form" @submit.prevent="prueba">
             <ul>
                 <li>
                     <label class="form-label" for="#email">Email: </label>
@@ -55,17 +55,19 @@ export default {
   }
 };*/
 
-import axios from "axios";
+import axios from "axios"
 //import APIKit, {setClientToken} from "../util/APIKIT";
+import auth from "@/logic/auth"
 
     export default {
         name: 'singUp',
         
         data: () => ({
-            username: '',
-            email:'',
+            nombre: '',
+            mail:'',
             password: '',
-            rpass: ''
+            rpass: '',
+            error: false
         }),
 
         methods: {
@@ -102,7 +104,25 @@ import axios from "axios";
                     alert("Las contraseñas no coinciden");
                 }
 
+            },
+
+            prueba() {
+                auth.register(this.username, this.email, this.password).then(response =>{
+                    console.log(response);
+                })
             }
+
+            /*Manera alternativa y asincrona (quitar methods)
+                methods: {
+                    async register() {
+                        const response = await auth.register(this.email, this.password);
+                        console.log(response);
+                    }
+                }
+            */ 
         }
+
+    //Decidir que queda mejor, si la alerta o 
+    //el mensaje que pone iñigo, aqui de momento se usara la alerta
     };
 </script>

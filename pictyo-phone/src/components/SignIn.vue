@@ -9,10 +9,8 @@
             <li>
                 <label class="form-label" for="#pass">Password:  </label>
                 <input v-model="pass" class="form-input" type="password" id="pass" required placeholder="Password">
+                <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
             </li>
-            <li>
-              <p v-if="error" class="error"> Usuario o contraseña invalidos</p> 
-            </li>  
             <li>
                 <button class="form-submit" type="submit">LogIn</button>
                 <!--router-link to="/MiPerfil" tag="button">Sign in</router-link-->
@@ -26,7 +24,8 @@
 </template>
 
 <script>
-//import APIKit/*, {setClientToken}*/ from '../util/APIKIT'
+//import apikit/*, {setClientToken}*/ from '@/util/APIKIT'
+import auth from "@/logic/auth"
 
 export default {
   name: 'SignIn',
@@ -38,11 +37,27 @@ export default {
   }),
 
   methods: {
-    login(){
+    /*login(){
+      //apikit.
       console.log(this.user),
       console.log(this.pass),
       this.error= true
+    }*/
+
+    /*async login() {
+      try {
+        await auth.login(this.user,this.pass);
+      } catch (error){
+        this.error
+      }
+    }*/
+
+    login() {
+      auth.login(this.user, this.password).then(response =>{
+        console.log(response);
+      })
     }
+
   }
   
 
@@ -107,6 +122,11 @@ li {
 }
 a {
   color: #42b983;
+}
+
+p{
+  color: red;
+  font-weight: bolder;
 }
 
 </style>
