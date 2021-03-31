@@ -1,17 +1,21 @@
 <template>
-  <div class="hello">
-    <form action="http://83.40.114.7:8082/api/login" method="POST">
+  <div class="login">
+    <form action class="form" @submit.prevent="login">
         <ul>
             <li>
-                <label for="name">Username: </label>
-                <input type="text" id="name" name="name" required>
+                <label class="form-label" for="#username">Username:  </label>
+                <input v-model="user" class="form-input" type="text" id="user" required placeholder="User">
             </li>
             <li>
-                <label for="pass">Password: </label>
-                <input type="password" id="pass" name="pass" required>
+                <label class="form-label" for="#pass">Password:  </label>
+                <input v-model="pass" class="form-input" type="password" id="pass" required placeholder="Password">
             </li>
             <li>
-                <router-link to="/MiPerfil" tag="button">Sign in</router-link>
+              <p v-if="error" class="error"> Usuario o contraseña invalidos</p> 
+            </li>  
+            <li>
+                <button class="form-submit" type="submit">LogIn</button>
+                <!--router-link to="/MiPerfil" tag="button">Sign in</router-link-->
             </li>
             <li>
                 <router-link to="/register" tag="button">Sign Up</router-link>
@@ -22,8 +26,26 @@
 </template>
 
 <script>
+//import APIKit/*, {setClientToken}*/ from '../util/APIKIT'
+
 export default {
-  name: 'SignIn'
+  name: 'SignIn',
+
+  data: () => ({
+    user: "",
+    pass: "",
+    error: false
+  }),
+
+  methods: {
+    login(){
+      console.log(this.user),
+      console.log(this.pass),
+      this.error= true
+    }
+  }
+  
+
 }
 </script>
 
@@ -54,10 +76,11 @@ export default {
   }
 
   input{
-    font: 1em sans-serif;
-    width: 300px;
+    font: 1em arial;
+    /*width: 300px;  Decidir que diseño queda mejor*/ 
     box-sizing: border-box;
     border: 1px solid black;
+    margin-left: 5px;
   }
 
   input:focus{
@@ -85,4 +108,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>
