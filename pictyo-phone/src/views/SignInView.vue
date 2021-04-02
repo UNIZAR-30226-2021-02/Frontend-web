@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
+  <div class="SignInView">
     <img alt="Gartic logo" src="../assets/logo.png">
-    <SignIn />
+    <sign-in-component />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import SignIn from '@/components/SignIn.vue'
+import SignInComponent from '@/components/SignInComponent.vue'
 
 export default {
-  name: 'Home',
+  name: 'SignInView',
   components: {
-    SignIn
+    SignInComponent
   }
 }
 </script>

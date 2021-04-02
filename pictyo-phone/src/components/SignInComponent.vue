@@ -16,9 +16,10 @@
                 <!--router-link to="/MiPerfil" tag="button">Sign in</router-link-->
             </li>
             <li>
-                <router-link to="/register" tag="button">Sign Up</router-link>
+                <router-link to="/SignUp" tag="button">Sign Up</router-link>
             </li>
         </ul>
+        <router-link to="/Home" tag="button">BotonRandomxd</router-link>
     </form>
   </div>
 </template>
@@ -27,7 +28,7 @@
 import auth from "@/logic/auth"
 
 export default {
-  name: 'SignIn',
+  name: 'SignInComponent',
 
   data: () => ({
     user: "",

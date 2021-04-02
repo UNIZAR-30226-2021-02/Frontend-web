@@ -1,5 +1,5 @@
 <template>
-    <div id="sing-up">
+    <div id="sign-up-component">
         <form action class="form" @submit.prevent="prueba">
             <ul>
                 <li>
@@ -60,7 +60,7 @@ import axios from "axios"
 import auth from "@/logic/auth"
 
     export default {
-        name: 'singUp',
+        name: 'SignUpComponent',
         
         data: () => ({
             nombre: '',

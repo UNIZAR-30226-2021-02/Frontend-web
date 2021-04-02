@@ -1,28 +1,51 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import MiPerfil from '../views/MiPerfil.vue'
-import Registro from '../views/register'
-
+import SignInView from '../views/SignInView.vue'
+import PerfilView from '../views/PerfilView.vue'
+import SignUpView from '../views/SignUpView.vue'
+import HomeView from '../views/HomeView.vue'
+import ShopView from '../views/ShopView.vue'
+import FriendsView from '../views/FriendsView.vue'
+import PartidasView from '../views/PartidasView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'SignInView',
+    component: SignInView
   },
   {
-    path: '/MiPerfil',
-    name: 'MiPerfil',
-    component: MiPerfil
+    path: '/Profile',
+    name: 'PerfilView',
+    component: PerfilView
   },
   {
-    path: '/register',
-    name: 'register',
-    component: Registro
+    path: '/SignUp',
+    name: 'SignUpView',
+    component: SignUpView
 
+  },
+  {
+    path: '/Home',
+    name: 'HomeView',
+    component: HomeView
+  },
+  {
+    path: '/Shop',
+    name: 'ShopView',
+    component: ShopView
+  },
+  {
+    path: '/Friends',
+    name: 'FriendsView',
+    component: FriendsView
+  },
+  {
+    path: '/Partidas',
+    name: 'PartidasView',
+    component: PartidasView
   }
 ]
 
