@@ -1,6 +1,6 @@
 <template>
     <div id="sign-up-component">
-        <form action class="form" @submit.prevent="prueba">
+        <form action class="form" @submit.prevent="registrar">
             <ul>
                 <li>
                     <label class="form-label" for="#email">Email: </label>
@@ -93,13 +93,15 @@ import auth from "@/logic/auth"
                     password: this.password
                 };
                 axios.post("http://localhost:8080/api/register", post).then((result) => {
-                    console.log(result.status);
+                    console.log(result.data.token);
                 })
             },
 
             registrar() {
                 if (this.check()) {
-                    this.register();
+                    this.prueba();
+                    //this.created();
+                    this.$router.push("/Home");
                 } else {
                     alert("Las contraseñas no coinciden");
                 }
@@ -108,7 +110,8 @@ import auth from "@/logic/auth"
 
             prueba() {
                 auth.register(this.nombre, this.mail, this.password).then(response =>{
-                    console.log(response);
+                    console.log(response.status);
+                    this.$tokenSesion='1234'
                 }).catch(()=>{});
             }
 
