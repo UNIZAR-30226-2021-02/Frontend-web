@@ -32,32 +32,9 @@
 
 
 <script>
-/*
-import axios from "axios";
-    let axiosConfig = {
-     headers: { 'Content-Type': 'application/json;charset=UTF-8',
-                'crossorigin': 'true',
-                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                'Access-Control-Allow-Origin' : 'http://localhost:8081', }
-     };
-export default {
-    name: 'singUp',
-    
-  created() {
-      let post = {
-          nombre: 'User',
-          mail: 'User@pablo.es',
-          password: '1234'
-      };
-    axios.post("http://localhost:8080/api/register", post, axiosConfig).then((result) => {
-      console.log(result.status);
-    })
-  }
-};*/
-
-import axios from "axios"
-//import APIKit, {setClientToken} from "../util/APIKIT";
 import auth from "@/logic/auth"
+import {setClientToken} from '@/util/APIKIT'
+import {setClientName} from '@/util/APIKIT'
 
     export default {
         name: 'SignUpComponent',
@@ -79,28 +56,9 @@ import auth from "@/logic/auth"
                 }
             },
 
-            register() {
-                console.log(this.mail);
-                console.log(this.nombre);
-                console.log(this.password);
-                console.log(this.rpass);
-            },
-
-            created() {
-                let post = {
-                    nombre: this.nombre,
-                    mail: this.mail,
-                    password: this.password
-                };
-                axios.post("http://localhost:8080/api/register", post).then((result) => {
-                    console.log(result.data.token);
-                })
-            },
-
             registrar() {
                 if (this.check()) {
-                    this.prueba();
-                    //this.created();
+                    this.postReg();
                     this.$router.push("/Home");
                 } else {
                     alert("Las contraseñas no coinciden");
@@ -108,21 +66,13 @@ import auth from "@/logic/auth"
 
             },
 
-            prueba() {
+            postReg() {
                 auth.register(this.nombre, this.mail, this.password).then(response =>{
+                    setClientToken(response.data.token);
+                    setClientName(this.nombre);
                     console.log(response.status);
-                    this.$tokenSesion='1234'
                 }).catch(()=>{});
             }
-
-            /*Manera alternativa y asincrona (quitar methods)
-                methods: {
-                    async register() {
-                        const response = await auth.register(this.email, this.password);
-                        console.log(response);
-                    }
-                }
-            */ 
         }
 
     //Decidir que queda mejor, si la alerta o 

@@ -12,5 +12,40 @@ export default {
   login(nombre,password){
       const person={nombre, password};
       return axios.post(ENDPOINT_PATH + "login", person);
+  },
+
+  sendRequest(nombre){
+      console.log(nombre);
+      const amigo={nombre};
+      return axios.post(ENDPOINT_PATH + "sendRequest", amigo);
+  },
+
+  acceptRequest(nombre){
+      const amigo={nombre};
+      return axios.post(ENDPOINT_PATH + "acceptRequest", amigo);
+  },
+
+  listRequest(){
+    return axios.get(ENDPOINT_PATH + "listRequest");
+  },
+
+  listFriends(){
+    return axios.get(ENDPOINT_PATH + "listFriends");
+  },
+
+  denyRequest(nombre){
+    const amigo={nombre};
+    return axios.post(ENDPOINT_PATH + "denyRequest", amigo);
+  },
+
+  deleteFriend(nombre){
+    const amigo={nombre};
+    return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
   }
+
+  //axios.get(ENDPOINT_PATH + "listFriends");
+  //axios.get(ENDPOINT_PATH + "listRequest");
+
+
+  
 };

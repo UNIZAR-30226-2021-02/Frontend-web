@@ -4,11 +4,11 @@
         <ul>
             <li>
                 <label class="form-label" for="#username">Username:  </label>
-                <input v-model="user" class="form-input" type="text" id="user" required placeholder="User">
+                <input v-model="username" class="form-input" type="text" required placeholder="User">
             </li>
             <li>
-                <label class="form-label" for="#pass">Password:  </label>
-                <input v-model="pass" class="form-input" type="password" id="pass" required placeholder="Password">
+                <label class="form-label" for="#password">Password:  </label>
+                <input v-model="password" class="form-input" type="password" required placeholder="Password">
                 <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
             </li>
             <li>
@@ -19,7 +19,6 @@
                 <router-link to="/SignUp" tag="button">Sign Up</router-link>
             </li>
         </ul>
-        <router-link to="/Home" tag="button">BotonRandomxd</router-link>
     </form>
   </div>
 </template>
@@ -28,37 +27,25 @@
 import auth from "@/logic/auth"
 import axios from 'axios';
 import {setClientToken} from '@/util/APIKIT'
+import {setClientName} from '@/util/APIKIT'
 
 export default {
   name: 'SignInComponent',
 
   data: () => ({
-    user: "",
-    pass: "",
+    username: "",
+    password: "",
     error: false
   }),
 
   methods: {
-    /*login(){
-      //apikit.
-      console.log(this.user),
-      console.log(this.pass),
-      this.error= true
-    }*/
-
-    /*async login() {
-      try {
-        await auth.login(this.user,this.pass);
-      } catch (error){
-        this.error
-      }
-    }*/
+    
 
     login() {
-      auth.login(this.user, this.password).then(response =>{
+      auth.login(this.username, this.password).then(response =>{
         console.log(response);
         setClientToken(response.data.token);
-        //axios.defaults.headers.common["Authorization"] = `${response.data.token}`;
+        setClientName(this.username);
         console.log(axios.defaults.headers.common);
         this.$router.push("/Home");
       }).catch(() =>{this.error=true;})
