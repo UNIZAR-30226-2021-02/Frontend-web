@@ -42,7 +42,7 @@ export default {
 
   methods: {
       fotoAmigo(index){
-        return this.peticionesFotos[index];
+        return this.amigosFotos[index];
       },
 
       fotoPeticion(index){
@@ -52,7 +52,10 @@ export default {
       eliminarAmigo(nombre){
         auth.deleteFriend(nombre).then(() => {
           this.amigos = [];
+          this.IterAmigo = [];
+          this.amigosFotos = [];
           this.listFr();
+          this.$forceUpdate();
         }).catch(()=>{});
         
       },
@@ -80,16 +83,28 @@ export default {
       aceptarPeticion(nombre){
         auth.acceptRequest(nombre).then(() => {
           this.peticiones = [];
-          this.listReq();
+          this.IterPeti = [];
+          this.peticionesFotos = [];
           this.amigos = [];
+          this.IterAmigo = [];
+          this.amigosFotos = [];
+          this.listReq();
           this.listFr();
+          this.$forceUpdate();
         }).catch(()=>{});
       },
 
       rechazarPeticion(nombre){
         auth.denyRequest(nombre).then(() => {
           this.peticiones = [];
+          this.IterPeti = [];
+          this.peticionesFotos = [];
+          this.amigos = [];
+          this.IterAmigo = [];
+          this.amigosFotos = [];
           this.listReq();
+          this.listFr();
+          this.$forceUpdate();
         }).catch(()=>{});
       },
 
