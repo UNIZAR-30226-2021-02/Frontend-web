@@ -1,11 +1,22 @@
 <template>
     <div class="friendRequestComponent" id="contenedor">
-        <p>Lista de peticiones:</p>
-        <li class="list-group-item" v-for="peticion in peticiones"  v-bind:key="peticion">
-          <p>{{peticion}}</p>
-          <button class="button" v-on:click="aceptar(peticion)">Add</button>
-          <button class="button" v-on:click="rechazar(peticion)">Deny</button>
-        </li>
+        <h4 id="tituloPetis">Lista de peticiones:</h4>
+        <ul id="listaPetis">
+          <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
+            <img :src="fotoPeticion(index)">
+            <a>{{peticiones[index]}}</a>
+            <button class="button" v-on:click="aceptarPeticion(peticiones[index])">Add</button>
+            <button class="button" v-on:click="rechazarPeticion(peticiones[index])">Deny</button>
+          </li>
+        </ul>
+        <h4 id="tituloAmigos">Lista de amigos:</h4>
+        <ul id=listaAmigos>
+          <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
+            <img :src="fotoAmigo(index)">
+            <a>{{amigos[index]}}</a>
+            <button class="button" v-on:click="eliminarAmigo(amigos[index])">Remove</button>
+          </li>
+        </ul>
     </div>
 </template>
 
@@ -21,16 +32,65 @@ export default {
   
     data: () => ({
         loading: true,
-        peticiones: []
+        peticiones: [],
+        IterPeti: [],
+        peticionesFotos: [],
+        amigos: [],
+        IterAmigo: [],
+        amigosFotos: []
     }),
 
   methods: {
-      aceptar(nombre){
-        auth.acceptRequest(nombre).then(() => {}).catch(()=>{});
+      fotoAmigo(index){
+        return this.peticionesFotos[index];
       },
 
-      rechazar(nombre){
-        auth.denyRequest(nombre).then(() => {}).catch(()=>{});
+      fotoPeticion(index){
+        return this.peticionesFotos[index];
+      },
+
+      eliminarAmigo(nombre){
+        auth.deleteFriend(nombre).then(() => {
+          this.amigos = [];
+          this.listFr();
+        }).catch(()=>{});
+        
+      },
+
+      listFr(){
+        
+        var i;
+        this.loading=true;
+        auth.listFriends()
+          .then((response)=>{
+              console.log("Mis amigos")
+              //this.peticiones = response.data.nombre;
+              for(i=0;i<response.data.length;i++){
+                this.amigos.push(response.data[i].nombre);
+                this.IterAmigo.push(i);
+                console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+              }
+              console.log(this.amigos);
+              this.loading=false;
+          })
+          .catch(()=>{});
+      },
+
+      aceptarPeticion(nombre){
+        auth.acceptRequest(nombre).then(() => {
+          this.peticiones = [];
+          this.listReq();
+          this.amigos = [];
+          this.listFr();
+        }).catch(()=>{});
+      },
+
+      rechazarPeticion(nombre){
+        auth.denyRequest(nombre).then(() => {
+          this.peticiones = [];
+          this.listReq();
+        }).catch(()=>{});
       },
 
       listReq(){
@@ -43,6 +103,9 @@ export default {
               //this.peticiones = response.data.nombre;
               for(i=0;i<response.data.length;i++){
                 this.peticiones.push(response.data[i].nombre);
+                this.IterPeti.push(i);
+                console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.peticionesFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
               }
               console.log(this.peticiones);
               this.loading=false;
@@ -52,13 +115,62 @@ export default {
   },
   beforeMount(){
       this.listReq()
+      this.listFr()
   }
 }
 
 </script>
 
 <style scoped>
-  .list-group-item {
-    display: -webkit-inline-flex
+
+
+  ul { 
+    border: 1px solid #7C7C7C;
+    border-bottom: none;
+    list-style: none;
+    width: 500px;
+    }
+
+  ul li a{
+    margin: 10 px
+  }
+
+  ul li button{
+    margin: auto;
+  }
+
+  ul li img{
+    margin: auto;
+    
+  }
+
+  ul li {
+  background: #F4F4F4;
+  border-bottom: 1px solid #7C7C7C;
+  border-top: 1px solid #FFF;
+  }
+
+  #listaPetis{
+    position: absolute;
+    top: 350px;
+    right: 1080px;
+  }
+
+  #tituloPetis{
+    position: absolute;
+    top: 300px;
+    right: 1200px;
+  }
+
+  #listaAmigos{
+    position: absolute;
+    top: 350px;
+    right: 300px;
+  }
+
+  #tituloAmigos{
+    position: absolute;
+    top: 300px;
+    right: 450px;
   }
 </style>

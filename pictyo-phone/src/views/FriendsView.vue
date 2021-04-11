@@ -4,7 +4,7 @@
       <navegation-menu-component/>
       <friend-searcher-component/>
       <friend-request-component/>
-      <friend-list-component/>
+      
   </div>
 </template>
 
@@ -14,7 +14,6 @@ import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import DeshechoComponent from '../components/DeshechoComponent.vue'
 import friendSearcherComponent from '../components/friendSearcherComponent.vue'
 import FriendRequestComponent from '../components/friendRequestComponent.vue'
-import FriendListComponent from '../components/friendListComponent.vue'
 
 export default {
   name: 'FriendsView',
@@ -22,8 +21,7 @@ export default {
     NavegationMenuComponent,
     DeshechoComponent,
     friendSearcherComponent,
-    FriendRequestComponent,
-    FriendListComponent
+    FriendRequestComponent
   }
 }
 </script>

@@ -41,7 +41,12 @@ export default {
   deleteFriend(nombre){
     const amigo={nombre};
     return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
-  }
+  },
+
+  async getAvatar(nombre){
+    const amigo={nombre};
+    return axios.post(ENDPOINT_PATH + "viewProfile", amigo);
+  },
 
   //axios.get(ENDPOINT_PATH + "listFriends");
   //axios.get(ENDPOINT_PATH + "listRequest");

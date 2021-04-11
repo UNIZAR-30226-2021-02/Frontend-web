@@ -1,10 +1,12 @@
 <template>
     <div class="friendListComponent">
         <p>Lista de amigos:</p>
-        <li class="list-group-item" v-for="amigo in amigos"  v-bind:key="amigo">
-          <p>{{amigo}}</p>
-          <button class="button" v-on:click="eliminar(amigo)">Remove</button>
-        </li>
+        <ul>
+          <li class="list-group-item" v-for="amigo in amigos"  v-bind:key="amigo">
+            <p>{{amigo}}</p>
+            <button class="button" v-on:click="eliminar(amigo)">Remove</button>
+          </li>
+        </ul>
     </div>
 </template>
 
@@ -24,10 +26,14 @@ export default {
   methods: {
 
       eliminar(nombre){
-        auth.deleteFriend(nombre).then(() => {}).catch(()=>{});
+        auth.deleteFriend(nombre).then(() => {
+          this.amigos = [];
+          this.listFr();
+        }).catch(()=>{});
+        
       },
 
-      listReq(){
+      listFr(){
         
         var i;
         this.loading=true;
@@ -45,7 +51,7 @@ export default {
       }
   },
   beforeMount(){
-      this.listReq()
+      this.listFr()
   }
 }
 
