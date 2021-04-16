@@ -1,8 +1,8 @@
 <template>
   <div class="PerfilView">
-    <perfil-component msg="El_Rial_Oreo"/>
     <deshecho-component msg="Esto es la página de partidas"/>
     <navegation-menu-component/>
+    <perfil-component />
   </div>
 </template>
 

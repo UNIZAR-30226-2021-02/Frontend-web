@@ -12,8 +12,10 @@
         <h4 id="tituloAmigos">Lista de amigos:</h4>
         <ul id=listaAmigos>
           <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
+            <a>{{IterAmigo[index]+1}}. </a>
             <img :src="fotoAmigo(index)">
-            <a>{{amigos[index]}}</a>
+            <a>{{amigos[index]}} </a>
+            <a>{{amigosPts[index]}}pts </a>
             <button class="button" v-on:click="eliminarAmigo(amigos[index])">Remove</button>
           </li>
         </ul>
@@ -37,6 +39,7 @@ export default {
         peticionesFotos: [],
         amigos: [],
         IterAmigo: [],
+        amigosPts: [],
         amigosFotos: []
     }),
 
@@ -73,6 +76,7 @@ export default {
                 this.IterAmigo.push(i);
                 console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
                 this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.amigosPts.push(response.data[i].estrellas);
               }
               console.log(this.amigos);
               this.loading=false;
