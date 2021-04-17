@@ -43,7 +43,7 @@ export default {
     return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
   },
 
-  getAvatar(){
+  viewProfile(){
     return axios.get(ENDPOINT_PATH + "viewProfile");
   }
 

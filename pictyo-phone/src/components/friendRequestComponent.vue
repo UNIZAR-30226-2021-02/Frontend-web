@@ -1,16 +1,16 @@
 <template>
     <div class="friendRequestComponent" id="contenedor">
         <h4 id="tituloPetis">Lista de peticiones:</h4>
-        <ul id="listaPetis">
+        <ol id="listaPetis">
           <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
             <img :src="fotoPeticion(index)">
             <a>{{peticiones[index]}}</a>
             <button class="button" v-on:click="aceptarPeticion(peticiones[index])">Add</button>
             <button class="button" v-on:click="rechazarPeticion(peticiones[index])">Deny</button>
           </li>
-        </ul>
+        </ol>
         <h4 id="tituloAmigos">Lista de amigos:</h4>
-        <ul id=listaAmigos>
+        <ol id=listaAmigos>
           <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
             <a>{{IterAmigo[index]+1}}. </a>
             <img :src="fotoAmigo(index)">
@@ -18,7 +18,7 @@
             <a>{{amigosPts[index]}}pts </a>
             <button class="button" v-on:click="eliminarAmigo(amigos[index])">Remove</button>
           </li>
-        </ul>
+        </ol>
     </div>
 </template>
 
@@ -143,27 +143,24 @@ export default {
 <style scoped>
 
 
-  ul { 
-    border: 1px solid #7C7C7C;
-    border-bottom: none;
-    list-style: none;
+  ol { 
     width: 500px;
     }
 
-  ul li a{
+  ol li a{
     margin: 10 px
   }
 
-  ul li button{
+  ol li button{
     margin: auto;
   }
 
-  ul li img{
+  ol li img{
     margin: auto;
     
   }
 
-  ul li {
+  ol li {
   background: #F4F4F4;
   border-bottom: 1px solid #7C7C7C;
   border-top: 1px solid #FFF;
