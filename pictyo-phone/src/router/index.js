@@ -7,6 +7,7 @@ import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 import FriendsView from '../views/FriendsView.vue'
 import PartidasView from '../views/PartidasView.vue'
+import LobbyView from '../views/LobbyView.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/Partidas',
     name: 'PartidasView',
     component: PartidasView
+  },
+  {
+    path: '/Lobby',
+    name: 'LobbyView',
+    component: LobbyView
   }
 ]
 

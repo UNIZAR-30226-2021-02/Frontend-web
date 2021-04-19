@@ -7,6 +7,7 @@
             <li><a href="#/Shop"><img style="width:50px; height:50px;" src="../assets/carritoIcon.png"></a></li>
             <li><a href="#/Friends"><img style="width:50px; height:50px;" src="../assets/amigosIcon.png"></a></li>
             <li><a href="#/Partidas"><img style="width:50px; height:50px;" src="../assets/mandoIcon.png"></a></li>
+            <li><a href="#/Lobby"><img style="width:50px; height:50px;" src="../assets/mandoIcon.png"></a></li>
         </ul>
     </div>
 </template>

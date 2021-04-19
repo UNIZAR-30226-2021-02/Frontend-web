@@ -28,6 +28,17 @@ export const setClientName = (name) => {
   axios.defaults.headers.common["identificador"] = name;
 };
 
+export const setGameId = (id) => {
+  //APIKit.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  axios.defaults.headers.common["idPartida"] = id;
+};
+
+export const setInvitedName = (name) => {
+  console.log( axios.defaults.headers.common);
+  //APIKit.defaults.headers.common["identificador"] = name;
+  axios.defaults.headers.common["idInvitado"] = name;
+};
+
 export default {
     funciona() {
       console.log("metodo a parte")

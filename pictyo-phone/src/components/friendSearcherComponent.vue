@@ -1,14 +1,10 @@
 <template>
     <div class="friendSearcherComponent">
         <form action class="form" @submit.prevent="sendReq">
-            <ul>
-                <li>
-                    <label id="etiqueta" class="form-label" for="#amigo"></label>
-                    <input v-model="amigo" class="form-input" type="text" id="name" required placeholder="Friend to search">
-                    <p v-if="fallo" class="error">{{msgErr}}</p>
-                    <input class="form.submit" type="submit" value="Add">
-                </li>
-            </ul>
+            <label id="etiqueta" class="form-label" for="#amigo"></label>
+            <input v-model="amigo" class="form-input" type="text" id="name" required placeholder="Friend to search">
+            <p v-if="fallo" class="error">{{msgErr}}</p>
+            <input class="form.submit" type="submit" value="Add">
         </form>
         
     </div>
