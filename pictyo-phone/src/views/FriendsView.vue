@@ -3,7 +3,7 @@
       <deshecho-component msg="Esto es la página de amigos"/>
       <navegation-menu-component/>
       <friend-searcher-component/>
-      <friend-request-component/>
+      <friend-lists-component/>
       
   </div>
 </template>
@@ -13,7 +13,7 @@
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import DeshechoComponent from '../components/DeshechoComponent.vue'
 import friendSearcherComponent from '../components/friendSearcherComponent.vue'
-import FriendRequestComponent from '../components/friendRequestComponent.vue'
+import FriendListsComponent from '../components/friendListsComponent.vue'
 
 export default {
   name: 'FriendsView',
@@ -21,7 +21,7 @@ export default {
     NavegationMenuComponent,
     DeshechoComponent,
     friendSearcherComponent,
-    FriendRequestComponent
+    FriendListsComponent
   }
 }
 </script>

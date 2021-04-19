@@ -1,5 +1,5 @@
 <template>
-    <div class="friendRequestComponent" id="contenedor">
+    <div class="friendListsComponent" id="contenedor">
         <h4 id="tituloPetis">Lista de peticiones:</h4>
         <ol id="listaPetis">
           <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
@@ -30,7 +30,7 @@
 import auth from "@/logic/auth";
 
 export default {
-  name: 'friendRequestComponent',
+  name: 'friendListsComponent',
   
     data: () => ({
         loading: true,

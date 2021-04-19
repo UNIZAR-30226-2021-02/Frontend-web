@@ -1,5 +1,5 @@
 <template>
-    <div class="friendRequestComponent" id="contenedor">
+    <div class="logoutComponent" id="contenedor">
           <button class="button" v-on:click="logOut()">Log Out</button>
     </div>
 </template>
@@ -9,7 +9,7 @@ import {setClientToken} from '@/util/APIKIT'
 import {setClientName} from '@/util/APIKIT'
 
 export default {
-  name: 'friendRequestComponent',
+  name: 'logoutComponent',
   
   
     data: () => ({
