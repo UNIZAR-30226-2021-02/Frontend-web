@@ -1,6 +1,6 @@
 <template>
   <div class="SignInView">
-    <img alt="Gartic logo" src="../assets/logo.png">
+    <img alt="Gartic logo" style="height: 300px; weight:300px;" src="../assets/logo.png">
     <sign-in-component />
   </div>
 </template>

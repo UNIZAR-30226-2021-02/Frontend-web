@@ -13,6 +13,10 @@ export default {
     inviteFriend(nombre){
         setInvitedName(nombre);
         return axios.get(ENDPOINT_PATH + "inviteGame");
+    },
+
+    listPlayers(){
+        return axios.get(ENDPOINT_PATH + "listPlayers");
     }
 
 };

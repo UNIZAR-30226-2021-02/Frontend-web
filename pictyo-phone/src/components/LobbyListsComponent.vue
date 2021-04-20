@@ -1,12 +1,10 @@
 <template>
     <div class="friendListsComponent" id="contenedor">
-        <h4 id="tituloPetis">Lista de peticiones:</h4>
+        <h4 id="tituloPetis">Lista de jugadores:</h4>
         <ol id="listaPetis">
-          <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
+          <li class="list-group-item" v-for="index in IterJugador"  v-bind:key="index">
             <img :src="fotoPeticion(index)">
-            <a>{{peticiones[index]}}</a>
-            <button class="button" v-on:click="aceptarPeticion(peticiones[index])">Add</button>
-            <button class="button" v-on:click="rechazarPeticion(peticiones[index])">Deny</button>
+            <a>{{jugadores[index]}}</a>
           </li>
         </ol>
         <h4 id="tituloAmigos">Lista de amigos:</h4>
@@ -32,9 +30,9 @@ export default {
   
     data: () => ({
         loading: true,
-        peticiones: [],
-        IterPeti: [],
-        peticionesFotos: [],
+        jugadores: [],
+        IterJugador: [],
+        jugadoresFotos: [],
         amigos: [],
         IterAmigo: [],
         amigosFotos: []
@@ -46,7 +44,7 @@ export default {
       },
 
       fotoPeticion(index){
-        return this.peticionesFotos[index];
+        return this.jugadoresFotos[index];
       },
 
       invitarAmigo(nombre){
@@ -70,7 +68,7 @@ export default {
         auth.listFriends()
           .then((response)=>{
               console.log("Mis amigos")
-              //this.peticiones = response.data.nombre;
+              //this.jugadores = response.data.nombre;
               for(i=0;i<response.data.length;i++){
                 this.amigos.push(response.data[i].nombre);
                 this.IterAmigo.push(i);
@@ -83,56 +81,28 @@ export default {
           .catch(()=>{});
       },
 
-      aceptarPeticion(nombre){
-        auth.acceptRequest(nombre).then(() => {
-          this.peticiones = [];
-          this.IterPeti = [];
-          this.peticionesFotos = [];
-          this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];
-          this.listReq();
-          this.listFr();
-          this.$forceUpdate();
-        }).catch(()=>{});
-      },
-
-      rechazarPeticion(nombre){
-        auth.denyRequest(nombre).then(() => {
-          this.peticiones = [];
-          this.IterPeti = [];
-          this.peticionesFotos = [];
-          this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];
-          this.listReq();
-          this.listFr();
-          this.$forceUpdate();
-        }).catch(()=>{});
-      },
-
-      listReq(){
+      listJugadores(){
         
         var i;
         this.loading=true;
-        auth.listRequest()
+        util.listPlayers()
           .then((response)=>{
-              console.log("Mis peticiones")
-              //this.peticiones = response.data.nombre;
+              console.log("Mis jugadores")
+              //this.jugadores = response.data.nombre;
               for(i=0;i<response.data.length;i++){
-                this.peticiones.push(response.data[i].nombre);
-                this.IterPeti.push(i);
+                this.jugadores.push(response.data[i].nombre);
+                this.IterJugador.push(i);
                 console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
-                this.peticionesFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.jugadoresFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
               }
-              console.log(this.peticiones);
+              console.log(this.jugadores);
               this.loading=false;
           })
           .catch(()=>{});
       }
   },
   beforeMount(){
-      this.listReq()
+      this.listJugadores()
       this.listFr()
   }
 }
