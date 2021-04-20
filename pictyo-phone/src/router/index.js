@@ -8,6 +8,7 @@ import ShopView from '../views/ShopView.vue'
 import FriendsView from '../views/FriendsView.vue'
 import PartidasView from '../views/PartidasView.vue'
 import LobbyView from '../views/LobbyView.vue'
+import drawView from '../views/drawView.vue'
 
 Vue.use(VueRouter)
 
@@ -52,7 +53,12 @@ const routes = [
     path: '/Lobby',
     name: 'LobbyView',
     component: LobbyView
-  }
+  },
+  {
+    path: '/Draw',
+    name: 'drawView',
+    component: drawView
+  },
 ]
 
 const router = new VueRouter({

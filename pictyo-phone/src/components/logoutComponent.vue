@@ -1,6 +1,8 @@
 <template>
     <div class="logoutComponent" id="contenedor">
-          <button class="button" v-on:click="logOut()">Log Out</button>
+        <button class="button" v-on:click="paint()">Pintar</button>
+        <br>
+        <button class="button" v-on:click="logOut()">Log Out</button>  
     </div>
 </template>
 
@@ -16,6 +18,10 @@ export default {
     }),
 
   methods: {
+      paint(){
+        this.$router.push("/Draw");
+      },
+
       logOut(){
         setClientToken('');
         setClientName('');
