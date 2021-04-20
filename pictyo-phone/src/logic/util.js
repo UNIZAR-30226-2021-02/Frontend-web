@@ -17,7 +17,15 @@ export default {
     },
 
     listPlayers(){
+        setInvitedName(null);
+        console.log("SFDSAJNFASNDAJSDNBJASDNBASHDNBSHDB")
+        console.log( axios.defaults.headers.common["idPartida"]);
+        console.log( axios.defaults.headers.common["identificador"]);
         return axios.get(ENDPOINT_PATH + "listPlayers");
+    },
+
+    listFriendsNotInGame(){
+        return axios.get(ENDPOINT_PATH + "listFriendsGame");
     },
 
     listInvitaciones(){
@@ -36,6 +44,14 @@ export default {
         console.log( axios.defaults.headers.common["idPartida"]);
         console.log( axios.defaults.headers.common["identificador"]);
         return axios.get(ENDPOINT_PATH + "denyInvite");
+    },
+
+    listGames(){
+        return axios.get(ENDPOINT_PATH + "listGames");
+    },
+
+    startGame(){
+        return axios.get(ENDPOINT_PATH + "startGame");
     }
 
 };

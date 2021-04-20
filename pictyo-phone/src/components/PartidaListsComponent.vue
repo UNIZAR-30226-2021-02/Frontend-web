@@ -1,21 +1,18 @@
 <template>
     <div class="PartidaListsComponent" id="contenedor">
-        <h4 id="tituloPetis">Lista de Invitaciones:</h4>
-        <ol id="listaPetis">
+        <h4 id="titulopartidas">Lista de partidas:</h4>
+        <ol id=listapartidas>
+          <li class="list-group-item" v-for="index in IterPartida"  v-bind:key="index">
+            <a>Partida {{partidas[index]}} {{partidasEstado[index]}} </a>
+            <button class="button" v-on:click="jugarPartida(index)">Play</button>
+          </li>
+        </ol>
+        <h4 id="tituloInvitaciones">Lista de Invitaciones:</h4>
+        <ol id="listaInvitaciones">
           <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
             <a>Game {{Invitaciones[index]}} from {{InvitacionesHost[index]}}</a>
             <button class="button" v-on:click="aceptarInvitacion(InvitacionesId[index])">Accept</button>
             <button class="button" v-on:click="rechazarInvitacion(InvitacionesId[index])">Deny</button>
-          </li>
-        </ol>
-        <h4 id="tituloAmigos">Lista de amigos:</h4>
-        <ol id=listaAmigos>
-          <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
-            <a>{{IterAmigo[index]+1}}. </a>
-            <img :src="fotoAmigo(index)">
-            <a>{{amigos[index]}} </a>
-            <a>{{amigosPts[index]}}pts </a>
-            <button class="button" v-on:click="eliminarAmigo(amigos[index])">Remove</button>
           </li>
         </ol>
     </div>
@@ -26,58 +23,63 @@
 
 
 import util from "@/logic/util";
-import auth from "@/logic/auth";
+import {setGameId} from '@/util/APIKIT'
+import {getClientName} from '@/util/APIKIT'
 
 export default {
   name: 'PartidaListsComponent',
   
     data: () => ({
         loading: true,
+        loadingG: true,
         Invitaciones: [],
         InvitacionesId: [],
         IterPeti: [],
         InvitacionesHost: [],
-        amigos: [],
-        IterAmigo: [],
-        amigosPts: [],
-        amigosFotos: []
+        partidas: [],
+        IterPartida: [],
+        partidasId: [],
+        partidasHost: [],
+        partidasEstado: []
     }),
 
   methods: {
       fotoAmigo(index){
-        return this.amigosFotos[index];
+        return this.partidasEstado[index];
       },
 
-      eliminarAmigo(nombre){
-        auth.deleteFriend(nombre).then(() => {
-          this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];
-          this.listFr();
-          this.$forceUpdate();
-        }).catch(()=>{});
-        
+      jugarPartida(index){
+        console.log(index)
+        console.log(this.partidasHost[index]);
+        if(getClientName() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
+          setGameId(this.partidasId[index]);
+          this.$router.push("/Lobby");
+        }
+
       },
 
       listFr(){
         
         var i;
         this.loading=true;
-        auth.listFriends()
+        util.listGames()
           .then((response)=>{
-              console.log("Mis amigos")
+              console.log("Mis Partidas")
               //this.Invitaciones = response.data.nombre;
+              console.log(response.data)
               for(i=0;i<response.data.length;i++){
-                this.amigos.push(response.data[i].nombre);
-                this.IterAmigo.push(i);
-                console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
-                this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
-                this.amigosPts.push(response.data[i].estrellas);
+                this.partidas.push(response.data[i].nombre);
+                this.IterPartida.push(i);
+                this.partidasEstado.push(response.data[i].estado_);
+                this.partidasHost.push(response.data[i].host_.nombre);
+                this.partidasId.push(response.data[i].id);
               }
-              console.log(this.amigos);
-              this.loading=false;
+              
+              this.loadingG=false;
           })
-          .catch(()=>{});
+          .catch(()=>{
+            console.log("adsadasdasda")
+          });
       },
 
       aceptarInvitacion(nombre){
@@ -86,9 +88,9 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
-          this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];
+          this.partidas = [];
+          this.IterPartida = [];
+          this.partidasEstado = [];
           this.listInvitaciones();
           this.listFr();
           this.$forceUpdate();
@@ -100,9 +102,9 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
-          this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];
+          this.partidas = [];
+          this.IterPartida = [];
+          this.partidasEstado = [];
           this.listInvitaciones();
           this.listFr();
           this.$forceUpdate();
@@ -164,25 +166,25 @@ export default {
   border-top: 1px solid #FFF;
   }
 
-  #listaPetis{
+  #listapartidas{
     position: absolute;
     top: 350px;
     right: 1080px;
   }
 
-  #tituloPetis{
+  #titulopartidas{
     position: absolute;
     top: 300px;
     right: 1200px;
   }
 
-  #listaAmigos{
+  #listaInvitaciones{
     position: absolute;
     top: 350px;
     right: 300px;
   }
 
-  #tituloAmigos{
+  #tituloInvitaciones{
     position: absolute;
     top: 300px;
     right: 450px;

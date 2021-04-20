@@ -23,7 +23,6 @@
 
 
 import util from "@/logic/util";
-import auth from "@/logic/auth";
 
 export default {
   name: 'friendListsComponent',
@@ -57,7 +56,10 @@ export default {
           this.listFr();
           this.$forceUpdate();*/
 
-        }).catch(()=>{});
+        })
+        .catch(()=>{
+             alert("Invitación ya enviada");
+          });
         
       },
 
@@ -65,7 +67,7 @@ export default {
         
         var i;
         this.loading=true;
-        auth.listFriends()
+        util.listFriendsNotInGame()
           .then((response)=>{
               console.log("Mis amigos")
               //this.jugadores = response.data.nombre;
@@ -98,7 +100,7 @@ export default {
               console.log(this.jugadores);
               this.loading=false;
           })
-          .catch(()=>{});
+          .catch(()=>{console.log("S:")});
       }
   },
   beforeMount(){
