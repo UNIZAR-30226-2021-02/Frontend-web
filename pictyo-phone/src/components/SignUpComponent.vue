@@ -17,9 +17,9 @@
                 <li>
                     <label class="form-label" for="#rpass">Confirm Password: </label>
                     <input v-model="rpass" class="form-input" type="password" id="rpass" required placeholder="Repeat the password"> 
+                    <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
                 </li>
                 <li>
-                    <!--button type="button" id="boton" value="save">Sign in</button-->
                     <input class="form.submit" type="submit" value="Register">
                 </li>
             <router-link to="./" tag="button">Back</router-link>
@@ -44,7 +44,7 @@ import {setClientName} from '@/util/APIKIT'
             mail:'',
             password: '',
             rpass: '',
-            error: false
+            error: false,
         }),
 
         methods: {
@@ -56,10 +56,13 @@ import {setClientName} from '@/util/APIKIT'
                 }
             },
 
+
             registrar() {
+                console.log(this.estado);
+                this.error=false;
+                this.response="";
                 if (this.check()) {
                     this.postReg();
-                    this.$router.push("/Home");
                 } else {
                     alert("Las contraseñas no coinciden");
                 }
@@ -71,11 +74,20 @@ import {setClientName} from '@/util/APIKIT'
                     setClientToken(response.data.token);
                     setClientName(this.nombre);
                     console.log(response.status);
+                    if(response.status===201){
+                        this.$router.push("/Home");
+                    }else{
+                        this.error=true;
+                    }
                 }).catch(()=>{});
             }
         }
-
-    //Decidir que queda mejor, si la alerta o 
-    //el mensaje que pone iñigo, aqui de momento se usara la alerta
     };
 </script>
+
+<style>
+    p{
+        color: red;
+        font-weight: bolder;
+    }
+</style>

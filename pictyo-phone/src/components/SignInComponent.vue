@@ -13,7 +13,6 @@
             </li>
             <li>
                 <button class="form-submit" type="submit">LogIn</button>
-                <!--router-link to="/MiPerfil" tag="button">Sign in</router-link-->
             </li>
             <li>
                 <router-link to="/SignUp" tag="button">Sign Up</router-link>
