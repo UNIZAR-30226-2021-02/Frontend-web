@@ -3,6 +3,7 @@
       <deshecho-component msg="Esto es la página de partidas"/>
       <navegation-menu-component/>
       <partidas-creator-component/>
+      <partida-lists-component/>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import DeshechoComponent from '../components/DeshechoComponent.vue'
 import PartidasCreatorComponent from '../components/PartidasCreatorComponent.vue'
+import PartidaListsComponent from '../components/PartidaListsComponent.vue'
 
 export default {
   name: 'PartidasView',
   components: {
     NavegationMenuComponent,
     DeshechoComponent,
-    PartidasCreatorComponent
+    PartidasCreatorComponent,
+    PartidaListsComponent
   }
 }
 </script>
