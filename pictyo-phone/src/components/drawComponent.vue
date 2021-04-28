@@ -1,6 +1,6 @@
 <template>
   <div>
-      <canvas id="can" width="500" height="250"
+      <canvas id="can" 
         @mousedown="startPainting" 
         @mouseup="finishedPainting" 
         @mousemove="draw"  ></canvas>
@@ -29,7 +29,8 @@
     <a id="limpiar" href="#">LIMPIAR </a> 
     <a id="borrador" href="#"> BORRADOR</a>
     <br>
-    <button class="button" @click="back()">back</button>   
+    <button class="button" @click="back()">back</button>  
+    <button class="button" v-on:click="sendPNG()">send</button> 
   </div>
 </template>
 
@@ -42,6 +43,8 @@ export default {
     painting:false,
     canvas:null,
     ctx:null,
+    desplazamiento:0,
+    png:null,
   }),
 
   methods: {
@@ -54,22 +57,27 @@ export default {
 
     finishedPainting() {
       this.painting = false;
-      console.log(this.painting);
+      //console.log(this.painting);
       this.ctx.beginPath()
     },
 
     draw(e) {
       if(!this.painting) return
-      this.ctx.lineWidth = 10;
+      this.ctx.lineWidth = 5;
       this.ctx.lineCap ="round";
       
-      this.ctx.lineTo(e.clientX,e.clientY);
+      this.ctx.lineTo(e.clientX-this.desplazamiento,e.clientY);
       this.ctx.stroke();
-      console.log(e.clientX); // x coordinate
-      console.log(e. clientY); // y coordinate
+      //console.log(e.clientX-200); // x coordinate
+      //console.log(e.clientY); // y coordinate
 
       this.ctx.beginPath();
-      this.ctx.moveTo(e.clientX,e.clientY);
+      this.ctx.moveTo(e.clientX-this.desplazamiento,e.clientY);
+    },
+
+    sendPNG(){
+        this.png = this.canvas.toDataURL("image/png");
+        console.image(this.png);
     },
 
     back(){
@@ -77,12 +85,15 @@ export default {
       }
     },
 
+    
+
     mounted() {
       this.canvas=document.getElementById("can");
       this.ctx = this.canvas.getContext("2d");  
       // Resize canvas
-      this.canvas.height = window.innerHeight;
-      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight/2;
+      this.canvas.width = window.innerWidth/2;
+      this.desplazamiento = window.innerHeight/2;
     }
 }
 </script>
