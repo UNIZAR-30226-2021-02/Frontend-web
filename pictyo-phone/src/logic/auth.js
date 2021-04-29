@@ -1,16 +1,35 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const ENDPOINT_PATH = "http://localhost:8080/api/";
 
 export default {
-  
+ 
+  SetUserLogged(userLogged, token){
+    Cookies.set("userLogged", userLogged);
+    Cookies.set("token", token);
+  },
+
+  getUserLogged(){
+    return Cookies.get("userLogged");
+  },
+
+  getToken(){
+    return Cookies.get("token");
+  },
+
+  deleteUserLogged(){
+    Cookies.remove('userLogged');
+    Cookies.remove('token');
+  },
+
   register(nombre, mail, password) { //Funcion
     const person = {nombre, mail, password }; //Construye el objeto persona
     return axios.post(ENDPOINT_PATH + "register", person); //Envia peticion de post
   },
   
-  login(nombre,password){
-      const person={nombre, password};
+  login(mail,password){
+      const person={mail, password};
       return axios.post(ENDPOINT_PATH + "login", person);
   },
 

@@ -3,8 +3,8 @@
     <form action class="form" @submit.prevent="login">
         <ul>
             <li>
-                <label class="form-label" for="#username">Username:  </label>
-                <input v-model="username" class="form-input" type="text" required placeholder="User">
+                <label class="form-label" for="#mail">Mail:  </label>
+                <input v-model="mail" class="form-input" type="text" required placeholder="Mail">
             </li>
             <li>
                 <label class="form-label" for="#password">Password:  </label>
@@ -32,8 +32,9 @@ export default {
   name: 'SignInComponent',
 
   data: () => ({
-    username: "",
+    mail: "",
     password: "",
+    token: "",
     error: false
   }),
 
@@ -41,12 +42,15 @@ export default {
     
 
     login() {
-      auth.login(this.username, this.password).then(response =>{
+      auth.login(this.mail, this.password).then(response =>{
         console.log(response);
         setClientToken(response.data.token);
-        setClientName(this.username);
+        setClientName(this.mail);
+        this.token=response.data.token;
         console.log(axios.defaults.headers.common);
         this.$router.push("/Home");
+        auth.setUserLogged(this.mail, this.token);
+        console.log(this.mail, this.token);
       }).catch(() =>{this.error=true;})
     }
 

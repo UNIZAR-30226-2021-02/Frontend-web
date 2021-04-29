@@ -6,7 +6,8 @@
     </div>
 </template>
 
-<script> 
+<script>
+import auth from "@/logic/auth"
 import {setClientToken} from '@/util/APIKIT'
 import {setClientName} from '@/util/APIKIT'
 
@@ -25,6 +26,7 @@ export default {
       logOut(){
         setClientToken('');
         setClientName('');
+        auth.deleteUserLogged();
         this.$router.push("/");
       }
     }

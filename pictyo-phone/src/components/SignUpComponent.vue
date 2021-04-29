@@ -44,6 +44,7 @@ import {setClientName} from '@/util/APIKIT'
             mail:'',
             password: '',
             rpass: '',
+            token: '',
             error: false,
         }),
 
@@ -74,8 +75,12 @@ import {setClientName} from '@/util/APIKIT'
                     setClientToken(response.data.token);
                     setClientName(this.nombre);
                     console.log(response.status);
+                    this.token=response.data.token;
                     if(response.status===201){
                         this.$router.push("/Home");
+                        auth.setUserLogged(this.nombre, this.token);
+                        console.log(this.nombre);
+                        console.log(this.token);
                     }else{
                         this.error=true;
                     }
