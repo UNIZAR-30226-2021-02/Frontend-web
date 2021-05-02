@@ -33,14 +33,14 @@ export default {
       return axios.post(ENDPOINT_PATH + "login", person);
   },
 
-  sendRequest(nombre){
-      console.log(nombre);
-      const amigo={nombre};
+  sendRequest(mail){
+      console.log(mail);
+      const amigo={mail};
       return axios.post(ENDPOINT_PATH + "sendRequest", amigo);
   },
 
-  acceptRequest(nombre){
-      const amigo={nombre};
+  acceptRequest(mail){
+      const amigo={mail};
       return axios.post(ENDPOINT_PATH + "acceptRequest", amigo);
   },
 
@@ -52,13 +52,13 @@ export default {
     return axios.get(ENDPOINT_PATH + "listFriends");
   },
 
-  denyRequest(nombre){
-    const amigo={nombre};
+  denyRequest(mail){
+    const amigo={mail};
     return axios.post(ENDPOINT_PATH + "denyRequest", amigo);
   },
 
-  deleteFriend(nombre){
-    const amigo={nombre};
+  deleteFriend(mail){
+    const amigo={mail};
     return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
   },
 

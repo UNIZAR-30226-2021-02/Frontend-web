@@ -26,7 +26,7 @@
 import auth from "@/logic/auth"
 import axios from 'axios';
 import {setClientToken} from '@/util/APIKIT'
-import {setClientName} from '@/util/APIKIT'
+import {setClientMail} from '@/util/APIKIT'
 
 export default {
   name: 'SignInComponent',
@@ -45,7 +45,7 @@ export default {
       auth.login(this.mail, this.password).then(response =>{
         console.log(response);
         setClientToken(response.data.token);
-        setClientName(this.mail);
+        setClientMail(this.mail);
         this.token=response.data.token;
         console.log(axios.defaults.headers.common);
         this.$router.push("/Home");

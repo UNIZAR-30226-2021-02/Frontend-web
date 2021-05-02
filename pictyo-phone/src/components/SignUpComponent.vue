@@ -34,7 +34,7 @@
 <script>
 import auth from "@/logic/auth"
 import {setClientToken} from '@/util/APIKIT'
-import {setClientName} from '@/util/APIKIT'
+import {setClientMail} from '@/util/APIKIT'
 
     export default {
         name: 'SignUpComponent',
@@ -73,13 +73,13 @@ import {setClientName} from '@/util/APIKIT'
             postReg() {
                 auth.register(this.nombre, this.mail, this.password).then(response =>{
                     setClientToken(response.data.token);
-                    setClientName(this.nombre);
-                    console.log(response.status);
+                    setClientMail(this.mail);
+                    console.log(response);
                     this.token=response.data.token;
                     if(response.status===201){
                         this.$router.push("/Home");
-                        auth.setUserLogged(this.nombre, this.token);
-                        console.log(this.nombre);
+                        auth.setUserLogged(this.mail, this.token);
+                        console.log(this.mail);
                         console.log(this.token);
                     }else{
                         this.error=true;

@@ -11,8 +11,8 @@ export default {
         return axios.post(ENDPOINT_PATH + "newGame", partida);
     },
 
-    inviteFriend(nombre){
-        setInvitedName(nombre);
+    inviteFriend(mail){
+        setInvitedName(mail);
         return axios.get(ENDPOINT_PATH + "inviteGame");
     },
 

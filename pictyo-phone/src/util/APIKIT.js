@@ -23,12 +23,12 @@ export const setClientToken = (token) => {
   axios.defaults.headers.common["Authorization"] = `${token}`;
 };
 
-export const setClientName = (mail) => {
+export const setClientMail = (mail) => {
   //APIKit.defaults.headers.common["identificador"] = name;
   axios.defaults.headers.common["identificador"] = mail;
 };
 
-export const getClientName = () => {
+export const getClientMail = () => {
   //APIKit.defaults.headers.common["identificador"] = name;
   return axios.defaults.headers.common["identificador"];
 };

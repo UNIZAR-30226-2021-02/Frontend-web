@@ -24,7 +24,7 @@
 
 import util from "@/logic/util";
 import {setGameId} from '@/util/APIKIT'
-import {getClientName} from '@/util/APIKIT'
+import {getClientMail} from '@/util/APIKIT'
 
 export default {
   name: 'PartidaListsComponent',
@@ -51,7 +51,7 @@ export default {
       jugarPartida(index){
         console.log(index)
         console.log(this.partidasHost[index]);
-        if(getClientName() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
+        if(getClientMail() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
         }
@@ -71,7 +71,7 @@ export default {
                 this.partidas.push(response.data[i].nombre);
                 this.IterPartida.push(i);
                 this.partidasEstado.push(response.data[i].estado_);
-                this.partidasHost.push(response.data[i].host_.nombre);
+                this.partidasHost.push(response.data[i].host_.mail);
                 this.partidasId.push(response.data[i].id);
               }
               
