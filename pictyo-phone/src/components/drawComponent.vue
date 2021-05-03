@@ -4,7 +4,7 @@
 
       <!--toca escribir -->
 
-      <img v-if="this.showImg" :src=this.png>
+      <img v-if="this.showImg" :src=dasdsadas>
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -62,13 +62,14 @@ export default {
     painting:false,
     canvas:null,
     ctx:null,
-    desplazamiento:0,
+    desplazamientoX:0,
+    desplazamientoY:0,
     png:null,       //png a enviar
     fraseRespuesta:"", //Frase a enviar
-    msgTitulo:"",     //Título de la página
+    msgTitulo:"A",     //Título de la página
     imgAdivinar:null,   //Imagen a adivinar
-    frase:"",       //Frase que te toca dibujar
-    dibujar:false,   //true si te toca dibujar
+    frase:"A",       //Frase que te toca dibujar
+    dibujar:true,   //true si te toca dibujar
     adivinar:false,   //true si te toca adivinar
     showImg:false
   }),
@@ -92,13 +93,14 @@ export default {
       this.ctx.lineWidth = 5;
       this.ctx.lineCap ="round";
       
-      this.ctx.lineTo(e.clientX-this.desplazamiento,e.clientY);
+      this.ctx.lineTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
+      console.log(e.clientY)
       this.ctx.stroke();
       //console.log(e.clientX-200); // x coordinate
       //console.log(e.clientY); // y coordinate
 
       this.ctx.beginPath();
-      this.ctx.moveTo(e.clientX-this.desplazamiento,e.clientY);
+      this.ctx.moveTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
     },
 
     sendAnswer(){
@@ -118,6 +120,11 @@ export default {
         
     },
 
+    myImg(){
+        //console.log(this.myData[0].fotPerf)
+        return "http://localhost:8080/api/returnImageProfile/" + this.myData[0].fotPerf;
+    },
+
     back(){
         this.$router.push("/Partidas");
       }
@@ -132,23 +139,31 @@ export default {
           .then((response)=>{
               if(response.data.id_ >= 0){
                 if(response.data.esDibujo){
+                  console.log("Partida acabada")
+                  this.dibujar = false;
+                  this.adivinar = true;
+                  this.showImg = true;
+                  this.msgTitulo = "Describe la siguiente escena";
                   
-                  this.dibujar = true;
+                }
+                else{
                   this.canvas=document.getElementById("can");
                   this.ctx = this.canvas.getContext("2d");  
                   // Resize canvas
                   this.canvas.height = window.innerHeight/2;
                   this.canvas.width = window.innerWidth/2;
-                  this.desplazamiento = window.innerHeight/2;
+                  this.desplazamientoX = this.canvas.getBoundingClientRect();
+                  this.desplazamientoY = this.desplazamientoX.top;
+                  this.desplazamientoX = (this.desplazamientoX.right - this.desplazamientoX.left)/2;
+                  console.log(this.desplazamientoY);
+                  console.log("fdasda");
+                  //this.desplazamientoY = 0;
                   this.adivinar = false;
                   this.showImg = false;
                   this.msgTitulo = "Dibuja la siguiente historia";
-                }
-                else{
-                  this.dibujar = false;
-                  this.adivinar = true;
-                  this.showImg = true;
-                  this.msgTitulo = "Describe la siguiente escena";
+
+                  this.frase = response.data.frase;
+                  
                 }
               }
               else{
