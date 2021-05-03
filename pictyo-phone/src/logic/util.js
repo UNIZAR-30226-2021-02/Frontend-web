@@ -1,6 +1,7 @@
 import axios from "axios";
 import {setInvitedName} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
+import { setAutorMail } from "../util/APIKIT";
 
 const ENDPOINT_PATH = "http://localhost:8080/api/";
 
@@ -48,6 +49,15 @@ export default {
 
     listGames(){
         return axios.get(ENDPOINT_PATH + "listGames");
+    },
+
+    returnResponse(){
+        return axios.get(ENDPOINT_PATH + "returnResponse");
+    },
+
+    textAnswer(frase,autor){
+        setAutorMail(autor);
+        return axios.post(ENDPOINT_PATH + "addText", frase);
     },
 
     startGame(){

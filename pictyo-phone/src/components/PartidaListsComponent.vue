@@ -55,6 +55,14 @@ export default {
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
         }
+        else{
+          setGameId(this.partidasId[index]);
+          this.$router.push("/Draw");
+          /*util.returnResponse(this.partidasId[index])
+          .then((response)=>{
+              switch(response.data.id_)
+          })*/
+        }
 
       },
 

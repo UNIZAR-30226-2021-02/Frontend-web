@@ -1,10 +1,25 @@
 <template>
-  <div>
-      <canvas id="can" 
+  <div >
+      <h1>{{this.msgTitulo}}</h1>
+
+      <!--toca escribir -->
+
+      <img v-if="this.showImg" :src=this.png>
+      <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
+            <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
+            <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
+      </form>
+
+
+
+
+      <!--Pizarra y dibujar -->
+      <h2 v-if="this.dibujar">{{this.frase}}</h2>
+      <canvas v-if="this.dibujar" id="can" 
         @mousedown="startPainting" 
         @mouseup="finishedPainting" 
         @mousemove="draw"  ></canvas>
-      <div id="clr">
+      <div v-if="this.dibujar" id="clr">
         <div style="background-color:black;"></div>
         <div style="background-color:red;"></div>
         <div style="background-color:green;"></div>
@@ -29,12 +44,16 @@
     <a id="limpiar" href="#">LIMPIAR </a> 
     <a id="borrador" href="#"> BORRADOR</a>
     <br>
-    <button class="button" @click="back()">back</button>  
-    <button class="button" v-on:click="sendPNG()">send</button> 
+    <button class="button" @click="back()">back</button> 
+    <button class="button" v-on:click="sendAnswer()">send</button> 
   </div>
+  
 </template>
 
 <script> 
+import util from "@/logic/util";
+import {setGameId} from '@/util/APIKIT'
+import {getClientMail} from '@/util/APIKIT'
 export default {
   name: 'drawComponent',
 
@@ -44,7 +63,14 @@ export default {
     canvas:null,
     ctx:null,
     desplazamiento:0,
-    png:null,
+    png:null,       //png a enviar
+    fraseRespuesta:"", //Frase a enviar
+    msgTitulo:"",     //Título de la página
+    imgAdivinar:null,   //Imagen a adivinar
+    frase:"",       //Frase que te toca dibujar
+    dibujar:false,   //true si te toca dibujar
+    adivinar:false,   //true si te toca adivinar
+    showImg:false
   }),
 
   methods: {
@@ -75,25 +101,82 @@ export default {
       this.ctx.moveTo(e.clientX-this.desplazamiento,e.clientY);
     },
 
-    sendPNG(){
+    sendAnswer(){
+      if(this.adivinar){
+        util.textAnswer(this.fraseRespuesta,getClientMail())
+        .then(()=> {
+          setGameId("");
+          this.$router.push("/Partidas");
+        })
+        .catch(()=>{
+        });
+
+      }
+      else if(this.dibujar){
         this.png = this.canvas.toDataURL("image/png");
-        console.image(this.png);
+      }
+        
     },
 
     back(){
-        this.$router.push("/home");
+        this.$router.push("/Partidas");
       }
     },
 
     
 
     mounted() {
-      this.canvas=document.getElementById("can");
-      this.ctx = this.canvas.getContext("2d");  
-      // Resize canvas
-      this.canvas.height = window.innerHeight/2;
-      this.canvas.width = window.innerWidth/2;
-      this.desplazamiento = window.innerHeight/2;
+      
+
+      util.returnResponse()
+          .then((response)=>{
+              if(response.data.id_ >= 0){
+                if(response.data.esDibujo){
+                  
+                  this.dibujar = true;
+                  this.canvas=document.getElementById("can");
+                  this.ctx = this.canvas.getContext("2d");  
+                  // Resize canvas
+                  this.canvas.height = window.innerHeight/2;
+                  this.canvas.width = window.innerWidth/2;
+                  this.desplazamiento = window.innerHeight/2;
+                  this.adivinar = false;
+                  this.showImg = false;
+                  this.msgTitulo = "Dibuja la siguiente historia";
+                }
+                else{
+                  this.dibujar = false;
+                  this.adivinar = true;
+                  this.showImg = true;
+                  this.msgTitulo = "Describe la siguiente escena";
+                }
+              }
+              else{
+                switch(response.data.id_){
+                case -3:
+                  console.log("Partida acabada")
+                  this.dibujar = false;
+                  this.adivinar = false;
+                  this.showImg = false;
+                  this.msgTitulo = "Partida finalizada";
+                  break;
+                case -2:
+                  console.log("Turno acabado")
+                  this.dibujar = false;
+                  this.adivinar = false;
+                  this.showImg = false;
+                  this.msgTitulo = "Ya has acabado tu turno";
+                  break;
+                default:
+                  console.log("Primer turno")
+                  this.dibujar = false;
+                  this.adivinar = true;
+                  this.showImg = false;
+                  this.msgTitulo = "Escribe una historia!";
+                }
+              }
+              
+          });
     }
 }
 </script>

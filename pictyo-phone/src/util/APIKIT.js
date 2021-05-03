@@ -33,6 +33,16 @@ export const getClientMail = () => {
   return axios.defaults.headers.common["identificador"];
 };
 
+export const setAutorMail = (mail) => {
+  //APIKit.defaults.headers.common["identificador"] = name;
+  axios.defaults.headers.common["autor"] = mail;
+};
+
+export const getAutorMail = () => {
+  //APIKit.defaults.headers.common["identificador"] = name;
+  return axios.defaults.headers.common["autor"];
+};
+
 export const setGameId = (id) => {
   //APIKit.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   axios.defaults.headers.common["idPartida"] = id;
