@@ -1,6 +1,6 @@
 <template>
-  <div class="SignInView">
-    <img alt="Gartic logo" style="height: 300px; weight:300px;" src="../assets/logo.png">
+  <div class="SignInView" style="background-color: grey">
+    <img alt="Gartic logo" src="../assets/logo.png">
     <sign-in-component />
   </div>
 </template>
@@ -16,3 +16,22 @@ export default {
   }
 }
 </script>
+
+<style>
+
+  .SingInView{
+    background-color: grey;
+    width: 100%;
+    height: 100%;
+  }
+
+  html,body{
+    background-color:  grey;
+  }
+
+  img{
+    margin-top: 25px;
+    margin-bottom: 40px;
+  }
+
+</style>
