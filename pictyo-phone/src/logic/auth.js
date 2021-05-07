@@ -1,4 +1,4 @@
-import axios from "axios";
+import APIKit from '@/util/APIKIT';
 import Cookies from "js-cookie";
 
 const ENDPOINT_PATH = "http://localhost:8080/api/";
@@ -25,49 +25,49 @@ export default {
 
   register(nombre, mail, password) { //Funcion
     const person = {nombre, mail, password }; //Construye el objeto persona
-    return axios.post(ENDPOINT_PATH + "register", person); //Envia peticion de post
+    return APIKit.post(ENDPOINT_PATH + "register", person); //Envia peticion de post
   },
   
   login(mail,password){
       const person={mail, password};
-      return axios.post(ENDPOINT_PATH + "login", person);
+      return APIKit.post(ENDPOINT_PATH + "login", person);
   },
 
   sendRequest(mail){
       console.log(mail);
       const amigo={mail};
-      return axios.post(ENDPOINT_PATH + "sendRequest", amigo);
+      return APIKit.post(ENDPOINT_PATH + "sendRequest", amigo);
   },
 
   acceptRequest(mail){
       const amigo={mail};
-      return axios.post(ENDPOINT_PATH + "acceptRequest", amigo);
+      return APIKit.post(ENDPOINT_PATH + "acceptRequest", amigo);
   },
 
   listRequest(){
-    return axios.get(ENDPOINT_PATH + "listRequest");
+    return APIKit.get(ENDPOINT_PATH + "listRequest");
   },
 
   listFriends(){
-    return axios.get(ENDPOINT_PATH + "listFriends");
+    return APIKit.get(ENDPOINT_PATH + "listFriends");
   },
 
   denyRequest(mail){
     const amigo={mail};
-    return axios.post(ENDPOINT_PATH + "denyRequest", amigo);
+    return APIKit.post(ENDPOINT_PATH + "denyRequest", amigo);
   },
 
   deleteFriend(mail){
     const amigo={mail};
-    return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
+    return APIKit.post(ENDPOINT_PATH + "deleteFriend", amigo);
   },
 
   viewProfile(){
-    return axios.get(ENDPOINT_PATH + "viewProfile");
+    return APIKit.get(ENDPOINT_PATH + "viewProfile");
   }
 
-  //axios.get(ENDPOINT_PATH + "listFriends");
-  //axios.get(ENDPOINT_PATH + "listRequest");
+  //APIKit.get(ENDPOINT_PATH + "listFriends");
+  //APIKit.get(ENDPOINT_PATH + "listRequest");
 
 
   

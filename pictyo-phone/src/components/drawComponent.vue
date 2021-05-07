@@ -67,7 +67,7 @@ export default {
     png:null,       //png a enviar
     fraseRespuesta:"", //Frase a enviar
     msgTitulo:"A",     //Título de la página
-    imgAdivinar:null,   //Imagen a adivinar
+    idImg:null,       //Id de la imagen a adivinar
     frase:"A",       //Frase que te toca dibujar
     dibujar:true,   //true si te toca dibujar
     adivinar:false,   //true si te toca adivinar
@@ -94,7 +94,6 @@ export default {
       this.ctx.lineCap ="round";
       
       this.ctx.lineTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
-      console.log(e.clientY)
       this.ctx.stroke();
       //console.log(e.clientX-200); // x coordinate
       //console.log(e.clientY); // y coordinate
@@ -115,14 +114,25 @@ export default {
 
       }
       else if(this.dibujar){
+        console.log("Huiooad");
         this.png = this.canvas.toDataURL("image/png");
+        util.imgAnswer(getClientMail(),this.png)
+        .then(()=> {
+          setGameId("");
+          this.$router.push("/Partidas");
+        })
+        .catch(()=>{
+          console.log("EEEEEEEEEEEEEEEEEEE");
+          console.log("AAAAAAAAAAAAAAAAH")
+        });
       }
         
     },
 
     myImg(){
         //console.log(this.myData[0].fotPerf)
-        return "http://localhost:8080/api/returnImageProfile/" + this.myData[0].fotPerf;
+        var img = util.getImg(this.idImg);
+        return img
     },
 
     back(){
@@ -142,6 +152,7 @@ export default {
                   console.log("Partida acabada")
                   this.dibujar = false;
                   this.adivinar = true;
+                  this.idImg = response.data.id_;
                   this.showImg = true;
                   this.msgTitulo = "Describe la siguiente escena";
                   
