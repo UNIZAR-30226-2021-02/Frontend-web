@@ -14,7 +14,8 @@
                 <button class="form-submit" type="submit">LogIn</button>
             </li>
             <li>
-                <router-link to="/SignUp" tag="button">Sign Up</router-link>
+                <!--router-link to="/SignUp" tag="button" >Sign Up</router-link-->
+                <button @click="funcion()">Sign Up</button>
             </li>
         </ul>
     </form>
@@ -39,7 +40,6 @@ export default {
 
   methods: {
     
-
     login() {
       auth.login(this.mail, this.password).then(response =>{
         console.log(response);
@@ -51,7 +51,11 @@ export default {
         auth.setUserLogged(this.mail, this.token);
         console.log(this.mail, this.token);
       }).catch(() =>{this.error=true;})
-    }
+    },
+
+    funcion(){
+      this.$router.push("/SignUp");
+    },
 
   }
 }
@@ -103,6 +107,10 @@ export default {
     background-color: rgb(15, 1, 80);
     border-color: #00A6D6;
 
+  }
+
+  button:active{
+    transform: translateY(4px);
   }
 
 h3 {
