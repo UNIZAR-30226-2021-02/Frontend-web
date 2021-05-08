@@ -1,21 +1,21 @@
 <template>
   <div class="login">
-    <form action class="form" @submit.prevent="login">
+    <form action class="formL" @submit.prevent="login">
         <ul>
             <li>
                 <input v-model="mail" class="form-input" type="email" required placeholder="Email">
             </li>
-            <li>
-                
+            <li>  
                 <input v-model="password" class="form-input" type="password" required placeholder="Password">
-                <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
             </li>
             <li>
-                <button class="form-submit" type="submit">LogIn</button>
+              <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
             </li>
             <li>
-                <!--router-link to="/SignUp" tag="button" >Sign Up</router-link-->
-                <button @click="funcion()">Sign Up</button>
+                <button class="form-submit1" type="submit">LogIn</button>
+            </li>
+            <li>
+                <button class="form-submit2" @click="funcion()">Sign Up</button>
             </li>
         </ul>
     </form>
@@ -62,22 +62,26 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 
   .login{
     background-color: grey;
   }
 
- form {
+ .formL {
     margin: auto;
     width: 400px;
+    height: 270px;
     border-radius: 10px;
     border: 4px solid black;
     background-color:#17151C;
+    padding: 20px;
   }
 
   ul{
     margin: 25px;
+    list-style-type: none;
+    padding: 0;
   }
 
   form li + li {
@@ -89,7 +93,8 @@ export default {
     width: 300px; 
     box-sizing: border-box;
     border: 1px solid black;
-    border-radius: 7px;
+    border-radius: 5px;
+    padding: 10px;
   }
 
   button{
@@ -113,13 +118,6 @@ export default {
     transform: translateY(4px);
   }
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 li {
   display: inline-block;
   margin: 0 10px;
