@@ -51,11 +51,12 @@ export default {
       jugarPartida(index){
         console.log(index)
         console.log(this.partidasHost[index]);
+        console.log(this.partidasId[index]);
         if(getClientMail() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
         }
-        else{
+        else if(this.partidasEstado[index] != "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Draw");
           /*util.returnResponse(this.partidasId[index])
@@ -66,7 +67,7 @@ export default {
 
       },
 
-      listFr(){
+      listGames(){
         
         var i;
         this.loading=true;
@@ -96,11 +97,14 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
+          this.InvitacionesId = [];
           this.partidas = [];
           this.IterPartida = [];
           this.partidasEstado = [];
+          this.partidasId = [];
+          this.partidasHost = [];
           this.listInvitaciones();
-          this.listFr();
+          this.listGames();
           this.$forceUpdate();
         }).catch(()=>{});
       },
@@ -110,11 +114,14 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
+          this.InvitacionesId = [];
           this.partidas = [];
           this.IterPartida = [];
           this.partidasEstado = [];
+          this.partidasId = [];
+          this.partidasHost = [];
           this.listInvitaciones();
-          this.listFr();
+          this.listGames();
           this.$forceUpdate();
         }).catch(()=>{});
       },
@@ -142,7 +149,7 @@ export default {
   },
   beforeMount(){
       this.listInvitaciones()
-      this.listFr()
+      this.listGames()
   }
 }
 
