@@ -1,35 +1,31 @@
 <template>
     <div id="sign-up-component">
-        <form action class="form" @submit.prevent="registrar">
+        <form action class="formR" @submit.prevent="registrar">
             <ul>
                 <li>
-                    <label class="form-label" for="#email">Email: </label>
-                    <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email">
+                    <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email" style="margin-top:10px">
                 </li>
                 <li>
-                    <label  class="form-label" for="#username">Username: </label>
                     <input v-model="nombre" class="form-input" type="text" id="name" required placeholder="Username">
                 </li>
                 <li>
-                    <label class="form-label" for="#password">Password: </label>
                     <input v-model="password" class="form-input" type="password" id="pass" required placeholder="Password">
                 </li>
                 <li>
-                    <label class="form-label" for="#rpass">Confirm Password: </label>
                     <input v-model="rpass" class="form-input" type="password" id="rpass" required placeholder="Repeat the password"> 
                     <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
                 </li>
                 <li>
-                    <input class="form.submit" type="submit" value="Register">
+                    <button class="form.submit" type="submit">Register</button>
                 </li>
-            <router-link to="./" tag="button">Back</router-link>
+                <li>
+                    <router-link to="./" class="a">Go to login</router-link>
+                </li>
             </ul>
             
         </form>
     </div>
 </template>
-
-
 
 <script>
 import auth from "@/logic/auth"
@@ -90,9 +86,75 @@ import {setClientMail} from '@/util/APIKIT'
     };
 </script>
 
-<style>
-    p{
-        color: red;
-        font-weight: bolder;
+<style >
+
+  .formR {
+    margin: auto;
+    height: 425px;
+    width: 400px;
+    border-radius: 10px;
+    border: 4px solid black;
+    background-color:#17151C;
+  }
+
+  ul{
+    margin: 25px;
+  }
+
+  .email{
+      margin-top:5px;
+  }
+
+  form li + li {
+    margin-top: 2em;
+  }
+
+  input{
+    font: 1em arial;
+    width: 300px; 
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 7px;
+  }
+
+  button{
+    background-color:#00A6D6;
+    border-color: rgb(15, 1, 80);
+    color:white;
+    border-width: 3px;
+    padding: 5px 10px;
+    box-shadow: 10px;
+    font-family: arial;
+  }
+
+  button:hover{
+    background-color: rgb(15, 1, 80);
+    border-color: #00A6D6;
+  }
+
+  button:active{
+    transform: translateY(4px);
+  }
+
+    .a{
+        color:white;
+        text-decoration: underline;
+
     }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+p{
+  margin-top: 5px;
+  color: red;
+  font-weight: bolder;
+  font-family: Arial;
+}
 </style>
