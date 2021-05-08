@@ -66,10 +66,6 @@ export default {
         return APIKit.post(ENDPOINT_PATH + "addImage2", img);
     },
 
-    getImg(id){
-        return APIKit.get(ENDPOINT_PATH + "returnImageResponse/" + id);
-    },
-
     startGame(){
         return APIKit.get(ENDPOINT_PATH + "startGame");
     }

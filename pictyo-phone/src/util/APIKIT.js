@@ -47,6 +47,12 @@ export const setGameId = (id) => {
   
 };
 
+export const getGameId = () => {
+  //APIKit.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  return APIKit.defaults.headers.common["idPartida"];
+  
+};
+
 export const setInvitedName = (name) => {
   console.log( APIKit.defaults.headers.common);
   //APIKit.defaults.headers.common["identificador"] = name;

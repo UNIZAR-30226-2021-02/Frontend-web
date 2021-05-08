@@ -4,7 +4,7 @@
 
       <!--toca escribir -->
 
-      <img v-if="this.showImg" :src=dasdsadas>
+      <img v-if="this.showImg" :src="theImg()">
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -52,6 +52,7 @@
 
 <script> 
 import util from "@/logic/util";
+import {getGameId} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
 import {getClientMail} from '@/util/APIKIT'
 export default {
@@ -75,6 +76,11 @@ export default {
   }),
 
   methods: {
+
+    theImg(){
+      return "http://localhost:8080/api/returnImageResponse/" + this.idImg;
+
+    },
     
     startPainting(e) {
       this.painting = true;
@@ -104,6 +110,7 @@ export default {
 
     sendAnswer(){
       if(this.adivinar){
+        console.log("ENVIANDO FRASE")
         util.textAnswer(this.fraseRespuesta,getClientMail())
         .then(()=> {
           setGameId("");
@@ -114,7 +121,7 @@ export default {
 
       }
       else if(this.dibujar){
-        console.log("Huiooad");
+        console.log("ENVIANDO DIBUJO");
         this.png = this.canvas.toDataURL("image/png");
         util.imgAnswer(getClientMail(),this.png)
         .then(()=> {
@@ -144,9 +151,10 @@ export default {
 
     mounted() {
       
-
+      console.log(getGameId());
       util.returnResponse()
           .then((response)=>{
+            console.log(response.data)
               if(response.data.id_ >= 0){
                 if(response.data.esDibujo){
                   console.log("Partida acabada")
