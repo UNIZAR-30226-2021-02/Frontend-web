@@ -1,6 +1,5 @@
 <template>
-  <div class="register">
-    <img alt="Gartic logo" src="../assets/logo.png">
+  <div>
     <sign-up-component/>
   </div>
 </template>
@@ -18,15 +17,13 @@ export default {
 }
 </script>
 
-<style>
-  .register{
-    background-color: grey;
-    width: 100%;
-    height: 100%;
+<style scoped>
+  html,body{
+    background-color:  grey;
   }
 
-  img{
-    height: 200px;
+  div{
+    background-color: grey;
   }
 
 </style>

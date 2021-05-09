@@ -1,7 +1,10 @@
 <template>
     <div id="sign-up-component">
-        <form action class="formR" @submit.prevent="registrar">
+        <form action class="formM" @submit.prevent="registrar">
             <ul>
+                <li>
+                    <img alt="Gartic logo" src="../assets/logo.png">
+                </li>
                 <li>
                     <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email" style="margin-top:10px">
                 </li>
@@ -13,10 +16,12 @@
                 </li>
                 <li>
                     <input v-model="rpass" class="form-input" type="password" id="rpass" required placeholder="Repeat the password"> 
+                </li>
+                <li>
                     <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
                 </li>
                 <li>
-                    <button class="form.submit" type="submit">Register</button>
+                    <button class="form-submit" type="submit">Register</button>
                 </li>
                 <li>
                     <router-link to="./" class="a">Go to login</router-link>
@@ -41,6 +46,7 @@ import {setClientMail} from '@/util/APIKIT'
             password: '',
             rpass: '',
             token: '',
+            status: '',
             error: false,
         }),
 
@@ -69,92 +75,27 @@ import {setClientMail} from '@/util/APIKIT'
             postReg() {
                 auth.register(this.nombre, this.mail, this.password).then(response =>{
                     setClientToken(response.data.token);
-                    setClientMail(this.mail);
-                    console.log(response);
+                    setClientMail(this.mail);                     
                     this.token=response.data.token;
                     if(response.status===201){
                         this.$router.push("/Home");
                         auth.setUserLogged(this.mail, this.token);
                         console.log(this.mail);
                         console.log(this.token);
-                    }else{
-                        this.error=true;
                     }
-                }).catch(()=>{});
+                }).catch((error)=>{
+ 
+                    switch(error.response.status){
+                        case 417:
+                            console.log('Usuario o mail existente');
+                            this.error=true;
+                    }
+                })
             }
         }
     };
 </script>
 
-<style >
-
-  .formR {
-    margin: auto;
-    height: 425px;
-    width: 400px;
-    border-radius: 10px;
-    border: 4px solid black;
-    background-color:#17151C;
-  }
-
-  ul{
-    margin: 25px;
-  }
-
-  .email{
-      margin-top:5px;
-  }
-
-  form li + li {
-    margin-top: 2em;
-  }
-
-  input{
-    font: 1em arial;
-    width: 300px; 
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 7px;
-  }
-
-  button{
-    background-color:#00A6D6;
-    border-color: rgb(15, 1, 80);
-    color:white;
-    border-width: 3px;
-    padding: 5px 10px;
-    box-shadow: 10px;
-    font-family: arial;
-  }
-
-  button:hover{
-    background-color: rgb(15, 1, 80);
-    border-color: #00A6D6;
-  }
-
-  button:active{
-    transform: translateY(4px);
-  }
-
-    .a{
-        color:white;
-        text-decoration: underline;
-
-    }
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-p{
-  margin-top: 5px;
-  color: red;
-  font-weight: bolder;
-  font-family: Arial;
-}
+<style scoped>
+    @import '../styles/probe.css';
 </style>
