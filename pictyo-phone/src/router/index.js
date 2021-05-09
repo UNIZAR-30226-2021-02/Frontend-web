@@ -9,6 +9,7 @@ import FriendsView from '../views/FriendsView.vue'
 import PartidasView from '../views/PartidasView.vue'
 import LobbyView from '../views/LobbyView.vue'
 import drawView from '../views/drawView.vue'
+import pruebas from '../views/pruebasDibujoView.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +59,11 @@ const routes = [
     path: '/Draw',
     name: 'drawView',
     component: drawView
+  },
+  {
+    path: '/Pruebas',
+    name: 'pruebasView',
+    component: pruebas
   },
 ]
 

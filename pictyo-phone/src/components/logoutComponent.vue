@@ -20,7 +20,7 @@ export default {
 
   methods: {
       paint(){
-        this.$router.push("/Draw");
+        this.$router.push("/Pruebas");
       },
 
       logOut(){

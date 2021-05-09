@@ -20,26 +20,67 @@
         @mouseup="finishedPainting" 
         @mousemove="draw"  ></canvas>
       <div v-if="this.dibujar" id="clr">
-        <div style="background-color:black;"></div>
-        <div style="background-color:red;"></div>
-        <div style="background-color:green;"></div>
-        <div style="background-color:orange;"></div>
-        <div style="background-color:#FFFF00;"></div>
-        <div style="background-color:#F43059;"></div>
-        <div style="background-color:#ff00ff;"></div>
-        <div style="background-color:#9ecc3b;"></div>
-        <div style="background-color:#fbd;"></div>
-        <div style="background-color:#fff460;"></div>
-        <div style="background-color:#F43059;"></div>
-        <div style="background-color:#82B82C;"></div>
-        <div style="background-color:#0099FF;"></div>
-        <div style="background-color:#ff00ff;"></div>
-        <div style="background-color:rgb(128,0,255);"></div>
-        <div style="background-color:rgb(255,128,0);"></div>
-        <div style="background-color:rgb(153,254,0);"></div>
-        <div style="background-color:rgb(18,0,255);"></div>
-        <div style="background-color:rgb(255,28,0);"></div>
-        <div style="background-color:rgb(13,54,0);"></div>
+        <div>
+          <button class="colores" @click="color('black')" style="background-color: black "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('red')" style="background-color: red "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('green')" style="background-color: green "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('orange')" style="background-color: orange "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#FFFF00')" style="background-color: #FFFF00 "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#9ecc3b')" style="background-color: #9ecc3b "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#fbd')" style="background-color: #fbd "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#fff460')" style="background-color: #fff460 "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#82B82C')" style="background-color: #82B82C "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#0099FF')" style="background-color: #0099FF "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(128,0,255)')" style="background-color: rgb(128,0,255) "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(255,128,0)')" style="background-color: rgb(255,128,0) "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(153,254,0')" style="background-color: rgb(153,254,0 "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(18,0,255)')" style="background-color: rgb(18,0,255) "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(255,28,0)')" style="background-color: rgb(255,28,0) "></button>
+        </div>
+        <div>
+          <button class="colores" @click="color('rgb(13,54,0)')" style="background-color: rgb(13,54,0) "></button>
+        </div>
+
       </div>
     <a id="limpiar" href="#">LIMPIAR </a> 
     <a id="borrador" href="#"> BORRADOR</a>
@@ -106,6 +147,10 @@ export default {
 
       this.ctx.beginPath();
       this.ctx.moveTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
+    },
+
+    color(c){
+      console.log(c);
     },
 
     sendAnswer(){
@@ -215,7 +260,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 *{
    margin:0;
    user-select: none;
@@ -234,4 +279,10 @@ canvas{
    height:20px;
    float:left;
 }
+
+   .colores{
+     padding: 20px;
+     margin:25px;
+   }
+
 </style>
