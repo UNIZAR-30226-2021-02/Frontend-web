@@ -39,7 +39,7 @@
           <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
-            <button class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
+            <button v-if="!soyYo(hilos[0].respuestas_[index-1].autor_.mail)" class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
           </li>
         </ol> 
 
@@ -145,6 +145,7 @@ export default {
   name: 'drawComponent',
 
   data: () => ({
+    miMail:"",
     vueCanvas:null,
     faseFinal: false,
     votando: false,
@@ -175,6 +176,10 @@ export default {
     resetVotos(){
       console.log("AAAAA");
       util.resetVotes();
+    },
+
+    soyYo(mail){
+      return mail==this.miMail;
     },
 
     theImg(id){
@@ -285,7 +290,7 @@ export default {
     
 
     mounted() {
-      
+      this.miMail = getClientMail();
       console.log(getGameId());
       util.returnResponse()
           .then((response)=>{
