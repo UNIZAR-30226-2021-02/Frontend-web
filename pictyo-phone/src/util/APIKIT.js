@@ -59,4 +59,10 @@ export const setInvitedName = (name) => {
   APIKit.defaults.headers.common["idInvitado"] = name;
 };
 
+export const setVotadoMail = (mail) => {
+  //console.log( APIKit.defaults.headers.common);
+  //APIKit.defaults.headers.common["identificador"] = name;
+  APIKit.defaults.headers.common["votado"] = mail;
+};
+
 export default APIKit;

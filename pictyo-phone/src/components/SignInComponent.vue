@@ -3,7 +3,7 @@
     <form action class="formL" @submit.prevent="login">
         <ul>
             <li>
-              <img alt="Gartic logo" src="../assets/logo.png">
+              <img class="logo" src="../assets/logo.png">
             </li>
             <li>
                 <input v-model="mail" class="form-input" type="email" required placeholder="Email">

@@ -2,9 +2,50 @@
   <div >
       <h1>{{this.msgTitulo}}</h1>
 
+      <!--toca ver los puntos -->
+      <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
+        <ol v-if="this.mostrarPuntos" id="listaVotos">
+          <li class="list-group-item" v-for="index in puntosJugadores.length"  v-bind:key="index">
+            <!--img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].fotPerf)"-->
+            <a> {{puntosJugadores[index-1].idUsuario_}}     </a>
+            <img style="height:30px; weight:30px;" src="@/assets/penIcon.png">
+            <a>: {{puntosJugadores[index-1].pDibujo_}}   </a>
+            <img style="height:30px; weight:30px;" src="@/assets/risaIcon.png">
+            <a>: {{puntosJugadores[index-1].pGracioso_}}   </a>
+            <img style="height:30px; weight:30px;" src="@/assets/brainIcon.png">
+            <a>: {{puntosJugadores[index-1].pListo_}}   </a>
+          </li>
+        </ol>
+
+      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
+      <a v-if="this.mostrarPuntos"> +{{}}     </a>
+      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
+      <a v-if="this.mostrarPuntos"> +{{}}</a>
+
+      <!--toca ver los hilos -->
+      <h4 v-if="this.faseFinal" id="tituloInvitaciones">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
+        <ol v-if="this.faseFinal" id="listaHistoria">
+          <li class="list-group-item" v-for="index in hilos[num].size"  v-bind:key="index">
+            <img id="imgPerf" :src="imgPerfil(hilos[num].respuestas_[index-1].autor_.fotPerf)">
+            <a> {{hilos[num].respuestas_[index-1].autor_.nombre}}:  </a>
+            <a v-if="!hilos[num].respuestas_[index-1].esDibujo">{{hilos[num].respuestas_[index-1].frase}}</a>
+            <img v-if="hilos[num].respuestas_[index-1].esDibujo" style="height:350px; weight:350px;" :src="theImg(hilos[num].respuestas_[index-1].id_)">
+          </li>
+        </ol>  
+      
+      <!--toca votar -->
+        <h4 v-if="this.votando" id="tituloVoto">Vota al {{msgVotacion[numVotacion]}}:</h4>
+        <ol v-if="this.votando" id="listaVotos">
+          <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
+            <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
+            <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
+            <button class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
+          </li>
+        </ol> 
+
       <!--toca escribir -->
 
-      <img v-if="this.showImg" :src="theImg()">
+      <img v-if="this.showImg" :src="theImg(idImg)">
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -82,11 +123,15 @@
         </div>
 
       </div>
-    <a id="limpiar" href="#">LIMPIAR </a> 
-    <a id="borrador" href="#"> BORRADOR</a>
+    <a v-if="this.dibujar" id="limpiar" href="#">LIMPIAR </a> 
+    <a v-if="this.dibujar" id="borrador" href="#"> BORRADOR</a>
     <br>
-    <button class="button" @click="back()">back</button> 
-    <button class="button" v-on:click="sendAnswer()">send</button> 
+    <button v-if="!this.faseFinal" class="button" @click="back()">back</button> 
+    <button v-if="this.dibujar || this.adivinar" class="button" v-on:click="sendAnswer()">send</button> 
+    <button v-if="this.faseFinal" class="button" @click="next(false)">Previous</button>
+    <button v-if="this.faseFinal" class="button" @click="next(true)">Next</button>
+    <button class="button" v-on:click="resetVotos()">resetVotes</button>
+    
   </div>
   
 </template>
@@ -101,6 +146,8 @@ export default {
 
   data: () => ({
     vueCanvas:null,
+    faseFinal: false,
+    votando: false,
     painting:false,
     canvas:null,
     ctx:null,
@@ -113,14 +160,57 @@ export default {
     frase:"A",       //Frase que te toca dibujar
     dibujar:true,   //true si te toca dibujar
     adivinar:false,   //true si te toca adivinar
-    showImg:false
+    showImg:false,
+    hilos: null,
+    num: 0,
+    fasesVotacion:["Listo", "Gracioso", "Dibujo"],
+    msgVotacion:["más listo","más gracioso","mejor dibujante"],
+    numVotacion:0,
+    puntosJugadores: [],
+    mostrarPuntos: false
   }),
 
   methods: {
 
-    theImg(){
-      return "http://localhost:8080/api/returnImageResponse/" + this.idImg;
+    resetVotos(){
+      console.log("AAAAA");
+      util.resetVotes();
+    },
 
+    theImg(id){
+      return "http://localhost:8080/api/returnImageResponse/" + id;
+
+    },
+
+    imgPerfil(foto){
+      return "http://localhost:8080/api/returnImageProfile/" + foto;
+    },
+
+    next(sig){
+       if(sig){
+          
+          if(this.num+1 >= (this.hilos[this.num].size)){
+            this.faseFinal = false;
+            this.votando = true;
+          }
+          else{
+            this.num = this.num+1;
+          }
+       }
+       else{
+         if(this.num>0) this.num = this.num-1;
+       }
+    },
+
+    vote(nombre){
+        if(this.numVotacion < 3){
+          util.vote(nombre,this.fasesVotacion[this.numVotacion]);
+          this.numVotacion++;
+        }
+        if(this.numVotacion >= 3) {
+          this.votando = false;
+          this.msgTitulo = "Fin de la partida"
+        }
     },
     
     startPainting(e) {
@@ -233,11 +323,17 @@ export default {
               else{
                 switch(response.data.id_){
                 case -3:
-                  console.log("Partida acabada")
+                  console.log("faseFinal")
                   this.dibujar = false;
                   this.adivinar = false;
                   this.showImg = false;
-                  this.msgTitulo = "Partida finalizada";
+                  util.getResponses().then((response)=>{
+                    console.log(response.data);
+                    this.hilos = response.data;
+                  })
+
+                  this.faseFinal = true;
+                  this.msgTitulo = "Resultados finales!";
                   break;
                 case -2:
                   console.log("Turno acabado")
@@ -245,6 +341,14 @@ export default {
                   this.adivinar = false;
                   this.showImg = false;
                   this.msgTitulo = "Ya has acabado tu turno";
+                  util.getPuntosPartida().then((response)=>{
+                    console.log(response.data);
+                    this.puntosJugadores = response.data;
+                    util.getPuntosJugador().then((response)=>{
+                      console.log(response.data);
+                      this.mostrarPuntos = true;
+                    })
+                  })
                   break;
                 default:
                   console.log("Primer turno")
@@ -284,5 +388,31 @@ canvas{
      padding: 20px;
      margin:25px;
    }
+
+   ol { 
+      width: 50%;
+      margin: 0 auto;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+  ol li a{
+    margin: 10 px
+  }
+
+  ol li button{
+    margin: auto;
+  }
+
+  ol li img{
+    margin: auto;
+    
+  }
+
+  ol li {
+  background: #F4F4F4;
+  border-bottom: 1px solid #7C7C7C;
+  border-top: 1px solid #FFF;
+  }
 
 </style>

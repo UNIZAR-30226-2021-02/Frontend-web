@@ -2,6 +2,7 @@ import APIKit from '@/util/APIKIT';
 import {setInvitedName} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
 import { setAutorMail } from "../util/APIKIT";
+import { setVotadoMail } from "../util/APIKIT";
 
 const ENDPOINT_PATH = "http://localhost:8080/api/";
 
@@ -64,6 +65,27 @@ export default {
         console.log(img);
         setAutorMail(autor);
         return APIKit.post(ENDPOINT_PATH + "addImage2", img);
+    },
+
+    getResponses(){
+        return APIKit.get(ENDPOINT_PATH + "returnAllResponses");
+    },
+
+    vote(who,fase){
+        setVotadoMail(who);
+        return APIKit.get(ENDPOINT_PATH + "votar" + fase);
+    },
+
+    resetVotes(){
+        return APIKit.get(ENDPOINT_PATH + "resetVotos");
+    },
+
+    getPuntosPartida(){
+        return APIKit.get(ENDPOINT_PATH + "puntosPartida");
+    },
+
+    getPuntosJugador(){
+        return APIKit.get(ENDPOINT_PATH + "puntosJugador");
     },
 
     startGame(){
