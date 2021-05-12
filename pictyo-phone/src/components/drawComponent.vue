@@ -123,9 +123,9 @@
         </div>
 
       </div>
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('25')" class="punteroP">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('50')" class="punteroM">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('100')" class="punteroG">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG">
 
 
     <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
@@ -157,6 +157,7 @@ export default {
     painting:false,
     canvas:null,
     ctx:null,
+    ancho:5,
     desplazamientoX:0,
     desplazamientoY:0,
     png:null,       //png a enviar
@@ -237,7 +238,7 @@ export default {
 
     draw(e) {
       if(!this.painting) return
-      this.ctx.lineWidth = 5;
+      this.ctx.lineWidth = this.ancho;
       this.ctx.lineCap ="round";
       
       this.ctx.lineTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
@@ -259,7 +260,8 @@ export default {
     },
 
     puntero(p){
-      this.ctx.lineWidth =p;
+      /*this.ctx.lineWidth =p;*/
+      this.ancho=p;
       console.log(this.ctx.lineWidth);
     },
 
