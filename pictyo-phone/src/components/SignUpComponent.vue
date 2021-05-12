@@ -2,28 +2,28 @@
     <div id="sign-up-component">
         <form action class="formM" @submit.prevent="registrar">
             <ul>
-                <li>
-                    <img alt="Gartic logo" src="../assets/logo.png">
+                <li class="SU-li">
+                    <img class="logo" alt="Gartic logo" src="../assets/logo.png">
                 </li>
-                <li>
+                <li class="SU-li">
                     <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email" style="margin-top:10px">
                 </li>
-                <li>
+                <li class="SU-li">
                     <input v-model="nombre" class="form-input" type="text" id="name" required placeholder="Username">
                 </li>
-                <li>
+                <li class="SU-li">
                     <input v-model="password" class="form-input" type="password" id="pass" required placeholder="Password">
                 </li>
-                <li>
+                <li class="SU-li">
                     <input v-model="rpass" class="form-input" type="password" id="rpass" required placeholder="Repeat the password"> 
                 </li>
-                <li>
+                <li class="SU-li">
                     <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
                 </li>
-                <li>
+                <li class="SU-li">
                     <button class="form-submit" type="submit">Register</button>
                 </li>
-                <li>
+                <li class="SU-li">
                     <router-link to="./" class="a">Go to login</router-link>
                 </li>
             </ul>

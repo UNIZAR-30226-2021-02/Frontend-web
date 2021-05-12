@@ -22,7 +22,7 @@
     margin-top: 2em;
   }
 
-  input{
+  .form-input{
     font: 1em arial;
     width: 300px; 
     box-sizing: border-box;
@@ -43,27 +43,27 @@
     width: 100px;
   }
 
-  button:hover{
+  .form-submit1:hover{
     background-color: rgb(15, 1, 80);
     border-color: #00A6D6;
 
   }
 
-  button:active{
+  .form-submit1:active{
     transform: translateY(4px);
   }
 
-li {
-  margin: 10px 10px;
-}
+  li {
+    margin: 10px 10px;
+  }
 
-.logo{
+  .logo{
     height: 200px;
     margin-bottom: 2em;
-}
+  }
 
-p{
-  color: red;
-  font-weight: bolder;
-  font-family: Arial;
-}
+  .error{
+    color: red;
+    font-weight: bolder;
+    font-family: Arial;
+  }
