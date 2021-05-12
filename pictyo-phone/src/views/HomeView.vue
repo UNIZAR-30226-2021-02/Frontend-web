@@ -1,8 +1,10 @@
 <template>
   <div class="HomeView">
+    <div class="square">  
       <deshecho-component msg="Esto es la página de home"/>
       <navegation-menu-component/>
       <logout-component/>
+    </div>
   </div>
 </template>
 
@@ -21,4 +23,8 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  @import '../styles/home.css';
+</style>
     
