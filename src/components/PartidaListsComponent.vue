@@ -24,7 +24,7 @@
 
 import util from "@/logic/util";
 import {setGameId} from '@/util/APIKIT'
-import {getClientName} from '@/util/APIKIT'
+import {getClientMail} from '@/util/APIKIT'
 
 export default {
   name: 'PartidaListsComponent',
@@ -51,14 +51,23 @@ export default {
       jugarPartida(index){
         console.log(index)
         console.log(this.partidasHost[index]);
-        if(getClientName() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
+        console.log(this.partidasId[index]);
+        if(getClientMail() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
+        }
+        else if(this.partidasEstado[index] != "esperando"){
+          setGameId(this.partidasId[index]);
+          this.$router.push("/Draw");
+          /*util.returnResponse(this.partidasId[index])
+          .then((response)=>{
+              switch(response.data.id_)
+          })*/
         }
 
       },
 
-      listFr(){
+      listGames(){
         
         var i;
         this.loading=true;
@@ -71,7 +80,7 @@ export default {
                 this.partidas.push(response.data[i].nombre);
                 this.IterPartida.push(i);
                 this.partidasEstado.push(response.data[i].estado_);
-                this.partidasHost.push(response.data[i].host_.nombre);
+                this.partidasHost.push(response.data[i].host_.mail);
                 this.partidasId.push(response.data[i].id);
               }
               
@@ -88,11 +97,14 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
+          this.InvitacionesId = [];
           this.partidas = [];
           this.IterPartida = [];
           this.partidasEstado = [];
+          this.partidasId = [];
+          this.partidasHost = [];
           this.listInvitaciones();
-          this.listFr();
+          this.listGames();
           this.$forceUpdate();
         }).catch(()=>{});
       },
@@ -102,11 +114,14 @@ export default {
           this.Invitaciones = [];
           this.IterPeti = [];
           this.InvitacionesHost = [];
+          this.InvitacionesId = [];
           this.partidas = [];
           this.IterPartida = [];
           this.partidasEstado = [];
+          this.partidasId = [];
+          this.partidasHost = [];
           this.listInvitaciones();
-          this.listFr();
+          this.listGames();
           this.$forceUpdate();
         }).catch(()=>{});
       },
@@ -134,7 +149,7 @@ export default {
   },
   beforeMount(){
       this.listInvitaciones()
-      this.listFr()
+      this.listGames()
   }
 }
 

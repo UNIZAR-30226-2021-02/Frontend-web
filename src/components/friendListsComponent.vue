@@ -5,8 +5,8 @@
           <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
             <img :src="fotoPeticion(index)">
             <a>{{peticiones[index]}}</a>
-            <button class="button" v-on:click="aceptarPeticion(peticiones[index])">Add</button>
-            <button class="button" v-on:click="rechazarPeticion(peticiones[index])">Deny</button>
+            <button class="button" v-on:click="aceptarPeticion(petisMail[index])">Add</button>
+            <button class="button" v-on:click="rechazarPeticion(petisMail[index])">Deny</button>
           </li>
         </ol>
         <h4 id="tituloAmigos">Lista de amigos:</h4>
@@ -16,7 +16,7 @@
             <img :src="fotoAmigo(index)">
             <a>{{amigos[index]}} </a>
             <a>{{amigosPts[index]}}pts </a>
-            <button class="button" v-on:click="eliminarAmigo(amigos[index])">Remove</button>
+            <button class="button" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
           </li>
         </ol>
     </div>
@@ -35,9 +35,11 @@ export default {
     data: () => ({
         loading: true,
         peticiones: [],
+        petisMail: [],
         IterPeti: [],
         peticionesFotos: [],
         amigos: [],
+        amigosMail: [],
         IterAmigo: [],
         amigosPts: [],
         amigosFotos: []
@@ -52,11 +54,12 @@ export default {
         return this.peticionesFotos[index];
       },
 
-      eliminarAmigo(nombre){
-        auth.deleteFriend(nombre).then(() => {
+      eliminarAmigo(mail){
+        auth.deleteFriend(mail).then(() => {
           this.amigos = [];
           this.IterAmigo = [];
           this.amigosFotos = [];
+          this.amigosMail = [];
           this.listFr();
           this.$forceUpdate();
         }).catch(()=>{});
@@ -73,6 +76,7 @@ export default {
               //this.peticiones = response.data.nombre;
               for(i=0;i<response.data.length;i++){
                 this.amigos.push(response.data[i].nombre);
+                this.amigosMail.push(response.data[i].mail);
                 this.IterAmigo.push(i);
                 console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
                 this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
@@ -85,11 +89,14 @@ export default {
       },
 
       aceptarPeticion(nombre){
+        console.log(nombre);
         auth.acceptRequest(nombre).then(() => {
           this.peticiones = [];
           this.IterPeti = [];
           this.peticionesFotos = [];
+          this.petisMail = [];
           this.amigos = [];
+          this.amigosMail = [];
           this.IterAmigo = [];
           this.amigosFotos = [];
           this.listReq();
@@ -99,11 +106,14 @@ export default {
       },
 
       rechazarPeticion(nombre){
+        
         auth.denyRequest(nombre).then(() => {
           this.peticiones = [];
           this.IterPeti = [];
+          this.petisMail = [];
           this.peticionesFotos = [];
           this.amigos = [];
+          this.amigosMail = [];
           this.IterAmigo = [];
           this.amigosFotos = [];
           this.listReq();
@@ -122,6 +132,7 @@ export default {
               //this.peticiones = response.data.nombre;
               for(i=0;i<response.data.length;i++){
                 this.peticiones.push(response.data[i].nombre);
+                this.petisMail.push(response.data[i].mail);
                 this.IterPeti.push(i);
                 console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
                 this.peticionesFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);

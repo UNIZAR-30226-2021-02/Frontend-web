@@ -1,6 +1,5 @@
 <template>
-  <div class="SignInView">
-    <img alt="Gartic logo" style="height: 300px; weight:300px;" src="../assets/logo.png">
+  <div class="SI-Comp">
     <sign-in-component />
   </div>
 </template>
@@ -16,3 +15,14 @@ export default {
   }
 }
 </script>
+
+<style>
+  html,body{
+    background-color:  grey;
+  }
+  
+  .SI-Comp{
+    margin-top: 50px;
+  }
+
+</style>

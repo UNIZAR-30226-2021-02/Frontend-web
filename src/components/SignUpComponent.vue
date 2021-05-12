@@ -1,40 +1,41 @@
 <template>
-    <div id="sign-up-component">
-        <form action class="form" @submit.prevent="registrar">
+    <div id="sign-up-component" class="register">
+        <form action class="formM" @submit.prevent="registrar">
             <ul>
-                <li>
-                    <label class="form-label" for="#email">Email: </label>
-                    <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email">
+                <li class="SU-li">
+                    <img class="logo" alt="Gartic logo" src="../assets/logo.png">
                 </li>
-                <li>
-                    <label  class="form-label" for="#username">Username: </label>
+                <li class="SU-li">
+                    <input v-model="mail"  class="form-input" type="email" id="email" required placeholder="Email" style="margin-top:10px">
+                </li>
+                <li class="SU-li">
                     <input v-model="nombre" class="form-input" type="text" id="name" required placeholder="Username">
                 </li>
-                <li>
-                    <label class="form-label" for="#password">Password: </label>
+                <li class="SU-li">
                     <input v-model="password" class="form-input" type="password" id="pass" required placeholder="Password">
                 </li>
-                <li>
-                    <label class="form-label" for="#rpass">Confirm Password: </label>
+                <li class="SU-li">
                     <input v-model="rpass" class="form-input" type="password" id="rpass" required placeholder="Repeat the password"> 
+                </li>
+                <li class="SU-li">
                     <p v-if="error" class="error"> Usuario o contraseña invalidos</p>
                 </li>
-                <li>
-                    <input class="form.submit" type="submit" value="Register">
+                <li class="SU-li">
+                    <button class="form-submit" type="submit">Register</button>
                 </li>
-            <router-link to="./" tag="button">Back</router-link>
+                <li class="SU-li">
+                    <router-link to="./" class="a">Go to login</router-link>
+                </li>
             </ul>
             
         </form>
     </div>
 </template>
 
-
-
 <script>
 import auth from "@/logic/auth"
 import {setClientToken} from '@/util/APIKIT'
-import {setClientName} from '@/util/APIKIT'
+import {setClientMail} from '@/util/APIKIT'
 
     export default {
         name: 'SignUpComponent',
@@ -44,6 +45,8 @@ import {setClientName} from '@/util/APIKIT'
             mail:'',
             password: '',
             rpass: '',
+            token: '',
+            status: '',
             error: false,
         }),
 
@@ -72,22 +75,27 @@ import {setClientName} from '@/util/APIKIT'
             postReg() {
                 auth.register(this.nombre, this.mail, this.password).then(response =>{
                     setClientToken(response.data.token);
-                    setClientName(this.nombre);
-                    console.log(response.status);
+                    setClientMail(this.mail);                     
+                    this.token=response.data.token;
                     if(response.status===201){
                         this.$router.push("/Home");
-                    }else{
-                        this.error=true;
+                        auth.setUserLogged(this.mail, this.token);
+                        console.log(this.mail);
+                        console.log(this.token);
                     }
-                }).catch(()=>{});
+                }).catch((error)=>{
+ 
+                    switch(error.response.status){
+                        case 417:
+                            console.log('Usuario o mail existente');
+                            this.error=true;
+                    }
+                })
             }
         }
     };
 </script>
 
-<style>
-    p{
-        color: red;
-        font-weight: bolder;
-    }
+<style scoped>
+    @import '../styles/probe.css';
 </style>

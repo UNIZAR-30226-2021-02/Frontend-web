@@ -1,54 +1,73 @@
-import axios from "axios";
+import APIKit from '@/util/APIKIT';
+import Cookies from "js-cookie";
 
-const ENDPOINT_PATH = "http://localhost:8080/api/";
+const ENDPOINT_PATH = "35.246.75.160";
 
 export default {
-  
+ 
+  SetUserLogged(userLogged, token){
+    Cookies.set("userLogged", userLogged);
+    Cookies.set("token", token);
+  },
+
+  getUserLogged(){
+    return Cookies.get("userLogged");
+  },
+
+  getToken(){
+    return Cookies.get("token");
+  },
+
+  deleteUserLogged(){
+    Cookies.remove('userLogged');
+    Cookies.remove('token');
+  },
+
   register(nombre, mail, password) { //Funcion
     const person = {nombre, mail, password }; //Construye el objeto persona
-    return axios.post(ENDPOINT_PATH + "register", person); //Envia peticion de post
+    return APIKit.post(ENDPOINT_PATH + "register", person); //Envia peticion de post
   },
   
-  login(nombre,password){
-      const person={nombre, password};
-      return axios.post(ENDPOINT_PATH + "login", person);
+  login(mail,password){
+      const person={mail, password};
+      return APIKit.post(ENDPOINT_PATH + "login", person);
   },
 
-  sendRequest(nombre){
-      console.log(nombre);
-      const amigo={nombre};
-      return axios.post(ENDPOINT_PATH + "sendRequest", amigo);
+  sendRequest(mail){
+      console.log(mail);
+      const amigo={mail};
+      return APIKit.post(ENDPOINT_PATH + "sendRequest", amigo);
   },
 
-  acceptRequest(nombre){
-      const amigo={nombre};
-      return axios.post(ENDPOINT_PATH + "acceptRequest", amigo);
+  acceptRequest(mail){
+      const amigo={mail};
+      return APIKit.post(ENDPOINT_PATH + "acceptRequest", amigo);
   },
 
   listRequest(){
-    return axios.get(ENDPOINT_PATH + "listRequest");
+    return APIKit.get(ENDPOINT_PATH + "listRequest");
   },
 
   listFriends(){
-    return axios.get(ENDPOINT_PATH + "listFriends");
+    return APIKit.get(ENDPOINT_PATH + "listFriends");
   },
 
-  denyRequest(nombre){
-    const amigo={nombre};
-    return axios.post(ENDPOINT_PATH + "denyRequest", amigo);
+  denyRequest(mail){
+    const amigo={mail};
+    return APIKit.post(ENDPOINT_PATH + "denyRequest", amigo);
   },
 
-  deleteFriend(nombre){
-    const amigo={nombre};
-    return axios.post(ENDPOINT_PATH + "deleteFriend", amigo);
+  deleteFriend(mail){
+    const amigo={mail};
+    return APIKit.post(ENDPOINT_PATH + "deleteFriend", amigo);
   },
 
   viewProfile(){
-    return axios.get(ENDPOINT_PATH + "viewProfile");
+    return APIKit.get(ENDPOINT_PATH + "viewProfile");
   }
 
-  //axios.get(ENDPOINT_PATH + "listFriends");
-  //axios.get(ENDPOINT_PATH + "listRequest");
+  //APIKit.get(ENDPOINT_PATH + "listFriends");
+  //APIKit.get(ENDPOINT_PATH + "listRequest");
 
 
   

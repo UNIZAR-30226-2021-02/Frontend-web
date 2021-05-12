@@ -12,7 +12,7 @@
           <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
             <img :src="fotoAmigo(index)">
             <a>{{amigos[index]}} </a>
-            <button class="button" v-on:click="invitarAmigo(amigos[index])">Invite</button>
+            <button class="button" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
           </li>
         </ol>
     </div>
@@ -33,6 +33,7 @@ export default {
         IterJugador: [],
         jugadoresFotos: [],
         amigos: [],
+        amigosMail: [],
         IterAmigo: [],
         amigosFotos: []
     }),
@@ -46,8 +47,8 @@ export default {
         return this.jugadoresFotos[index];
       },
 
-      invitarAmigo(nombre){
-        util.inviteFriend(nombre).then(() => {
+      invitarAmigo(mail){
+        util.inviteFriend(mail).then(() => {
           
           
           /*this.amigos = [];
@@ -73,6 +74,7 @@ export default {
               //this.jugadores = response.data.nombre;
               for(i=0;i<response.data.length;i++){
                 this.amigos.push(response.data[i].nombre);
+                this.amigosMail.push(response.data[i].mail);
                 this.IterAmigo.push(i);
                 console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
                 this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);

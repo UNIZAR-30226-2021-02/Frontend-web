@@ -1,57 +1,95 @@
-import axios from "axios";
+import APIKit from '@/util/APIKIT';
 import {setInvitedName} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
+import { setAutorMail } from "../util/APIKIT";
+import { setVotadoMail } from "../util/APIKIT";
 
-const ENDPOINT_PATH = "http://localhost:8080/api/";
+const ENDPOINT_PATH = "35.246.75.160";
 
 export default {
   
     createGame(nombre){
         const partida={nombre};
-        return axios.post(ENDPOINT_PATH + "newGame", partida);
+        return APIKit.post(ENDPOINT_PATH + "newGame", partida);
     },
 
-    inviteFriend(nombre){
-        setInvitedName(nombre);
-        return axios.get(ENDPOINT_PATH + "inviteGame");
+    inviteFriend(mail){
+        setInvitedName(mail);
+        return APIKit.get(ENDPOINT_PATH + "inviteGame");
     },
 
     listPlayers(){
         setInvitedName(null);
         console.log("SFDSAJNFASNDAJSDNBJASDNBASHDNBSHDB")
-        console.log( axios.defaults.headers.common["idPartida"]);
-        console.log( axios.defaults.headers.common["identificador"]);
-        return axios.get(ENDPOINT_PATH + "listPlayers");
+        console.log( APIKit.defaults.headers.common["idPartida"]);
+        console.log( APIKit.defaults.headers.common["identificador"]);
+        return APIKit.get(ENDPOINT_PATH + "listPlayers");
     },
 
     listFriendsNotInGame(){
-        return axios.get(ENDPOINT_PATH + "listFriendsGame");
+        return APIKit.get(ENDPOINT_PATH + "listFriendsGame");
     },
 
     listInvitaciones(){
-        return axios.get(ENDPOINT_PATH + "listInvite");
+        return APIKit.get(ENDPOINT_PATH + "listInvite");
     },
 
     acceptInvitacion(id){
         setGameId(id);
-        console.log( axios.defaults.headers.common["idPartida"]);
-        console.log( axios.defaults.headers.common["identificador"]);
-        return axios.get(ENDPOINT_PATH + "acceptInvite");
+        console.log( APIKit.defaults.headers.common["idPartida"]);
+        console.log( APIKit.defaults.headers.common["identificador"]);
+        return APIKit.get(ENDPOINT_PATH + "acceptInvite");
     },
 
     denyInvitacion(id){
         setGameId(id);
-        console.log( axios.defaults.headers.common["idPartida"]);
-        console.log( axios.defaults.headers.common["identificador"]);
-        return axios.get(ENDPOINT_PATH + "denyInvite");
+        console.log( APIKit.defaults.headers.common["idPartida"]);
+        console.log( APIKit.defaults.headers.common["identificador"]);
+        return APIKit.get(ENDPOINT_PATH + "denyInvite");
     },
 
     listGames(){
-        return axios.get(ENDPOINT_PATH + "listGames");
+        return APIKit.get(ENDPOINT_PATH + "listGames");
+    },
+
+    returnResponse(){
+        return APIKit.get(ENDPOINT_PATH + "returnResponse");
+    },
+
+    textAnswer(frase,autor){
+        setAutorMail(autor);
+        return APIKit.post(ENDPOINT_PATH + "addText", frase);
+    },
+
+    imgAnswer(autor,img){
+        console.log(img);
+        setAutorMail(autor);
+        return APIKit.post(ENDPOINT_PATH + "addImage2", img);
+    },
+
+    getResponses(){
+        return APIKit.get(ENDPOINT_PATH + "returnAllResponses");
+    },
+
+    vote(who,fase){
+        setVotadoMail(who);
+        return APIKit.get(ENDPOINT_PATH + "votar" + fase);
+    },
+
+    resetVotes(){
+        return APIKit.get(ENDPOINT_PATH + "resetVotos");
+    },
+
+    getPuntosPartida(){
+        return APIKit.get(ENDPOINT_PATH + "puntosPartida");
+    },
+
+    getPuntosJugador(){
+        return APIKit.get(ENDPOINT_PATH + "puntosJugador");
     },
 
     startGame(){
-        return axios.get(ENDPOINT_PATH + "startGame");
+        return APIKit.get(ENDPOINT_PATH + "startGame");
     }
 
 };

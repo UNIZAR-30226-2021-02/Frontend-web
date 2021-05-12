@@ -1,6 +1,6 @@
 <template>
-  <div class="register">
-    <sign-up-component />
+  <div class="SU-Comp">
+    <sign-up-component/>
   </div>
 </template>
 
@@ -16,3 +16,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  html,body{
+    background-color:  grey;
+  }
+
+  .SU-Comp{
+    margin-top: 50px;
+  }
+
+</style>
