@@ -123,8 +123,13 @@
         </div>
 
       </div>
-    <a v-if="this.dibujar" id="limpiar" href="#">LIMPIAR </a> 
-    <a v-if="this.dibujar" id="borrador" href="#"> BORRADOR</a>
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('25')" class="punteroP">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('50')" class="punteroM">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('100')" class="punteroG">
+
+
+    <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
+    <img v-if="this.dibujar" src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador">
     <br>
     <button v-if="!this.faseFinal" class="button" @click="back()">back</button> 
     <button v-if="this.dibujar || this.adivinar" class="button" v-on:click="sendAnswer()">send</button> 
@@ -246,6 +251,16 @@ export default {
 
     color(c){
       console.log(c);
+      this.ctx.strokeStyle=c;
+    },
+
+    borrar(){
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+
+    puntero(p){
+      this.ctx.lineWidth =p;
+      console.log(this.ctx.lineWidth);
     },
 
     sendAnswer(){
@@ -392,6 +407,7 @@ canvas{
    .colores{
      padding: 20px;
      margin:25px;
+     margin-top: 10px;
    }
 
    ol { 
@@ -420,4 +436,20 @@ canvas{
   border-top: 1px solid #FFF;
   }
 
+  .borrador{
+    height: 60px;
+    margin-top: 10px;
+  }
+
+  .punteroP{
+    height: 25px;
+  }
+
+  .punteroM{
+    height: 50px;
+  }
+
+  .punteroG{
+    height: 100px;
+  }
 </style>
