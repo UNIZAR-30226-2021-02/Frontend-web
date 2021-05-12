@@ -1,7 +1,7 @@
 import APIKit from '@/util/APIKIT';
 import Cookies from "js-cookie";
 
-const ENDPOINT_PATH = "http://localhost:8080/api/";
+const ENDPOINT_PATH = "35.246.75.160";
 
 export default {
  
