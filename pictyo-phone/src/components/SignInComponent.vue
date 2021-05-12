@@ -16,8 +16,6 @@
             </li>
             <li>
                 <button class="form-submit1" type="submit">LogIn</button>
-            </li>
-            <li>
                 <button class="form-submit1" @click="funcion()">Sign Up</button>
             </li>
         </ul>

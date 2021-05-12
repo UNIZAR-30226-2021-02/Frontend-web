@@ -1,5 +1,5 @@
 <template>
-    <div id="sign-up-component">
+    <div id="sign-up-component" class="register">
         <form action class="formM" @submit.prevent="registrar">
             <ul>
                 <li class="SU-li">

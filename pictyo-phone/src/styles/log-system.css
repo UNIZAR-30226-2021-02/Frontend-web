@@ -41,6 +41,7 @@
     box-shadow: 10px;
     font-family: arial;
     width: 100px;
+    margin: 1em;
   }
 
   .form-submit1:hover{

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="SU-Comp">
     <sign-up-component/>
   </div>
 </template>
@@ -22,8 +22,8 @@ export default {
     background-color:  grey;
   }
 
-  div{
-    background-color: grey;
+  .SU-Comp{
+    margin-top: 50px;
   }
 
 </style>

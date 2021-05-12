@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="SI-Comp">
     <sign-in-component />
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     background-color:  grey;
   }
   
-  div{
+  .SI-Comp{
     margin-top: 50px;
   }
 
