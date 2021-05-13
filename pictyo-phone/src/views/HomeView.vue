@@ -21,4 +21,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .HomeView{
+    border: 5px solid rgb(49, 49, 49);
+    position: absolute;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 50px;
+    background-color: red /*#17151c*/;
+    border-radius: 25px;
+  }
+
+  html, body{
+    background-color: grey;
+  }
+</style>
     
