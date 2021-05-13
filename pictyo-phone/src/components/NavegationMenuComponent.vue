@@ -37,6 +37,7 @@ export default {
     .icon-bar {
         width: 90px;
         background-color: white;
+        border-radius: 15px;
     }
 
     .icon-bar a {
@@ -49,10 +50,12 @@ export default {
 
     .icon-bar a:hover {
         background-color: darkblue;
+        border-radius: 15px;
     }
 
     .active {
         background-color: blue;
+        border-radius: 15px;
     }
     /*.vertical-menu{
         display: table;

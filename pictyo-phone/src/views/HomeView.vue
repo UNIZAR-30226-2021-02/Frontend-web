@@ -1,8 +1,25 @@
 <template>
-  <div class="HomeView">
-      <deshecho-component msg="Esto es la página de home"/>
+  <!--div class="pantalla">
+    <div class="nav-col">
       <navegation-menu-component/>
-      <logout-component/>
+    </div>
+    <div class="content-col">
+      <div class="HomeView">
+          <deshecho-component msg="Esto es la página de home"/>
+          <logout-component/>
+      </div>
+    </div>
+  </div>
+</template-->
+
+  <div class="HomeView">
+    <div class="nav-col">
+      <navegation-menu-component/>
+    </div>
+    <div class="content-col">
+        <deshecho-component msg="Esto es la página de home"/>
+        <logout-component/>
+    </div>
   </div>
 </template>
 
@@ -23,6 +40,15 @@ export default {
 </script>
 
 <style scoped>
+
+  .pantalla{
+    background-color: grey;
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+  }
+
   .HomeView{
     border: 5px solid rgb(49, 49, 49);
     position: absolute;
@@ -36,5 +62,20 @@ export default {
   html, body{
     background-color: grey;
   }
+
+  .nav-col{
+    float:left;
+    width: 90px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .content-col {
+    height: inherit;
+    display: inline-block;
+    padding: 15px;
+  }
+
 </style>
     
