@@ -326,13 +326,17 @@ export default {
                   this.canvas=document.getElementById("can");
                   this.ctx = this.canvas.getContext("2d");  
                   // Resize canvas
-                  this.canvas.height = window.innerHeight/2;
-                  this.canvas.width = window.innerWidth/2;
+                  var aux = window.innerWidth - window.innerHeight/1.5;
+                  this.canvas.height = window.innerHeight/1.5;
+                  this.canvas.width = window.innerWidth-aux;
+                  console.log(window.innerWidth)
+                  console.log(window.innerHeight/2)
                   this.desplazamientoX = this.canvas.getBoundingClientRect();
                   this.desplazamientoY = this.desplazamientoX.top;
-                  this.desplazamientoX = (this.desplazamientoX.right - this.desplazamientoX.left)/2;
+                  //this.desplazamientoX = (this.desplazamientoX.right - this.desplazamientoX.left)/2;
                   console.log(this.desplazamientoY);
                   console.log("fdasda");
+                  this.desplazamientoX = aux/2;
                   //this.desplazamientoY = 0;
                   this.adivinar = false;
                   this.showImg = false;
