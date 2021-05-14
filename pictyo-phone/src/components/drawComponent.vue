@@ -6,8 +6,8 @@
       <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
         <ol v-if="this.mostrarPuntos" id="listaVotos">
           <li class="list-group-item" v-for="index in puntosJugadores.length"  v-bind:key="index">
-            <!--img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].fotPerf)"-->
-            <a> {{puntosJugadores[index-1].idUsuario_}}     </a>
+            <img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].idUsuario_.fotPerf)">
+            <a> {{puntosJugadores[index-1].idUsuario_.nombre}}  -->   </a>
             <img style="height:30px; weight:30px;" src="@/assets/penIcon.png">
             <a>: {{puntosJugadores[index-1].pDibujo_}}   </a>
             <img style="height:30px; weight:30px;" src="@/assets/risaIcon.png">
@@ -18,9 +18,9 @@
         </ol>
 
       <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{}}     </a>
+      <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
       <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{}}</a>
+      <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
 
       <!--toca ver los hilos -->
       <h4 v-if="this.faseFinal" id="tituloInvitaciones">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
@@ -39,7 +39,7 @@
           <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
-            <button v-if="!soyYo(hilos[0].respuestas_[index-1].autor_.mail)" class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
+            <button class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
           </li>
         </ol> 
 
@@ -174,7 +174,8 @@ export default {
     msgVotacion:["más listo","más gracioso","mejor dibujante"],
     numVotacion:0,
     puntosJugadores: [],
-    mostrarPuntos: false
+    mostrarPuntos: false,
+    coinStar:null
   }),
 
   methods: {
@@ -348,6 +349,21 @@ export default {
               }
               else{
                 switch(response.data.id_){
+                case -4:
+                  this.dibujar = false;
+                  this.adivinar = false;
+                  this.showImg = false;
+                  this.msgTitulo = "Se ha terminado la partida";
+                  util.getPuntosPartida().then((response)=>{
+                    console.log(response.data);
+                    this.puntosJugadores = response.data;
+                    util.getPuntosJugador().then((response)=>{
+                      console.log(response.data);
+                      this.mostrarPuntos = true;
+                      this.coinStar=response.data;
+                    })
+                  })
+                  break;
                 case -3:
                   console.log("faseFinal")
                   this.dibujar = false;
@@ -367,14 +383,6 @@ export default {
                   this.adivinar = false;
                   this.showImg = false;
                   this.msgTitulo = "Ya has acabado tu turno";
-                  util.getPuntosPartida().then((response)=>{
-                    console.log(response.data);
-                    this.puntosJugadores = response.data;
-                    util.getPuntosJugador().then((response)=>{
-                      console.log(response.data);
-                      this.mostrarPuntos = true;
-                    })
-                  })
                   break;
                 default:
                   console.log("Primer turno")
