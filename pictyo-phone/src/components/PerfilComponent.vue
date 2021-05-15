@@ -1,30 +1,41 @@
 <template>
     <div class="PerfilComponent">
+      <div class="profile-name">
         <img v-if="this.mounted" :src="myImg()">
-        <br>
+
         <h2 v-if="this.mounted">{{myData.nombre}}</h2>
+
+      </div>
+
+      <div class="dibujo">
+        <img  v-if="this.mounted" style="width:30px; height:30px; margin:5px;" src="@/assets/penIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.pDibujo}}  </a>
+      </div>
+
+      <div class="listo">
+        <img  v-if="this.mounted" style="width:30px; height:30px; margin:5px;" src="@/assets/brainIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.pListo}}  </a>
+      </div>
+
+      <div class="gracioso">
+        <img  v-if="this.mounted" style="width:30px; height:30px; margin:5px;" src="@/assets/risaIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.pGracioso}}  </a>
+      </div>
+
+
+      <div class="puntos">
+        <img v-if="this.mounted" style="width:30px; height:30px;  margin:5px;" src="@/assets/starIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.estrellas}}  </a>
+
         <br>
-
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/penIcon.png">
-        <a v-if="this.mounted">   {{myData.pDibujo}}  </a>
-
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/brainIcon.png">
-        <a v-if="this.mounted">   {{myData.pListo}}  </a>
-
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/risaIcon.png">
-        <a v-if="this.mounted">   {{myData.pGracioso}}  </a>
-
-        <br>
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/starIcon.png">
-        <a v-if="this.mounted">   {{myData.estrellas}}  </a>
-
-        <br>
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/coinsIcon.png">
-        <a v-if="this.mounted">   {{myData.monedas}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;  margin:5px;" src="@/assets/coinsIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.monedas}}  </a>
         
         <br>
-        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/socialIcon.png">
-        <a v-if="this.mounted">   {{myData.nAmigos}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;  margin:5px;" src="@/assets/socialIcon.png">
+        <a v-if="this.mounted" style="margin: 5px;">   {{myData.nAmigos}}  </a>
+      </div>
+
     </div>
 </template>
 
@@ -67,16 +78,61 @@ export default {
 </script>
 
 <style scoped>
-    img{
-      height: 10%;
-      width: 10%;
-    }
 
-    p{
-       background-color: "pink";
-        flex-direction: "row";
-        border-Color: "black";
-        border-Radius: 9;
-        border-Width: 1;
-    }
+  .profile-name{
+    border: 2px solid blueviolet;
+    background-color: white;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .profile-name img{
+    margin: 5%;
+    margin-left: 10%;
+  }
+
+  .profile-name h2{
+    margin-bottom: 15px;
+  }
+
+  .dibujo{
+    display: inline-block;
+    margin:10px;
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 15px;
+  }
+
+  .listo{
+    display: inline-block;
+    margin:10px;
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 15px;
+  }
+
+  .gracioso{
+    display: inline-block;
+    margin:10px;
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 15px;
+  }
+
+  .puntos{
+    margin: 10%;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 15px;
+  }
+
+  p{
+    background-color: "pink";
+    flex-direction: "row";
+    border-Color: "black";
+    border-Radius: 9;
+    border-Width: 1;
+  }
+
 </style>

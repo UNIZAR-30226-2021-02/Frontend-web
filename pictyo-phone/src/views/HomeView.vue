@@ -38,7 +38,6 @@ export default {
 
     /* Style the side navigation */
     .sidenav {
-
       float: left;
       background-color: white;
       border-radius: 20px;
