@@ -1,30 +1,30 @@
 <template>
     <div class="PerfilComponent">
-        <img :src="myImg()">
+        <img v-if="this.mounted" :src="myImg()">
         <br>
-        <h2>{{myData.nombre}}</h2>
+        <h2 v-if="this.mounted">{{myData.nombre}}</h2>
         <br>
 
-        <img style="width:30px; height:30px;" src="@/assets/penIcon.png">
-        <a>   {{myData.pDibujo}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/penIcon.png">
+        <a v-if="this.mounted">   {{myData.pDibujo}}  </a>
 
-        <img style="width:30px; height:30px;" src="@/assets/brainIcon.png">
-        <a>   {{myData.pListo}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/brainIcon.png">
+        <a v-if="this.mounted">   {{myData.pListo}}  </a>
 
-        <img style="width:30px; height:30px;" src="@/assets/risaIcon.png">
-        <a>   {{myData.pGracioso}}  </a>
-
-        <br>
-        <img style="width:30px; height:30px;" src="@/assets/starIcon.png">
-        <a>   {{myData.estrellas}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/risaIcon.png">
+        <a v-if="this.mounted">   {{myData.pGracioso}}  </a>
 
         <br>
-        <img style="width:30px; height:30px;" src="@/assets/coinsIcon.png">
-        <a>   {{myData.monedas}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/starIcon.png">
+        <a v-if="this.mounted">   {{myData.estrellas}}  </a>
+
+        <br>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/coinsIcon.png">
+        <a v-if="this.mounted">   {{myData.monedas}}  </a>
         
         <br>
-        <img style="width:30px; height:30px;" src="@/assets/socialIcon.png">
-        <a>   {{myData.nAmigos}}  </a>
+        <img v-if="this.mounted" style="width:30px; height:30px;" src="@/assets/socialIcon.png">
+        <a v-if="this.mounted">   {{myData.nAmigos}}  </a>
     </div>
 </template>
 
@@ -38,7 +38,8 @@ export default {
   name: 'PerfilComponent',
   
   data: () => ({
-    myData: null
+    myData: null,
+    mounted: false
   }),
 
   methods:{
@@ -54,6 +55,7 @@ export default {
             this.myData = response.data;
             console.log(response.data.fotPerf)
             setIdFoto(response.data.fotPerf)
+            this.mounted = true;
           })
           .catch((error)=>{console.log(error);});
       }

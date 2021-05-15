@@ -69,8 +69,9 @@ export default {
 
   changeMyName(name){
     const usuario={name};
+    console.log(name);
     console.log( APIKit.defaults.headers.common)
-    return APIKit.get(ENDPOINT_PATH + "changeNameProfile", usuario);
+    return APIKit.post(ENDPOINT_PATH + "changeNameProfile", usuario);
   }
 
   //APIKit.get(ENDPOINT_PATH + "listFriends");
