@@ -30,14 +30,11 @@ export default {
 
 <style scoped>
 
-    body{
-        margin:0;
-    }
-
     .icon-bar {
         width: 90px;
         background-color: white;
         border-radius: 15px;
+        margin: 10px;
     }
 
     .icon-bar a {
@@ -46,6 +43,7 @@ export default {
         padding: 16px;
         transition: all 0.3s ease;
         font-size: 36px;
+        margin: 3px;
     }
 
     .icon-bar a:hover {
