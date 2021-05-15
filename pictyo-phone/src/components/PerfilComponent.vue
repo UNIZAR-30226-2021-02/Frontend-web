@@ -2,29 +2,29 @@
     <div class="PerfilComponent">
         <img :src="myImg()">
         <br>
-        <h2>{{myData[0].nombre}}</h2>
+        <h2>{{myData.nombre}}</h2>
         <br>
 
         <img style="width:30px; height:30px;" src="@/assets/penIcon.png">
-        <a>   {{myData[0].pDibujo}}  </a>
+        <a>   {{myData.pDibujo}}  </a>
 
         <img style="width:30px; height:30px;" src="@/assets/brainIcon.png">
-        <a>   {{myData[0].pListo}}  </a>
+        <a>   {{myData.pListo}}  </a>
 
         <img style="width:30px; height:30px;" src="@/assets/risaIcon.png">
-        <a>   {{myData[0].pGracioso}}  </a>
+        <a>   {{myData.pGracioso}}  </a>
 
         <br>
         <img style="width:30px; height:30px;" src="@/assets/starIcon.png">
-        <a>   {{myData[0].estrellas}}  </a>
+        <a>   {{myData.estrellas}}  </a>
 
         <br>
         <img style="width:30px; height:30px;" src="@/assets/coinsIcon.png">
-        <a>   {{myData[0].monedas}}  </a>
+        <a>   {{myData.monedas}}  </a>
         
         <br>
         <img style="width:30px; height:30px;" src="@/assets/socialIcon.png">
-        <a>   {{myData[0].nAmigos}}  </a>
+        <a>   {{myData.nAmigos}}  </a>
     </div>
 </template>
 
@@ -32,27 +32,30 @@
 <script>
 
 import auth from "@/logic/auth"
+import {setIdFoto} from '@/util/APIKIT'
 
 export default {
   name: 'PerfilComponent',
   
   data: () => ({
-    myData: []
+    myData: null
   }),
 
   methods:{
       myImg(){
         //console.log(this.myData[0].fotPerf)
-        return "http://localhost:8080/api/returnImageProfile/" + this.myData[0].fotPerf;
+        return "http://localhost:8080/api/returnImageProfile/" + this.myData.fotPerf;
       },
 
       loadData(){
         auth.viewProfile()
           .then((response)=>{
-            this.myData.push(response.data);
-            console.log("hola")
+            console.log(response);
+            this.myData = response.data;
+            console.log(response.data.fotPerf)
+            setIdFoto(response.data.fotPerf)
           })
-          .catch(()=>{});
+          .catch((error)=>{console.log(error);});
       }
   },
   beforeMount(){

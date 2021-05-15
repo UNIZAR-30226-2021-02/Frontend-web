@@ -65,4 +65,10 @@ export const setVotadoMail = (mail) => {
   APIKit.defaults.headers.common["votado"] = mail;
 };
 
+export const setIdFoto = (foto) => {
+  //console.log( APIKit.defaults.headers.common);
+  //APIKit.defaults.headers.common["identificador"] = name;
+  APIKit.defaults.headers.common["idFoto"] = foto;
+};
+
 export default APIKit;

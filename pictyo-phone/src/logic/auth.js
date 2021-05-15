@@ -2,7 +2,7 @@ import APIKit from '@/util/APIKIT';
 import Cookies from "js-cookie";
 
 const ENDPOINT_PATH = "http://localhost:8080/api/";
-//http://35.246.75.160:443/api
+//http://localhost:8080/api
 
 export default {
  
@@ -65,6 +65,12 @@ export default {
 
   viewProfile(){
     return APIKit.get(ENDPOINT_PATH + "viewProfile");
+  },
+
+  changeMyName(name){
+    const usuario={name};
+    console.log( APIKit.defaults.headers.common)
+    return APIKit.get(ENDPOINT_PATH + "changeNameProfile", usuario);
   }
 
   //APIKit.get(ENDPOINT_PATH + "listFriends");
