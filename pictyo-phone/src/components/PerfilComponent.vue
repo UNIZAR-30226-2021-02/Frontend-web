@@ -36,6 +36,15 @@
         <a v-if="this.mounted" style="margin: 5px;">   {{myData.nAmigos}}  </a>
       </div>
 
+      <div class="nameChangerComponent">
+          <button v-if="!this.changing" class="boton" v-on:click="change()">ChangeName</button>
+          <form v-if="this.changing" action class="form" @submit.prevent="changeMyName()">
+              <label id="etiqueta" class="form-label" for="#newName"></label>
+              <input v-model="newName" class="form-input" type="text" id="name" required placeholder="New Name" style="width:170px;">
+              <input class="boton" type="submit" value="Change">
+          </form>
+      </div>
+
     </div>
 </template>
 
@@ -48,9 +57,13 @@ import {setIdFoto} from '@/util/APIKIT'
 export default {
   name: 'PerfilComponent',
   
+
+
   data: () => ({
     myData: null,
-    mounted: false
+    mounted: false,
+    newName:"",
+    changing:false
   }),
 
   methods:{
@@ -69,6 +82,20 @@ export default {
             this.mounted = true;
           })
           .catch((error)=>{console.log(error);});
+      },
+
+      change(){
+        this.changing = !this.changing;
+      },
+
+      changeMyName(){
+          this.changing = false;
+          auth.changeMyName(this.newName)
+          .then(()=>{
+              this.changing = false;
+          })
+          .catch(()=>{
+          });
       }
   },
   beforeMount(){
@@ -125,6 +152,29 @@ export default {
     background-color: white;
     border: 2px solid blueviolet;
     border-radius: 15px;
+  }
+
+  .boton{
+    display:inline-block;
+    background-color:#00A6D6;
+    border-color: rgb(15, 1, 80);
+    color:white;
+    border-width: 3px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    box-shadow: 10px;
+    font-family: arial;
+    margin: 5%;
+  }
+
+  .boton:hover{
+    background-color: rgb(15, 1, 80);
+    border-color: #00A6D6;
+
+  }
+
+  .boton:active{
+    transform: translateY(4px);
   }
 
   p{

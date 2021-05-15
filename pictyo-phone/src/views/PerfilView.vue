@@ -29,7 +29,7 @@ export default {
     </div>
     <div class="content">
       <perfil-component />
-      <name-changer-component/>
+      <!--name-changer-component/-->
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
 <script>
 // @ is an alias to /src
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
-import NameChangerComponent from '../components/nameChangerComponent.vue'
+//import NameChangerComponent from '../components/nameChangerComponent.vue'
 import PerfilComponent from '../components/PerfilComponent.vue'
 
 export default {
@@ -45,7 +45,7 @@ export default {
   components: {
     NavegationMenuComponent,
     PerfilComponent,
-    NameChangerComponent
+    //NameChangerComponent
 
   }
 }
