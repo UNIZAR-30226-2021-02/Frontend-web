@@ -23,7 +23,7 @@ export default {
 </script-->
 
 <template>
-  <div class="HomeView">
+  <div class="PerfilView">
     <div class="sidenav">
       <navegation-menu-component/>
     </div>
@@ -41,7 +41,7 @@ import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import PerfilComponent from '../components/PerfilComponent.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'PerfilView',
   components: {
     NavegationMenuComponent,
     PerfilComponent,
@@ -77,7 +77,7 @@ export default {
       margin-top: 3%;
     }
 
-    .HomeView{
+    .PerfilView{
       border: 5px solid rgb(49, 49, 49);
       position: absolute;
       margin-left:10%;

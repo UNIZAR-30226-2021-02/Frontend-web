@@ -4,8 +4,8 @@
       <navegation-menu-component/>
     </div>
     <div class="content">
-        <!--deshecho-component msg="Esto es la página de home"/>
-        <logout-component/-->
+        <!--deshecho-component msg="Esto es la página de home"/-->
+        <logout-component/>
         <img src="../assets/logo.png">
     </div>
   </div>
@@ -15,14 +15,14 @@
 // @ is an alias to /src
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 //import DeshechoComponent from '../components/DeshechoComponent.vue'
-//import LogoutComponent from '../components/logoutComponent.vue'
+import LogoutComponent from '../components/logoutComponent.vue'
 
 export default {
   name: 'HomeView',
   components: {
     NavegationMenuComponent,
     //DeshechoComponent,
-    //LogoutComponent
+    LogoutComponent
   }
 }
 </script>

@@ -27,7 +27,7 @@ export default {
 </script-->
 
 <template>
-  <div class="HomeView">
+  <div class="FriendsView">
     <div class="sidenav">
       <navegation-menu-component/>
     </div>
@@ -45,7 +45,7 @@ import friendSearcherComponent from '../components/friendSearcherComponent.vue'
 import FriendListsComponent from '../components/friendListsComponent.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'FriendsView',
   components: {
     NavegationMenuComponent,
     friendSearcherComponent,
@@ -79,7 +79,7 @@ export default {
       margin-top: 3%;
     }
 
-    .HomeView{
+    .FriendsView{
       border: 5px solid rgb(49, 49, 49);
       position: absolute;
       margin-left:10%;
