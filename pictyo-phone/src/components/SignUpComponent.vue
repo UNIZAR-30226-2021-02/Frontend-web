@@ -61,7 +61,6 @@ import {setClientMail} from '@/util/APIKIT'
 
 
             registrar() {
-                console.log(this.estado);
                 this.error=false;
                 this.response="";
                 if (this.check()) {
@@ -77,12 +76,9 @@ import {setClientMail} from '@/util/APIKIT'
                     setClientToken(response.data.token);
                     setClientMail(this.mail);                     
                     this.token=response.data.token;
-                    if(response.status===201){
-                        this.$router.push("/Home");
-                        auth.setUserLogged(this.mail, this.token);
-                        console.log(this.mail);
-                        console.log(this.token);
-                    }
+                    auth.SetUserLogged(this.mail, this.token);
+                    this.$router.push("/Home");
+
                 }).catch((error)=>{
  
                     switch(error.response.status){

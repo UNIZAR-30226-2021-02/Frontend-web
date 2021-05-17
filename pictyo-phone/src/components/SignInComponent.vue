@@ -48,9 +48,8 @@ export default {
         setClientMail(this.mail);
         this.token=response.data.token;
         console.log(axios.defaults.headers.common);
+        auth.SetUserLogged(this.mail, this.token);
         this.$router.push("/Home");
-        auth.setUserLogged(this.mail, this.token);
-        console.log(this.mail, this.token);
       }).catch(() =>{this.error=true;})
     },
 
