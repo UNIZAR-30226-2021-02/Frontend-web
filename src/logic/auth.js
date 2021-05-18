@@ -1,7 +1,8 @@
 import APIKit from '@/util/APIKIT';
 import Cookies from "js-cookie";
 
-const ENDPOINT_PATH = "35.246.75.160";
+const ENDPOINT_PATH = "http://35.246.75.160:443/api/";
+//http://35.246.75.160:443/api
 
 export default {
  
@@ -64,6 +65,13 @@ export default {
 
   viewProfile(){
     return APIKit.get(ENDPOINT_PATH + "viewProfile");
+  },
+
+  changeMyName(name){
+    const usuario={name};
+    console.log(name);
+    console.log( APIKit.defaults.headers.common)
+    return APIKit.post(ENDPOINT_PATH + "changeNameProfile", usuario);
   }
 
   //APIKit.get(ENDPOINT_PATH + "listFriends");

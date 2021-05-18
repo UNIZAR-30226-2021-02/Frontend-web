@@ -4,7 +4,7 @@ import {setGameId} from '@/util/APIKIT'
 import { setAutorMail } from "../util/APIKIT";
 import { setVotadoMail } from "../util/APIKIT";
 
-const ENDPOINT_PATH = "35.246.75.160";
+const ENDPOINT_PATH = "http://35.246.75.160:443/api/";
 
 export default {
   

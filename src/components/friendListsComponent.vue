@@ -78,8 +78,8 @@ export default {
                 this.amigos.push(response.data[i].nombre);
                 this.amigosMail.push(response.data[i].mail);
                 this.IterAmigo.push(i);
-                console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
-                this.amigosFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                console.log("http://35.246.75.160:443/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.amigosFotos.push("http://35.246.75.160:443/api/returnImageProfile/" + response.data[i].fotPerf);
                 this.amigosPts.push(response.data[i].estrellas);
               }
               console.log(this.amigos);
@@ -134,8 +134,8 @@ export default {
                 this.peticiones.push(response.data[i].nombre);
                 this.petisMail.push(response.data[i].mail);
                 this.IterPeti.push(i);
-                console.log("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
-                this.peticionesFotos.push("http://localhost:8080/api/returnImageProfile/" + response.data[i].fotPerf);
+                console.log("http://35.246.75.160:443/api/returnImageProfile/" + response.data[i].fotPerf);
+                this.peticionesFotos.push("http://35.246.75.160:443/api/returnImageProfile/" + response.data[i].fotPerf);
               }
               console.log(this.peticiones);
               this.loading=false;

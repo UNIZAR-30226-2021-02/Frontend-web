@@ -3,7 +3,7 @@ import axios from "axios";
 // Create axios client, pre-configured with baseURL
 let APIKit = axios.create({
   //baseURL: "http://80.39.50.206:8082/api/",
-  baseURL: "http://10.0.2.2:8080/api/",
+  baseURL: "http://35.246.75.160:443/api/",
   timeout: 10000,
   headers: { "Content-Type": "application/json" },
 });
@@ -63,6 +63,12 @@ export const setVotadoMail = (mail) => {
   //console.log( APIKit.defaults.headers.common);
   //APIKit.defaults.headers.common["identificador"] = name;
   APIKit.defaults.headers.common["votado"] = mail;
+};
+
+export const setIdFoto = (foto) => {
+  //console.log( APIKit.defaults.headers.common);
+  //APIKit.defaults.headers.common["identificador"] = name;
+  APIKit.defaults.headers.common["idFoto"] = foto;
 };
 
 export default APIKit;

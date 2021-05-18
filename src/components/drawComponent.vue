@@ -6,8 +6,8 @@
       <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
         <ol v-if="this.mostrarPuntos" id="listaVotos">
           <li class="list-group-item" v-for="index in puntosJugadores.length"  v-bind:key="index">
-            <!--img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].fotPerf)"-->
-            <a> {{puntosJugadores[index-1].idUsuario_}}     </a>
+            <img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].idUsuario_.fotPerf)">
+            <a> {{puntosJugadores[index-1].idUsuario_.nombre}}  -->   </a>
             <img style="height:30px; weight:30px;" src="@/assets/penIcon.png">
             <a>: {{puntosJugadores[index-1].pDibujo_}}   </a>
             <img style="height:30px; weight:30px;" src="@/assets/risaIcon.png">
@@ -18,9 +18,9 @@
         </ol>
 
       <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{}}     </a>
+      <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
       <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{}}</a>
+      <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
 
       <!--toca ver los hilos -->
       <h4 v-if="this.faseFinal" id="tituloInvitaciones">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
@@ -39,7 +39,7 @@
           <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
-            <button v-if="!soyYo(hilos[0].respuestas_[index-1].autor_.mail)" class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
+            <button class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
           </li>
         </ol> 
 
@@ -123,8 +123,13 @@
         </div>
 
       </div>
-    <a v-if="this.dibujar" id="limpiar" href="#">LIMPIAR </a> 
-    <a v-if="this.dibujar" id="borrador" href="#"> BORRADOR</a>
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM">
+    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG">
+
+
+    <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
+    <img v-if="this.dibujar" src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador">
     <br>
     <button v-if="!this.faseFinal" class="button" @click="back()">back</button> 
     <button v-if="this.dibujar || this.adivinar" class="button" v-on:click="sendAnswer()">send</button> 
@@ -152,6 +157,7 @@ export default {
     painting:false,
     canvas:null,
     ctx:null,
+    ancho:5,
     desplazamientoX:0,
     desplazamientoY:0,
     png:null,       //png a enviar
@@ -168,7 +174,8 @@ export default {
     msgVotacion:["más listo","más gracioso","mejor dibujante"],
     numVotacion:0,
     puntosJugadores: [],
-    mostrarPuntos: false
+    mostrarPuntos: false,
+    coinStar:null
   }),
 
   methods: {
@@ -183,12 +190,12 @@ export default {
     },
 
     theImg(id){
-      return "http://localhost:8080/api/returnImageResponse/" + id;
+      return "http://35.246.75.160:443/api/returnImageResponse/" + id;
 
     },
 
     imgPerfil(foto){
-      return "http://localhost:8080/api/returnImageProfile/" + foto;
+      return "http://35.246.75.160:443/api/returnImageProfile/" + foto;
     },
 
     next(sig){
@@ -232,7 +239,7 @@ export default {
 
     draw(e) {
       if(!this.painting) return
-      this.ctx.lineWidth = 5;
+      this.ctx.lineWidth = this.ancho;
       this.ctx.lineCap ="round";
       
       this.ctx.lineTo(e.clientX-this.desplazamientoX,e.clientY-this.desplazamientoY);
@@ -246,6 +253,17 @@ export default {
 
     color(c){
       console.log(c);
+      this.ctx.strokeStyle=c;
+    },
+
+    borrar(){
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+
+    puntero(p){
+      /*this.ctx.lineWidth =p;*/
+      this.ancho=p;
+      console.log(this.ctx.lineWidth);
     },
 
     sendAnswer(){
@@ -309,13 +327,17 @@ export default {
                   this.canvas=document.getElementById("can");
                   this.ctx = this.canvas.getContext("2d");  
                   // Resize canvas
-                  this.canvas.height = window.innerHeight/2;
-                  this.canvas.width = window.innerWidth/2;
+                  var aux = window.innerWidth - window.innerHeight/1.5;
+                  this.canvas.height = window.innerHeight/1.5;
+                  this.canvas.width = window.innerWidth-aux;
+                  console.log(window.innerWidth)
+                  console.log(window.innerHeight/2)
                   this.desplazamientoX = this.canvas.getBoundingClientRect();
                   this.desplazamientoY = this.desplazamientoX.top;
-                  this.desplazamientoX = (this.desplazamientoX.right - this.desplazamientoX.left)/2;
+                  //this.desplazamientoX = (this.desplazamientoX.right - this.desplazamientoX.left)/2;
                   console.log(this.desplazamientoY);
                   console.log("fdasda");
+                  this.desplazamientoX = aux/2;
                   //this.desplazamientoY = 0;
                   this.adivinar = false;
                   this.showImg = false;
@@ -327,6 +349,21 @@ export default {
               }
               else{
                 switch(response.data.id_){
+                case -4:
+                  this.dibujar = false;
+                  this.adivinar = false;
+                  this.showImg = false;
+                  this.msgTitulo = "Se ha terminado la partida";
+                  util.getPuntosPartida().then((response)=>{
+                    console.log(response.data);
+                    this.puntosJugadores = response.data;
+                    util.getPuntosJugador().then((response)=>{
+                      console.log(response.data);
+                      this.mostrarPuntos = true;
+                      this.coinStar=response.data;
+                    })
+                  })
+                  break;
                 case -3:
                   console.log("faseFinal")
                   this.dibujar = false;
@@ -346,14 +383,6 @@ export default {
                   this.adivinar = false;
                   this.showImg = false;
                   this.msgTitulo = "Ya has acabado tu turno";
-                  util.getPuntosPartida().then((response)=>{
-                    console.log(response.data);
-                    this.puntosJugadores = response.data;
-                    util.getPuntosJugador().then((response)=>{
-                      console.log(response.data);
-                      this.mostrarPuntos = true;
-                    })
-                  })
                   break;
                 default:
                   console.log("Primer turno")
@@ -392,6 +421,7 @@ canvas{
    .colores{
      padding: 20px;
      margin:25px;
+     margin-top: 10px;
    }
 
    ol { 
@@ -420,4 +450,20 @@ canvas{
   border-top: 1px solid #FFF;
   }
 
+  .borrador{
+    height: 60px;
+    margin-top: 10px;
+  }
+
+  .punteroP{
+    height: 25px;
+  }
+
+  .punteroM{
+    height: 50px;
+  }
+
+  .punteroG{
+    height: 100px;
+  }
 </style>
