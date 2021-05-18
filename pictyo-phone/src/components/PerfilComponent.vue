@@ -69,7 +69,7 @@ export default {
   methods:{
       myImg(){
         //console.log(this.myData[0].fotPerf)
-        return "http://localhost:8080/api/returnImageProfile/" + this.myData.fotPerf;
+        return "http://35.246.75.160:443/api/returnImageProfile/" + this.myData.fotPerf;
       },
 
       loadData(){

@@ -190,12 +190,12 @@ export default {
     },
 
     theImg(id){
-      return "http://localhost:8080/api/returnImageResponse/" + id;
+      return "http://35.246.75.160:443/api/returnImageResponse/" + id;
 
     },
 
     imgPerfil(foto){
-      return "http://localhost:8080/api/returnImageProfile/" + foto;
+      return "http://35.246.75.160:443/api/returnImageProfile/" + foto;
     },
 
     next(sig){
