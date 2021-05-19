@@ -2,7 +2,7 @@
     <div class="friendSearcherComponent">
         <form action class="form" @submit.prevent="sendReq">
             <label id="etiqueta" class="form-label" for="#amigo"></label>
-            <input v-model="amigo" class="form-input" type="text" id="name" required placeholder="Friend to search">
+            <input v-model="amigo" class="form-input" type="email" id="name" required placeholder="Friend to search">
             <p v-if="fallo" class="error">{{msgErr}}</p>
             <input class="boton" type="submit" value="Add">
         </form>
@@ -27,17 +27,20 @@ export default {
   methods: {
       sendReq(){
           auth.sendRequest(this.amigo)
-          .then(()=>{
+          .then((data)=>{
               this.amigo = '';
               this.fallo = false;
+              console.log(data);
+
           })
           .catch((error)=>{
               this.fallo = true;
+              console.log(error);
               switch(error.response.status){
                   case 417:
                       this.msgErr ="Petición ya enviada";
                       break
-                  case 500:
+                  case 405:
                       this.msgErr="Usuario no existente";
               }
           });
