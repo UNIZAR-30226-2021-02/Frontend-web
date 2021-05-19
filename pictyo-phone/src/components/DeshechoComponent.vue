@@ -1,6 +1,7 @@
 <template>
     <div class="deshechoComponent">
         <p>{{msg}}</p>
+        <!--Comentario-->
     </div>
 </template>
 
