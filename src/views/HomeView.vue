@@ -4,9 +4,8 @@
       <navegation-menu-component/>
     </div>
     <div class="content">
-        <!--deshecho-component msg="Esto es la página de home"/-->
+        <img class="logo" src="../assets/logo.png">
         <logout-component/>
-        <img src="../assets/logo.png">
     </div>
   </div>
 </template>
@@ -50,6 +49,11 @@ export default {
     .content {
       display: inline-block;
       margin-top: 3%;
+    }
+
+    .logo{
+      height: 400px;
+      margin: 20px;
     }
 
     .HomeView{

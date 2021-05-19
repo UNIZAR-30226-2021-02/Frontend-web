@@ -24,3 +24,28 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+  .button{
+    background-color:#00A6D6;
+    border-color: rgb(15, 1, 80);
+    color:white;
+    border-width: 3px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    box-shadow: 10px;
+    font-family: arial;
+    width: 100px;
+    margin: 1em;
+  }
+
+  .button:hover{
+    background-color: rgb(15, 1, 80);
+    border-color: #00A6D6;
+
+  }
+
+  .button:active{
+    transform: translateY(4px);
+  }
+</style>
