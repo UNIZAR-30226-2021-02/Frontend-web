@@ -1,4 +1,5 @@
 import APIKit from '@/util/APIKIT';
+import auth from '@/logic/auth';
 import {setInvitedName} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
 import { setAutorMail } from "../util/APIKIT";
@@ -19,6 +20,8 @@ export default {
     },
 
     listPlayers(){
+        auth.setClientToken(auth.getToken());
+        auth.setClientMail(auth.getUserLogged());
         setInvitedName(null);
         console.log("SFDSAJNFASNDAJSDNBJASDNBASHDNBSHDB")
         console.log( APIKit.defaults.headers.common["idPartida"]);
@@ -27,10 +30,14 @@ export default {
     },
 
     listFriendsNotInGame(){
+        auth.setClientToken(auth.getToken());
+        auth.setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listFriendsGame");
     },
 
     listInvitaciones(){
+        auth.setClientToken(auth.getToken());
+        auth.setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listInvite");
     },
 
@@ -49,6 +56,8 @@ export default {
     },
 
     listGames(){
+        auth.setClientToken(auth.getToken());
+        auth.setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listGames");
     },
 
