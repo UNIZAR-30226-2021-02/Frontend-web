@@ -47,7 +47,6 @@
   }
 
   .list-group-item{
-    
     background-color: white;
   }
 

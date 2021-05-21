@@ -1,27 +1,88 @@
 <template>
-    <div class="PartidaListsComponent" id="contenedor">
-        <h4 id="titulopartidas">Lista de partidas:</h4>
-        <ol id=listapartidas>
-          <li class="list-group-item" v-for="index in IterPartida"  v-bind:key="index">
-            <a>Partida {{partidas[index]}} {{partidasEstado[index]}} </a>
-            <button class="button" v-on:click="jugarPartida(index)">Play</button>
-          </li>
-        </ol>
-        <h4 id="tituloInvitaciones">Lista de Invitaciones:</h4>
-        <ol id="listaInvitaciones">
-          <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
-            <a>Game {{Invitaciones[index]}} from {{InvitacionesHost[index]}}</a>
-            <button class="button" v-on:click="aceptarInvitacion(InvitacionesId[index])">Accept</button>
-            <button class="button" v-on:click="rechazarInvitacion(InvitacionesId[index])">Deny</button>
-          </li>
-        </ol>
+  <div class="PartidaListsComponent" id="contenedor">
+
+    <div class="partidas">
+      <h4 class="titulopartidas" style="color:white">Lista de partidas:</h4>
+      <ol class=listapartidas>
+        <li class="list-group-item" style="" v-for="index in IterPartida"  v-bind:key="index">
+          <a>Partida {{partidas[index]}} {{partidasEstado[index]}} </a>
+          <button class="button" v-on:click="jugarPartida(index)">Play</button>
+        </li>
+      </ol>
     </div>
+
+    <div class="invitaciones">
+      <h4 class="tituloInvitaciones" style="color:white">Lista de Invitaciones:</h4>
+      <ol class="listaInvitaciones">
+        <li class="list-group-item" v-for="index in IterPeti"  v-bind:key="index">
+          <a>Game {{Invitaciones[index]}} from {{InvitacionesHost[index]}}</a>
+          <button class="button" v-on:click="aceptarInvitacion(InvitacionesId[index])">Accept</button>
+          <button class="button" v-on:click="rechazarInvitacion(InvitacionesId[index])">Deny</button>
+        </li>
+      </ol>
+    </div>
+
+  </div>
 </template>
 
+<style scoped>
+  .invitaciones{
+    position: fixed;
+    left: 22%;
+    margin:20px;
+    display: inline-block;
+    height: 400px;
+  }
+
+  .partidas{
+    position: fixed;
+    right: 15%;
+    margin:20px;
+    display: inline-block;
+    height: 400px;
+  }
+
+  .list-group-item{
+    background-color: white;
+  }
+
+  .listaInvitaciones{
+    height: 350px;
+    overflow:hidden; 
+    overflow-y:scroll;
+  }
+
+  .listapartidas{
+    height: 350px;
+    overflow:hidden; 
+    overflow-y:scroll;
+  }
+
+  .boton{
+      background-color:#00A6D6;
+      border-color: rgb(15, 1, 80);
+      color:white;
+      border-width: 3px;
+      border-radius: 15px;
+      padding: 10px 15px;
+      box-shadow: 10px;
+      font-family: arial;
+      margin: 1em;
+    }
+
+    .boton:hover{
+      background-color: rgb(15, 1, 80);
+      border-color: #00A6D6;
+
+    }
+
+    .boton:active{
+      transform: translateY(4px);
+    }
+ 
+</style>
 
 <script> 
-
-
 import util from "@/logic/util";
 import {setGameId} from '@/util/APIKIT'
 import {getClientMail} from '@/util/APIKIT'
@@ -154,54 +215,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-
-  ol { 
-    width: 500px;
-    }
-
-  ol li a{
-    margin: 10 px
-  }
-
-  ol li button{
-    margin: auto;
-  }
-
-  ol li img{
-    margin: auto;
-    
-  }
-
-  ol li {
-  background: #F4F4F4;
-  border-bottom: 1px solid #7C7C7C;
-  border-top: 1px solid #FFF;
-  }
-
-  #listapartidas{
-    position: absolute;
-    top: 350px;
-    right: 1080px;
-  }
-
-  #titulopartidas{
-    position: absolute;
-    top: 300px;
-    right: 1200px;
-  }
-
-  #listaInvitaciones{
-    position: absolute;
-    top: 350px;
-    right: 300px;
-  }
-
-  #tituloInvitaciones{
-    position: absolute;
-    top: 300px;
-    right: 450px;
-  }
-</style>
