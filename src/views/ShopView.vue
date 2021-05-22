@@ -40,7 +40,6 @@ export default {
       border-radius: 20px;
       margin-top: 5%;
       margin-left: 3%;
-      border: 5px solid blueviolet;
     }
 
     /* Style the content */

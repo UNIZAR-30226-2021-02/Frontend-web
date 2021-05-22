@@ -62,13 +62,11 @@ export default {
 
     /* Style the side navigation */
     .sidenav {
-
       float: left;
       background-color: white;
       border-radius: 20px;
       margin-top: 5%;
-      margin-left: 3%;
-      border: 5px solid blueviolet;
+      margin-left: 3%; 
     }
 
     /* Style the content */
