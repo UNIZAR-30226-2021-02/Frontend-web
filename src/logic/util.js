@@ -4,6 +4,8 @@ import {setInvitedName} from '@/util/APIKIT'
 import {setGameId} from '@/util/APIKIT'
 import { setAutorMail } from "../util/APIKIT";
 import { setVotadoMail } from "../util/APIKIT";
+import { setClientToken } from "../util/APIKIT";
+import { setClientMail } from "../util/APIKIT";
 
 const ENDPOINT_PATH = "http://35.246.75.160:443/api/";
 
@@ -20,8 +22,8 @@ export default {
     },
 
     listPlayers(){
-        auth.setClientToken(auth.getToken());
-        auth.setClientMail(auth.getUserLogged());
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
         setInvitedName(null);
         console.log("SFDSAJNFASNDAJSDNBJASDNBASHDNBSHDB")
         console.log( APIKit.defaults.headers.common["idPartida"]);
@@ -30,14 +32,14 @@ export default {
     },
 
     listFriendsNotInGame(){
-        auth.setClientToken(auth.getToken());
-        auth.setClientMail(auth.getUserLogged());
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listFriendsGame");
     },
 
     listInvitaciones(){
-        auth.setClientToken(auth.getToken());
-        auth.setClientMail(auth.getUserLogged());
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listInvite");
     },
 
@@ -56,8 +58,8 @@ export default {
     },
 
     listGames(){
-        auth.setClientToken(auth.getToken());
-        auth.setClientMail(auth.getUserLogged());
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
         return APIKit.get(ENDPOINT_PATH + "listGames");
     },
 
