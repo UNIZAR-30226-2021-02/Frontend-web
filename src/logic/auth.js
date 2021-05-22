@@ -1,5 +1,7 @@
 import APIKit from '@/util/APIKIT';
 import Cookies from "js-cookie";
+import {setClientToken} from '@/util/APIKIT'
+import {setClientMail} from '@/util/APIKIT'
 
 const ENDPOINT_PATH = "http://35.246.75.160:443/api/";
 //http://35.246.75.160:443/api
@@ -46,10 +48,14 @@ export default {
   },
 
   listRequest(){
+    setClientToken(this.getToken());
+    setClientMail(this.getUserLogged());
     return APIKit.get(ENDPOINT_PATH + "listRequest");
   },
 
   listFriends(){
+    setClientToken(this.getToken());
+    setClientMail(this.getUserLogged());
     return APIKit.get(ENDPOINT_PATH + "listFriends");
   },
 
@@ -64,6 +70,8 @@ export default {
   },
 
   viewProfile(){
+    setClientToken(this.getToken());
+    setClientMail(this.getUserLogged());
     return APIKit.get(ENDPOINT_PATH + "viewProfile");
   },
 

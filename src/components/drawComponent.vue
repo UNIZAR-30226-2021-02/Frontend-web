@@ -354,13 +354,14 @@ export default {
                   this.adivinar = false;
                   this.showImg = false;
                   this.msgTitulo = "Se ha terminado la partida";
-                  util.getPuntosPartida().then((response)=>{
-                    console.log(response.data);
-                    this.puntosJugadores = response.data;
-                    util.getPuntosJugador().then((response)=>{
-                      console.log(response.data);
+                  util.getPuntosPartida().then((puntos)=>{
+                    console.log(puntos.data);
+                    console.log("Huola");
+                    this.puntosJugadores = puntos.data;
+                    util.getPuntosJugador().then((answ)=>{
+                      console.log(answ.data);
                       this.mostrarPuntos = true;
-                      this.coinStar=response.data;
+                      this.coinStar=answ.data;
                     })
                   })
                   break;
