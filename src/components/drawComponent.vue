@@ -1,6 +1,6 @@
 <template>
-  <div >
-      <h1>{{this.msgTitulo}}</h1>
+  <div style="background-color:grey;">
+      <h1 style="background-color:grey; color:white; margin:15px;">{{this.msgTitulo}}</h1>
 
       <!--toca ver los puntos -->
       <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
@@ -23,7 +23,7 @@
       <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
 
       <!--toca ver los hilos -->
-      <h4 v-if="this.faseFinal" id="tituloInvitaciones">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
+      <h4 v-if="this.faseFinal" style="color: white; margin: 10px;">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
         <ol v-if="this.faseFinal" id="listaHistoria">
           <li class="list-group-item" v-for="index in hilos[num].size"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[num].respuestas_[index-1].autor_.fotPerf)">
@@ -39,7 +39,7 @@
           <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
-            <button class="button" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
+            <button class="boton" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
           </li>
         </ol> 
 
@@ -131,11 +131,11 @@
     <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
     <img v-if="this.dibujar" src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador">
     <br>
-    <button v-if="!this.faseFinal" class="button" @click="back()">back</button> 
-    <button v-if="this.dibujar || this.adivinar" class="button" v-on:click="sendAnswer()">send</button> 
-    <button v-if="this.faseFinal" class="button" @click="next(false)">Previous</button>
-    <button v-if="this.faseFinal" class="button" @click="next(true)">Next</button>
-    <button class="button" v-on:click="resetVotos()">resetVotes</button>
+    <button v-if="!this.faseFinal" class="boton" @click="back()">back</button> 
+    <button v-if="this.dibujar || this.adivinar" class="boton" v-on:click="sendAnswer()">send</button> 
+    <button v-if="this.faseFinal" class="boton" @click="next(false)">Previous</button>
+    <button v-if="this.faseFinal" class="boton" @click="next(true)">Next</button>
+    <!--button class="boton" v-on:click="resetVotos()">resetVotes</button-->
     
   </div>
   
@@ -180,10 +180,10 @@ export default {
 
   methods: {
 
-    resetVotos(){
+    /*resetVotos(){
       console.log("AAAAA");
       util.resetVotes();
-    },
+    },*/
 
     soyYo(mail){
       return mail==this.miMail;
@@ -325,7 +325,7 @@ export default {
                 }
                 else{
                   this.canvas=document.getElementById("can");
-                  this.ctx = this.canvas.getContext("2d");  
+                  this.ctx = this.canvas.getContext("2d");
                   // Resize canvas
                   var aux = window.innerWidth - window.innerHeight/1.5;
                   this.canvas.height = window.innerHeight/1.5;
@@ -376,7 +376,7 @@ export default {
                   })
 
                   this.faseFinal = true;
-                  this.msgTitulo = "Resultados finales!";
+                  this.msgTitulo = "¡Resultados finales!";
                   break;
                 case -2:
                   console.log("Turno acabado")
@@ -390,7 +390,7 @@ export default {
                   this.dibujar = false;
                   this.adivinar = true;
                   this.showImg = false;
-                  this.msgTitulo = "Escribe una historia!";
+                  this.msgTitulo = "¡Escribe una historia!";
                 }
               }
               
@@ -466,5 +466,29 @@ canvas{
 
   .punteroG{
     height: 100px;
+  }
+
+  .boton{
+    background-color:#00A6D6;
+    border-color: rgb(15, 1, 80);
+    color:white;
+    border-width: 3px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    box-shadow: 10px;
+    font-family: arial;
+    font-weight: 600px;
+    width: 100px;
+    margin: 1em;
+  }
+
+  .boton:hover{
+    background-color: rgb(15, 1, 80);
+    border-color: #00A6D6;
+
+  }
+
+  .boton:active{
+    transform: translateY(4px);
   }
 </style>

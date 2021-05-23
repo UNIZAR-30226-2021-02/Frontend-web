@@ -1,5 +1,5 @@
 <template>
-    <div class="exitLobbyComponent" id="contenedor">
+    <div class="exitLobbyComponent">
           <button class="button" v-on:click="exit()">Back</button>
     </div>
 </template>
@@ -16,12 +16,12 @@ export default {
     }),
 
   methods: {
-      exit(){
-        setGameId('');
-        setInvitedName('');
-        this.$router.push("/Partidas");
-      }
+    exit(){
+      setGameId('');
+      setInvitedName('');
+      this.$router.push("/Partidas");
     }
+  }
 }
 </script>
 
