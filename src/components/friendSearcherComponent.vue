@@ -3,7 +3,7 @@
         <form action class="form" @submit.prevent="sendReq">
             <label id="etiqueta" class="form-label" for="#amigo"></label>
             <input v-model="amigo" class="form-input" type="email" id="name" required placeholder="Friend to search">
-            <p v-if="fallo" class="error">{{msgErr}}</p>
+            <!--p v-if="fallo" class="error">{{msgErr}}</p-->
             <input class="boton" type="submit" value="Add">
         </form>
         
@@ -38,10 +38,10 @@ export default {
               console.log(error);
               switch(error.response.status){
                   case 417:
-                      this.msgErr ="Petición ya enviada";
+                      alert("Petición ya enviada");
                       break
                   case 405:
-                      this.msgErr="Usuario no existente";
+                      alert("Usuario no existente");
               }
           });
       }
