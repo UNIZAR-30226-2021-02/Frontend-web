@@ -1,27 +1,86 @@
 <template>
-    <div class="friendListsComponent" id="contenedor">
-        <h4 id="tituloPetis">Lista de jugadores:</h4>
-        <ol id="listaPetis">
-          <li class="list-group-item" v-for="index in IterJugador"  v-bind:key="index">
-            <img :src="fotoPeticion(index)">
-            <a>{{jugadores[index]}}</a>
-          </li>
-        </ol>
-        <h4 id="tituloAmigos">Lista de amigos:</h4>
-        <ol id=listaAmigos>
-          <li class="list-group-item" v-for="index in IterAmigo"  v-bind:key="index">
-            <img :src="fotoAmigo(index)">
-            <a>{{amigos[index]}} </a>
-            <button class="button" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
-          </li>
-        </ol>
+  <div class="friendListsComponent">
+    <div class="petis">
+      <h4 class="tituloPetis" style="color:white">Lista de jugadores:</h4>
+      <ol class="listaPetis">
+        <li class="list-group-item" style="border-radius: 25px; width: 300px;" v-for="index in IterJugador"  v-bind:key="index">
+          <img :src="fotoPeticion(index)">
+          <a>{{jugadores[index]}}</a>
+        </li>
+      </ol>
     </div>
+
+    <div class="amigos">
+      <h4 class="tituloAmigos" style="color:white">Lista de amigos:</h4>
+      <ol class="listaAmigos">
+        <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
+          <img :src="fotoAmigo(index)">
+          <a>{{amigos[index]}} </a>
+          <button class="boton" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
+        </li>
+      </ol>
+    </div>
+
+  </div>
 </template>
 
+<style scoped>
+  .petis{
+    position: fixed;
+    left: 22%;
+    margin:20px;
+    display: inline-block;
+    height: 500px;
+  }
+
+  .amigos{
+    position: fixed;
+    right: 15%;
+    margin:20px;
+    display: inline-block;
+    height: 500px;
+  }
+
+  .list-group-item{
+    background-color: white;
+  }
+
+  .listaAmigos{
+    height: 450px;
+    overflow:hidden; 
+    overflow-y:scroll;
+  }
+
+  .listaPetis{
+    height: 450px;
+    overflow:hidden; 
+    overflow-y:scroll;
+  }
+
+  .boton{
+      background-color:#00A6D6;
+      border-color: rgb(15, 1, 80);
+      color:white;
+      border-width: 3px;
+      border-radius: 15px;
+      padding: 10px 15px;
+      box-shadow: 10px;
+      font-family: arial;
+      margin: 1em;
+    }
+
+    .boton:hover{
+      background-color: rgb(15, 1, 80);
+      border-color: #00A6D6;
+
+    }
+
+    .boton:active{
+      transform: translateY(4px);
+    }
+</style>
 
 <script> 
-
-
 import util from "@/logic/util";
 
 export default {
@@ -112,54 +171,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-
-  ol { 
-    width: 500px;
-    }
-
-  ol li a{
-    margin: 10 px
-  }
-
-  ol li button{
-    margin: auto;
-  }
-
-  ol li img{
-    margin: auto;
-    
-  }
-
-  ol li {
-  background: #F4F4F4;
-  border-bottom: 1px solid #7C7C7C;
-  border-top: 1px solid #FFF;
-  }
-
-  #listaPetis{
-    position: absolute;
-    top: 350px;
-    right: 1080px;
-  }
-
-  #tituloPetis{
-    position: absolute;
-    top: 300px;
-    right: 1200px;
-  }
-
-  #listaAmigos{
-    position: absolute;
-    top: 350px;
-    right: 300px;
-  }
-
-  #tituloAmigos{
-    position: absolute;
-    top: 300px;
-    right: 450px;
-  }
-</style>
