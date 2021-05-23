@@ -1,7 +1,7 @@
 <template>
   <div class="friendListsComponent">
     <div class="petis">
-      <h4 class="tituloPetis" style="color:white">Lista de jugadores:</h4>
+      <h4 class="tituloPetis" style="color:white;">Lista de jugadores:</h4>
       <ol class="listaPetis">
         <li class="list-group-item" style="border-radius: 25px; width: 300px;" v-for="index in IterJugador"  v-bind:key="index">
           <img :src="fotoPeticion(index)">
@@ -10,15 +10,20 @@
       </ol>
     </div>
 
-    <div class="amigos">
-      <h4 class="tituloAmigos" style="color:white">Lista de amigos:</h4>
-      <ol class="listaAmigos">
-        <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
-          <img :src="fotoAmigo(index)">
-          <a>{{amigos[index]}} </a>
-          <button class="boton" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
-        </li>
-      </ol>
+    <div class="vacio" v-if="IterAmigo.length==0">
+        <h4 class="tituloPetis" style="color:white; position: fixed; top: 18%; right:24%">Lista de amigos:</h4>
+    </div>
+    <div class="noVacio" v-if="IterAmigo.length!=0">
+      <div class="amigos">
+        <h4 class="tituloAmigos" style="color:white">Lista de amigos:</h4>
+        <ol class="listaAmigos">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
+            <img :src="fotoAmigo(index)">
+            <a>{{amigos[index]}} </a>
+            <button class="boton" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
+          </li>
+        </ol>
+      </div>
     </div>
 
   </div>
