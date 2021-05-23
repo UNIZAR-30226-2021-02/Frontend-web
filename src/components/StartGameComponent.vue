@@ -1,6 +1,6 @@
 <template>
     <div class="StartGameComponent">
-          <button class="button" v-on:click="startGame()">Start</button>
+          <button class="button" v-on:click="startGame()">Start Game</button>
     </div>
 </template>
 

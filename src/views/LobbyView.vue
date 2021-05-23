@@ -54,7 +54,7 @@ export default {
     NavegationMenuComponent,
     LobbyListsComponent,
     StartGameComponent,
-     ExitLobbyComponent,
+    ExitLobbyComponent,
   }
 }
 </script>
