@@ -4,7 +4,7 @@
     <div class="partidas">
       <h4 class="titulopartidas" style="color:white">Lista de partidas:</h4>
       <ol class=listapartidas>
-        <li class="list-group-item" style="" v-for="index in IterPartida"  v-bind:key="index">
+        <li class="list-group-item" v-for="index in IterPartida"  v-bind:key="index">
           <a>Partida {{partidas[index]}} {{partidasEstado[index]}} </a>
           <button class="button" v-on:click="jugarPartida(index)">Play</button>
         </li>
