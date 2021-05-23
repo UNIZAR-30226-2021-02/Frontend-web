@@ -1,15 +1,4 @@
 
-<!--template>
-    <div class="NavegacionComponent">
-        <ul class="vertical-menu">
-            <li><a href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a></li>
-            <li><a href="#/Profile"><img style="width:50px; height:50px;" src="../assets/userIcon.png"></a></li>
-            <li><a href="#/Shop"><img style="width:50px; height:50px;" src="../assets/carritoIcon.png"></a></li>
-            <li><a href="#/Friends"><img style="width:50px; height:50px;" src="../assets/amigosIcon.png"></a></li>
-            <li><a href="#/Partidas"><img style="width:50px; height:50px;" src="../assets/mandoIcon.png"></a></li>
-        </ul>
-    </div>
-</template-->
 <template>
     <div class="icon-bar">
         <a class="active" href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a> 
@@ -55,16 +44,4 @@ export default {
         background-color: blue;
         border-radius: 15px;
     }
-    /*.vertical-menu{
-        display: table;
-        background: #808ae4;
-        position: relative;
-        border:10px solid blueviolet;
-        border-radius: 25px;
-    }
-
-    .vertical-menu li{
-        padding: 20px;
-    }*/
-
 </style>
