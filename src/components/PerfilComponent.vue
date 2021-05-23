@@ -107,7 +107,7 @@ export default {
 <style scoped>
 
   .profile-name{
-    border: 2px solid blueviolet;
+    border: 2px solid rgb(49,49,49);
     background-color: white;
     border-radius: 50px;
     margin-bottom: 20px;
@@ -126,7 +126,7 @@ export default {
     display: inline-block;
     margin:10px;
     background-color: white;
-    border: 2px solid blueviolet;
+    border: 2px solid rgb(49,49,49);
     border-radius: 15px;
   }
 
@@ -134,7 +134,7 @@ export default {
     display: inline-block;
     margin:10px;
     background-color: white;
-    border: 2px solid blueviolet;
+    border: 2px solid rgb(49,49,49);
     border-radius: 15px;
   }
 
@@ -142,7 +142,7 @@ export default {
     display: inline-block;
     margin:10px;
     background-color: white;
-    border: 2px solid blueviolet;
+    border: 2px solid rgb(49,49,49);
     border-radius: 15px;
   }
 
@@ -150,7 +150,7 @@ export default {
     margin: 10%;
     margin-bottom: 20px;
     background-color: white;
-    border: 2px solid blueviolet;
+    border: 2px solid rgb(49,49,49);
     border-radius: 15px;
   }
 
