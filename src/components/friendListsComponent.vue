@@ -7,8 +7,9 @@
         <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
           <a>{{IterAmigo[index]+1}}. </a>
           <img :src="fotoAmigo(index)">
-          <a>{{amigos[index]}} </a>
-          <a>{{amigosPts[index]}}pts </a>
+          <a> {{amigos[index]}} </a>
+          <a>{{amigosPts[index]}} </a>
+          <img style="width:20px; height:20px;" src="@/assets/starIcon.png">
           <button class="boton" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
         </li>
       </ol>

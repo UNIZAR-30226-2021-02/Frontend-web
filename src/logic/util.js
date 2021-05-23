@@ -126,6 +126,11 @@ export default {
         return APIKit.get(ENDPOINT_PATH + "unlockPicture");
     },
 
+    setProfilePick(idFoto){
+        setIdFoto(idFoto);
+        return APIKit.get(ENDPOINT_PATH + "changeImageProfile");
+    },
+
     setMoney(){
         setClientToken(auth.getToken());
         setClientMail(auth.getUserLogged());
