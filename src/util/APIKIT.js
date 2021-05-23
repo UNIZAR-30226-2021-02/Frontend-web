@@ -71,4 +71,11 @@ export const setIdFoto = (foto) => {
   APIKit.defaults.headers.common["idFoto"] = foto;
 };
 
+export const setMonedas = (money) => {
+  //console.log( APIKit.defaults.headers.common);
+  //APIKit.defaults.headers.common["identificador"] = name;
+  APIKit.defaults.headers.common["monedas"] = money;
+};
+
+
 export default APIKit;

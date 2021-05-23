@@ -6,6 +6,7 @@
     </div>
     <div class="content">
       <deshecho-component msg="Esto es la página de la tienda"/>
+      <shop-component/>
     </div>
   </div>
 </template>
@@ -14,12 +15,14 @@
 // @ is an alias to /src
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import DeshechoComponent from '../components/DeshechoComponent.vue'
+import ShopComponent from '../components/shopComponent.vue'
 
 export default {
   name: 'ShopView',
   components: {
     NavegationMenuComponent,
-    DeshechoComponent
+    DeshechoComponent,
+    ShopComponent
   }
 }
 </script>

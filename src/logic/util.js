@@ -6,6 +6,9 @@ import { setAutorMail } from "../util/APIKIT";
 import { setVotadoMail } from "../util/APIKIT";
 import { setClientToken } from "../util/APIKIT";
 import { setClientMail } from "../util/APIKIT";
+import { setIdFoto } from "../util/APIKIT";
+import { setMonedas } from "../util/APIKIT";
+
 
 const ENDPOINT_PATH = "http://35.246.75.160:443/api/";
 
@@ -101,6 +104,35 @@ export default {
 
     startGame(){
         return APIKit.get(ENDPOINT_PATH + "startGame");
+    },
+
+
+    //      SHOP FUNCTIONS
+
+    listShopPics(){
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
+        return APIKit.get(ENDPOINT_PATH + "listLockedPictures");
+    },
+
+    listUnlockedPicks(){
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
+        return APIKit.get(ENDPOINT_PATH + "listUnlockedPictures");
+    },
+
+    unlockPic(idFoto){
+        setIdFoto(idFoto);
+        return APIKit.get(ENDPOINT_PATH + "unlockPicture");
+    },
+
+    setMoney(){
+        setClientToken(auth.getToken());
+        setClientMail(auth.getUserLogged());
+        setMonedas(200);
+        return APIKit.get(ENDPOINT_PATH + "setMonedas");
     }
+
+
 
 };
