@@ -1,29 +1,38 @@
 <template>
   <div class="friendListsComponent" id="contenedor">
-
-    <div class="amigos">
-      <h4 class="tituloAmigos">Lista de amigos:</h4>
-      <ol class=listaAmigos>
-        <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
-          <a>{{IterAmigo[index]+1}}. </a>
-          <img :src="fotoAmigo(index)">
-          <a>{{amigos[index]}} </a>
-          <a>{{amigosPts[index]}}pts </a>
-          <button class="boton" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
-        </li>
-      </ol>
+    <div class="vacio" v-if="IterAmigo.length==0">
+        <h4 class="tituloAmigos" style="color:white; position: fixed; right: 26%; top: 29%;">Lista de amigos:</h4>
+    </div>
+    <div class="noVacio" v-if="IterAmigo.length!=0">
+      <div class="amigos">
+        <h4 class="tituloAmigos">Lista de amigos:</h4>
+        <ol class=listaAmigos>
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
+            <a>{{IterAmigo[index]+1}}. </a>
+            <img :src="fotoAmigo(index)">
+            <a>{{amigos[index]}} </a>
+            <a>{{amigosPts[index]}}pts </a>
+            <button class="boton" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
+          </li>
+        </ol>
+      </div>
     </div>
 
-    <div class="petis">
-      <h4 class="tituloPetis" style="color:white;">Lista de peticiones:</h4>
-      <ol class="listaPetis">
-        <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterPeti"  v-bind:key="index">
-          <img :src="fotoPeticion(index)">
-          <a>{{peticiones[index]}}</a>
-          <button class="boton" v-on:click="aceptarPeticion(petisMail[index])">Add</button>
-          <button class="boton" v-on:click="rechazarPeticion(petisMail[index])">Deny</button>
-        </li>
-      </ol>
+    <div class="vacio" v-if="IterPeti.length==0">
+        <h4 class="tituloPetis" style="color:white; position: fixed; left: 31%; top: 29%;">Lista de peticiones:</h4>
+    </div>
+    <div class="noVacio" v-if="IterPeti.length!=0">
+      <div class="petis">
+        <h4 class="tituloPetis" style="color:white;">Lista de peticiones:</h4>
+        <ol class="listaPetis">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterPeti"  v-bind:key="index">
+            <img :src="fotoPeticion(index)">
+            <a>{{peticiones[index]}}</a>
+            <button class="boton" v-on:click="aceptarPeticion(petisMail[index])">Add</button>
+            <button class="boton" v-on:click="rechazarPeticion(petisMail[index])">Deny</button>
+          </li>
+        </ol>
+      </div>
     </div>
 
   </div>
@@ -88,7 +97,6 @@
     .boton:active{
       transform: translateY(4px);
     }
-/*--------------------*/ 
 
 </style>
 
