@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:grey;">
+  <div> <!--style="background-color:grey;"-->
       <h1 style="background-color:grey; color:white; margin:15px;">{{this.msgTitulo}}</h1>
 
       <!--toca ver los puntos -->
