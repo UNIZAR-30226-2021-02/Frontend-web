@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="PerfilView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="PROFILE"/>
     </div>
     <div class="content">
       <perfil-component />

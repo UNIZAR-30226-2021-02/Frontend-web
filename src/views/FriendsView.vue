@@ -29,7 +29,7 @@ export default {
 <template>
   <div class="FriendsView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="FRIENDS"></navegation-menu-component>
     </div>
     <div class="content">
       <friend-searcher-component/>

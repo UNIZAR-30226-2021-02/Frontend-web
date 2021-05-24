@@ -2,7 +2,7 @@
 <template>
   <div class="ShopView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="SHOP"/>
     </div>
     <div class="content">
       <!--deshecho-component msg="Esto es la página de la tienda"/-->

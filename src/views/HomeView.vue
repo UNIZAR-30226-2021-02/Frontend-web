@@ -1,7 +1,7 @@
 <template>
   <div class="HomeView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component  page="HOME" />
     </div>
     <div class="content">
         <img class="logo" src="../assets/logo.png">

@@ -28,7 +28,7 @@ export default {
 <template>
   <div class="PartidasView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="PARTIDAS"/>
     </div>
     <div class="content">
       <partidas-creator-component/>
