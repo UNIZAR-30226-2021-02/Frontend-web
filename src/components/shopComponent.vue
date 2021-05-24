@@ -134,7 +134,7 @@ export default {
 <style scoped>
   #tituloTienda{
     font-weight: 300px;
-    margin:50px;
-    margin-top:20px;
+    margin:10px;
+    margin-top:50px;
   }
 </style>
