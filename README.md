@@ -25,3 +25,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### IP to the server:
 http://35.246.75.160:8080/
+
+### Comando para lanzar la app en remoto:
+npm run serve
