@@ -3,8 +3,8 @@
 
       <h4 id="tituloAdquiridos" style="color:white;">Imágenes adquiridas:</h4>
         <ol  v-if="!this.loadingI" id="listaComprables">
-          <li style="display:inline-block; border-radius:25px" class="list-group-item" v-for="index in fotosInventario.length"  v-bind:key="index">
-            <img @click="setProfPic(fotosInventario[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosInventario[index-1].idFoto)">
+          <li style="display:inline-block; border-radius:25px; margin:20px;" class="list-group-item" v-for="index in fotosInventario.length"  v-bind:key="index">
+            <button><img @click="setProfPic(fotosInventario[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosInventario[index-1].idFoto)"></button>
             <p/>
             <a v-if="selected[index-1]" >Seleccionada</a>
             <a v-if="!selected[index-1]" >Seleccionar</a>
@@ -14,8 +14,8 @@
       <!--toca ver los puntos -->
       <h4 id="tituloTienda" style="color:white;">Tienda:</h4>
         <ol  v-if="!this.loadingS" id="listaComprables">
-          <li style="display:inline-block; border-radius:25px;" class="list-group-item" v-for="index in fotosTienda.length"  v-bind:key="index">
-            <img @click="buyPhoto(fotosTienda[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosTienda[index-1].idFoto)">
+          <li style="display:inline-block; border-radius:25px; margin:20px;" class="list-group-item" v-for="index in fotosTienda.length"  v-bind:key="index">
+            <button><img @click="buyPhoto(fotosTienda[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosTienda[index-1].idFoto)"></button>
             <p/>
             <a>{{fotosTienda[index-1].precio}} </a>
             <img style="width:30px; height:30px;" src="@/assets/coinsIcon.png">

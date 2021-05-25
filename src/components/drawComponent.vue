@@ -45,7 +45,7 @@
 
       <!--toca escribir -->
 
-      <img v-if="this.showImg" :src="theImg(idImg)">
+      <img style="background-color:white; border:1px solid black; margin: 20px;" v-if="this.showImg" :src="theImg(idImg)">
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -55,84 +55,63 @@
 
 
       <!--Pizarra y dibujar -->
-      <h2 v-if="this.dibujar">{{this.frase}}</h2>
-      <div class="lienzo" style="background-color:white;">
+      <h2 style="color:black; margin:10px;" v-if="this.dibujar">{{this.frase}}</h2>
+      <div class="lienzo">
         <canvas v-if="this.dibujar" id="can" 
           @mousedown="startPainting" 
           @mouseup="finishedPainting" 
-          @mousemove="draw"  ></canvas>
+          @mousemove="draw" ></canvas>
       </div>
       <div v-if="this.dibujar" id="clr">
         <div>
-          <button class="colores" @click="color('black')" style="background-color: black "></button>
-        </div>
-        <div>
           <button class="colores" @click="color('red')" style="background-color: red "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('green')" style="background-color: green "></button>
         </div>
         <div>
           <button class="colores" @click="color('orange')" style="background-color: orange "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#FFFF00')" style="background-color: #FFFF00 "></button>
+          <button class="colores" @click="color('yellow')" style="background-color: yellow "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
+          <button class="colores" @click="color('yellowgreen')" style="background-color: yellowgreen "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
+          <button class="colores" @click="color('green')" style="background-color: green "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#9ecc3b')" style="background-color: #9ecc3b "></button>
+          <button class="colores" @click="color('cyan')" style="background-color: cyan "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#fbd')" style="background-color: #fbd "></button>
+          <button class="colores" @click="color('blue')" style="background-color: blue "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#fff460')" style="background-color: #fff460 "></button>
+          <button class="colores" @click="color('purple')" style="background-color: purple "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
+          <button class="colores" @click="color('violet')" style="background-color: violet "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#82B82C')" style="background-color: #82B82C "></button>
+          <button class="colores" @click="color('pink')" style="background-color: pink "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#0099FF')" style="background-color: #0099FF "></button>
+          <button class="colores" @click="color('brown')" style="background-color: brown "></button>
         </div>
         <div>
-          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
+          <button class="colores" @click="color('grey')" style="background-color: grey "></button>
         </div>
         <div>
-          <button class="colores" @click="color('rgb(128,0,255)')" style="background-color: rgb(128,0,255) "></button>
+          <button class="colores" @click="color('black')" style="background-color: black "></button>
         </div>
-        <div>
-          <button class="colores" @click="color('rgb(255,128,0)')" style="background-color: rgb(255,128,0) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(153,254,0')" style="background-color: rgb(153,254,0 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(18,0,255)')" style="background-color: rgb(18,0,255) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(255,28,0)')" style="background-color: rgb(255,28,0) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(13,54,0)')" style="background-color: rgb(13,54,0) "></button>
-        </div>
-
       </div>
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG">
 
-
-    <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
-    <img v-if="this.dibujar" src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador">
-    <br>
+    <div v-if="this.dibujar">
+      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP"></button>
+      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM"></button>
+      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG"></button>
+      <button class="boton" @click="borrar()">LIMPIAR </button> 
+      <button><img  src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador"></button>
+    </div>
+    <!--br-->
     <button v-if="!this.faseFinal" class="boton" @click="back()">back</button> 
     <button v-if="this.dibujar || this.adivinar" class="boton" v-on:click="sendAnswer()">send</button> 
     <button v-if="this.faseFinal" class="boton" @click="next(false)">Previous</button>
@@ -402,37 +381,41 @@ export default {
 </script>
 
 <style scoped>
-*{
-   margin:0;
-   user-select: none;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   font-family: Georgia, sans-serif;
-}
-canvas{
-   cursor: crosshair;
-   border:black solid 1px;
+  *{
+    margin:0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    font-family: Georgia, sans-serif;
+  }
 
-}
-#clr div{
-   cursor:pointer;
-   width:20px;
-   height:20px;
-   float:left;
-}
+  canvas{
+    cursor: crosshair;
+    border:black solid 2px;
+    background-color: white;
 
-   .colores{
-     padding: 20px;
-     margin:25px;
-     margin-top: 10px;
-   }
+  }
 
-   ol { 
-      width: 50%;
-      margin: 0 auto;
+  #clr{
+    position:fixed;
+    left: 25%;
+    top: 17%;
+  }
 
-      -webkit-overflow-scrolling: touch;
-    }
+  #clr div{
+    margin:5px;
+  }
+
+  .colores{
+    height:30px;
+    width:30px;
+  }
+
+  ol{ 
+    width: 50%;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   ol li a{
     margin: 10 px
@@ -443,14 +426,13 @@ canvas{
   }
 
   ol li img{
-    margin: auto;
-    
+    margin: auto;  
   }
 
   ol li {
-  background: #F4F4F4;
-  border-bottom: 1px solid #7C7C7C;
-  border-top: 1px solid #FFF;
+    background: #F4F4F4;
+    border-bottom: 1px solid #7C7C7C;
+    border-top: 1px solid #FFF;
   }
 
   .borrador{
@@ -468,6 +450,10 @@ canvas{
 
   .punteroG{
     height: 100px;
+  }
+
+  .tam{
+    margin:10px;
   }
 
   .boton{
@@ -493,4 +479,5 @@ canvas{
   .boton:active{
     transform: translateY(4px);
   }
+
 </style>
