@@ -3,9 +3,9 @@
       <h1 style="background-color:grey; color:white; margin:15px;">{{this.msgTitulo}}</h1>
 
       <!--toca ver los puntos -->
-      <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
-        <ol v-if="this.mostrarPuntos" id="listaVotos">
-          <li class="list-group-item" v-for="index in puntosJugadores.length"  v-bind:key="index">
+      <h4 v-if="this.mostrarPuntos" style="color: white; margin: 20px;">Votos obtenidos por los jugadores:</h4>
+        <ol v-if="this.mostrarPuntos" class="listaVotos">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in puntosJugadores.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].idUsuario_.fotPerf)">
             <a> {{puntosJugadores[index-1].idUsuario_.nombre}}  -->   </a>
             <img style="height:30px; weight:30px;" src="@/assets/penIcon.png">
@@ -17,26 +17,32 @@
           </li>
         </ol>
 
-      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
-      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
+      <div class="puntos" v-if="this.mostrarPuntos">
+        <div  v-if="this.mostrarPuntos" style="margin: 10px; display:inline-block;">
+          <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
+          <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
+        </div>
+        <div v-if="this.mostrarPuntos" style="display:inline-block; margin: 10px;">
+          <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
+          <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
+        </div>
+      </div>
 
       <!--toca ver los hilos -->
-      <h4 v-if="this.faseFinal" style="color: white; margin: 10px;">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
-        <ol v-if="this.faseFinal" id="listaHistoria">
-          <li class="list-group-item" v-for="index in hilos[num].size"  v-bind:key="index">
+      <h4 v-if="this.faseFinal" style="color: white; margin: 15px;">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
+        <ol v-if="this.faseFinal" class="listaHistoria">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in hilos[num].size"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[num].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[num].respuestas_[index-1].autor_.nombre}}:  </a>
             <a v-if="!hilos[num].respuestas_[index-1].esDibujo">{{hilos[num].respuestas_[index-1].frase}}</a>
-            <img v-if="hilos[num].respuestas_[index-1].esDibujo" style="height:350px; weight:350px;" :src="theImg(hilos[num].respuestas_[index-1].id_)">
+            <img style="background-color:white; border:1px solid black; margin: 20px; height:300px; weight:300px;" v-if="hilos[num].respuestas_[index-1].esDibujo" :src="theImg(hilos[num].respuestas_[index-1].id_)">
           </li>
         </ol>  
       
       <!--toca votar -->
-        <h4 v-if="this.votando" id="tituloVoto">Vota al {{msgVotacion[numVotacion]}}:</h4>
-        <ol v-if="this.votando" id="listaVotos">
-          <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
+        <h4 v-if="this.votando" style="color:white;">Vota al {{msgVotacion[numVotacion]}}:</h4>
+        <ol v-if="this.votando" class="listaVotos">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
             <button class="boton" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
@@ -45,7 +51,7 @@
 
       <!--toca escribir -->
 
-      <img style="background-color:white; border:1px solid black; margin: 20px;" v-if="this.showImg" :src="theImg(idImg)">
+      <img style="background-color:white; border:1px solid black; margin: 10px;" v-if="this.showImg" :src="theImg(idImg)">
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -439,30 +445,37 @@ export default {
     border-radius: 25px;
   }
 
-  ol{ 
-    width: 50%;
-    margin: 0 auto;
-    -webkit-overflow-scrolling: touch;
+  .listaHistoria{
+    margin-left:25%;
+    margin-right:25%;
+    overflow:hidden; 
+    overflow-y:scroll;
+    height: 525px;
   }
 
-  ol li a{
-    margin: 10 px
+  .listaVotos{
+    margin-left:25%;
+    margin-right:25%;
+    overflow:hidden; 
+    overflow-y:scroll;
+    height: 470px;
   }
 
-  ol li button{
-    margin: auto;
+  .list-group-item{
+    background-color: white;
+    border: 3px solid black;
+    margin: 25px;
   }
 
-  ol li img{
-    margin: auto;  
+  .puntos{
+    display: inline-block;
+    margin:5px;
+    background-color: white;
+    border:3px solid black;
+    border-radius: 25px;
+    width:10%;
   }
-
-  ol li {
-    background: #F4F4F4;
-    border-bottom: 1px solid #7C7C7C;
-    border-top: 1px solid #FFF;
-  }
-
+  
   .borrador{
     height: 30px;
     width: 30px;
