@@ -64,7 +64,7 @@
       </div>
       <div v-if="this.dibujar" id="clr">
         <div>
-          <button class="colores" @click="color('red')" style="background-color: red "></button>
+          <button class="colores" @click="color('red')" style="background-color: red; margin-top:20px;"></button>
         </div>
         <div>
           <button class="colores" @click="color('orange')" style="background-color: orange "></button>
@@ -100,16 +100,21 @@
           <button class="colores" @click="color('grey')" style="background-color: grey "></button>
         </div>
         <div>
-          <button class="colores" @click="color('black')" style="background-color: black "></button>
+          <button class="colores" @click="color('black')" style="background-color: black; margin-bottom:20px;"></button>
         </div>
       </div>
 
-    <div v-if="this.dibujar">
-      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP"></button>
-      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM"></button>
-      <button class="tam"><img  src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG"></button>
-      <button class="boton" @click="borrar()">LIMPIAR </button> 
-      <button><img  src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador"></button>
+    <div v-if="this.dibujar" class="dcha">
+      <div class="tam">
+        <h1 style="color: white;">Pincel:</h1>
+        <button class="boton" @click="puntero('5')">Pequeño</button>
+        <button class="boton" @click="puntero('10')">Mediano</button>
+        <button class="boton" @click="puntero('15')">Grande</button>
+      </div>
+      <div class="borrar">
+        <button class="boton" @click="borrar()" style="margin-right:50px;">LIMPIAR </button> 
+        <button><img  src="../assets/eraser.png" @click="color('white')" class="borrador"></button>
+      </div>
     </div>
     <!--br-->
     <button v-if="!this.faseFinal" class="boton" @click="back()">back</button> 
@@ -397,9 +402,12 @@ export default {
   }
 
   #clr{
-    position:fixed;
+    position: fixed;
+    top: 15%;
     left: 25%;
-    top: 17%;
+    background-color: rgb(49,49,49);
+    width: 80px;
+    border-radius: 25px;
   }
 
   #clr div{
@@ -409,6 +417,26 @@ export default {
   .colores{
     height:30px;
     width:30px;
+  }
+
+  .dcha{
+    position: fixed;
+    right: 5%;
+    top: 25%;
+    margin:20px;
+  }
+
+  .tam{
+    margin:20px;
+    margin-bottom: 50px;
+    background-color: rgb(49,49,49);
+    border-radius: 25px;
+  }
+
+  .borrar{
+    margin:20px;
+    background-color: rgb(49,49,49);
+    border-radius: 25px;
   }
 
   ol{ 
@@ -436,8 +464,8 @@ export default {
   }
 
   .borrador{
-    height: 60px;
-    margin-top: 10px;
+    height: 30px;
+    width: 30px;
   }
 
   .punteroP{
@@ -453,7 +481,7 @@ export default {
   }
 
   .tam{
-    margin:10px;
+    display: block;
   }
 
   .boton{
