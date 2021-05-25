@@ -1,5 +1,5 @@
 <template>
-  <div> <!--style="background-color:grey;"-->
+  <div style="background-color:grey;">
       <h1 style="background-color:grey; color:white; margin:15px;">{{this.msgTitulo}}</h1>
 
       <!--toca ver los puntos -->
@@ -56,10 +56,12 @@
 
       <!--Pizarra y dibujar -->
       <h2 v-if="this.dibujar">{{this.frase}}</h2>
-      <canvas v-if="this.dibujar" id="can" 
-        @mousedown="startPainting" 
-        @mouseup="finishedPainting" 
-        @mousemove="draw"  ></canvas>
+      <div class="lienzo" style="background-color:white;">
+        <canvas v-if="this.dibujar" id="can" 
+          @mousedown="startPainting" 
+          @mouseup="finishedPainting" 
+          @mousemove="draw"  ></canvas>
+      </div>
       <div v-if="this.dibujar" id="clr">
         <div>
           <button class="colores" @click="color('black')" style="background-color: black "></button>
