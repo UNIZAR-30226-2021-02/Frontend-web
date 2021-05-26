@@ -27,6 +27,7 @@ export default {
           .then((response)=>{
               console.log(response.data);
               setGameId(response.data.id);
+              util.setGameIdCookies(response.data.id);
               this.$router.push("/Lobby");
           })
           .catch(()=>{});

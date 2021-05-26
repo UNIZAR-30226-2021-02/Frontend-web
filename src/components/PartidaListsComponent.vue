@@ -122,7 +122,8 @@ export default {
         console.log(this.partidasHost[index]);
         console.log(this.partidasId[index]);
 
-          setGameId(this.partidasId[index]);
+        if(this.partidasEstado[index] != "votando"){
+            setGameId(this.partidasId[index]);
           util.setGameIdCookies(this.partidasId[index]);
           util.returnResponse()
           .then(()=>{
@@ -131,6 +132,10 @@ export default {
           .catch(()=>{
             this.$router.push("/Lobby");
           })
+        }else{
+          this.$router.push("/Draw");
+        }
+          
 
       },
 
