@@ -121,21 +121,16 @@ export default {
         console.log(index)
         console.log(this.partidasHost[index]);
         console.log(this.partidasId[index]);
-        if(this.partidasEstado[index] == "esperando"){
+        
           setGameId(this.partidasId[index]);
           util.setGameIdCookies(this.partidasId[index]);
-          this.$router.push("/Lobby");
-          //alert("La partida aun no está lista");
-        }
-        else if(this.partidasEstado[index] != "esperando"){
-          setGameId(this.partidasId[index]);
-          util.setGameIdCookies(this.partidasId[index]);
-          this.$router.push("/Draw");
-          /*util.returnResponse(this.partidasId[index])
-          .then((response)=>{
-              switch(response.data.id_)
-          })*/
-        }
+          util.returnResponse()
+          .then(()=>{
+            this.$router.push("/Draw");
+          })
+          .catch(()=>{
+            this.$router.push("/Lobby");
+          })
 
       },
 
