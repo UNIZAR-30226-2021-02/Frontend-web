@@ -34,8 +34,10 @@ export default {
           auth.changeMyName(this.newName)
           .then(()=>{
               this.changing = false;
+              alert("Nombre cambiado con éxito")
           })
           .catch(()=>{
+              alert("Nombre en uso")
           });
       }
   }

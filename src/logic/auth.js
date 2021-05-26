@@ -75,11 +75,11 @@ export default {
     return APIKit.get(ENDPOINT_PATH + "viewProfile");
   },
 
-  changeMyName(name){
-    const usuario={name};
+  changeMyName(nombre){
+    const name={nombre};
     console.log(name);
     console.log( APIKit.defaults.headers.common)
-    return APIKit.post(ENDPOINT_PATH + "changeNameProfile", usuario);
+    return APIKit.post(ENDPOINT_PATH + "changeNameProfile", name);
   }
 
   //APIKit.get(ENDPOINT_PATH + "listFriends");
