@@ -121,7 +121,7 @@ export default {
         console.log(index)
         console.log(this.partidasHost[index]);
         console.log(this.partidasId[index]);
-        
+
           setGameId(this.partidasId[index]);
           util.setGameIdCookies(this.partidasId[index]);
           util.returnResponse()

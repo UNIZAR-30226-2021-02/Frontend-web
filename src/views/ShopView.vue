@@ -13,7 +13,7 @@
             <!--a style="color:black; font-size: 20px; ">999</a>
             <img src="@/assets/coinsIcon.png" style="width:30px; heigth: 30px; margin-left:15px;"-->
             <p/>
-            <a style="font-size: 20px; font-weight: bold;" >999</a>
+            <a style="font-size: 20px; font-weight: bold;" >{{monedas}}</a>
             <img style="width:30px; height:30px; margin-left:15px;" src="@/assets/coinsIcon.png">
           </li>
       </ul>
@@ -23,6 +23,8 @@
 
 <script>
 // @ is an alias to /src
+
+import auth from "@/logic/auth"
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
 import ShopComponent from '../components/shopComponent.vue'
 
@@ -31,6 +33,24 @@ export default {
   components: {
     NavegationMenuComponent,
     ShopComponent
+  },
+
+  data: () => ({
+    monedas: 0
+  }),
+
+  methods: {
+    loadData(){
+      auth.viewProfile()
+      .then((response)=>{
+            console.log(response);
+            this.monedas = response.data.monedas;
+        })
+    }
+  },
+
+  beforeMount(){
+    this.loadData()
   }
 }
 </script>
