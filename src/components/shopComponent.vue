@@ -1,28 +1,25 @@
 <template>
-  <div >
-
-      <h4 id="tituloAdquiridos" style="color:white;">Imágenes adquiridas:</h4>
-        <ol  v-if="!this.loadingI" id="listaComprables">
-          <li style="display:inline-block; border-radius:25px; margin:20px;" class="list-group-item" v-for="index in fotosInventario.length"  v-bind:key="index">
-            <button><img @click="setProfPic(fotosInventario[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosInventario[index-1].idFoto)"></button>
+  <div>
+      <h4 style="color:white;">Imágenes adquiridas:</h4>
+        <ol  v-if="!this.loadingI">
+          <li style="display:inline-block; border-radius:25px; margin:25px; margin-left: 20px; margin-rigth:20px;" v-for="index in fotosInventario.length"  v-bind:key="index">
+            <button class="perfil"><img @click="setProfPic(fotosInventario[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosInventario[index-1].idFoto)">
             <p/>
             <a v-if="selected[index-1]" >Seleccionada</a>
-            <a v-if="!selected[index-1]" >Seleccionar</a>
+            <a v-if="!selected[index-1]" >Seleccionar</a></button>
           </li>
         </ol>
 
       <!--toca ver los puntos -->
-      <h4 id="tituloTienda" style="color:white;">Tienda:</h4>
-        <ol  v-if="!this.loadingS" id="listaComprables">
-          <li style="display:inline-block; border-radius:25px; margin:20px;" class="list-group-item" v-for="index in fotosTienda.length"  v-bind:key="index">
-            <button><img @click="buyPhoto(fotosTienda[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosTienda[index-1].idFoto)"></button>
+      <h4 style="color:white" >Tienda:</h4>
+        <ol  v-if="!this.loadingS">
+         <li style="display:inline-block; border-radius:25px; margin:25px; margin-left: 20px; margin-rigth:20px;" v-for="index in fotosTienda.length"  v-bind:key="index">
+            <button class="perfil"><img @click="buyPhoto(fotosTienda[index-1].idFoto)" style="width:80px; height:80px;" id="imgBuy" :src="imgTienda(fotosTienda[index-1].idFoto)">
             <p/>
             <a>{{fotosTienda[index-1].precio}} </a>
-            <img style="width:30px; height:30px;" src="@/assets/coinsIcon.png">
+            <img style="width:30px; height:30px;" src="@/assets/coinsIcon.png"></button>
           </li>
         </ol>
-
-
   </div>
   
 </template>
@@ -35,8 +32,6 @@ import auth from "@/logic/auth";
 export default {
   name: 'PartidaListsComponent',
     
-
-
     data: () => ({
         loadingS: true,
         loadingI: true,
@@ -132,9 +127,17 @@ export default {
 </script>
 
 <style scoped>
+  .perfil{
+    border-radius: 25px;
+    background-color:white;
+    height: 150px;
+    width: 125px;
+  }
+
   #tituloTienda{
     font-weight: 300px;
     margin:10px;
     margin-top:50px;
   }
+
 </style>
