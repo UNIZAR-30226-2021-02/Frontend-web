@@ -5,23 +5,31 @@
       <navegation-menu-component page="SHOP"/>
     </div>
     <div class="content">
-      <!--deshecho-component msg="Esto es la página de la tienda"/-->
       <shop-component/>
     </div>
+    <div class="coins">
+      <ul>
+          <li style="">
+            <!--a style="color:black; font-size: 20px; ">999</a>
+            <img src="@/assets/coinsIcon.png" style="width:30px; heigth: 30px; margin-left:15px;"-->
+            <p/>
+            <a style="font-size: 20px; font-weight: bold;" >999</a>
+            <img style="width:30px; height:30px; margin-left:15px;" src="@/assets/coinsIcon.png">
+          </li>
+      </ul>
+    </div>  
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
-//import DeshechoComponent from '../components/DeshechoComponent.vue'
 import ShopComponent from '../components/shopComponent.vue'
 
 export default {
   name: 'ShopView',
   components: {
     NavegationMenuComponent,
-    //DeshechoComponent,
     ShopComponent
   }
 }
@@ -62,5 +70,16 @@ export default {
       width: 80%;
       height: 80%;
     }
+
+    .coins{
+      display: inline-block;
+      position:fixed;
+      top: 15%;
+      left: 27%;
+      background-color: white;
+      border-radius:60px;
+      width: 150px;
+    }
+
   }
 </style>
