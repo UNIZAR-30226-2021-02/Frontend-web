@@ -1,43 +1,19 @@
-<!--template>
-  <div class="PerfilView">
-    <name-changer-component/>
-    <navegation-menu-component/>
-    <perfil-component />
-  </div>
-</template>
-
-<script>
-import NameChangerComponent from '../components/nameChangerComponent.vue'
-import NavegationMenuComponent from '../components/NavegationMenuComponent.vue'
-import PerfilComponent from '../components/PerfilComponent.vue'
-
-
-export default {
-  name: 'PerfilView',
-  components: {
-    PerfilComponent,
-    NavegationMenuComponent,
-    NameChangerComponent
-  }
-}
-</script-->
-
 <template>
   <div class="PerfilView">
     <div class="sidenav">
       <navegation-menu-component page="PROFILE"/>
     </div>
     <div class="content">
-      <perfil-component />
-      <!--name-changer-component/-->
+      <perfil-component/>
     </div>
+    <logout-component class="salir"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import NavegationMenuComponent from '@/components/NavegationMenuComponent.vue'
-//import NameChangerComponent from '../components/nameChangerComponent.vue'
+import LogoutComponent from '../components/logoutComponent.vue'
 import PerfilComponent from '../components/PerfilComponent.vue'
 
 export default {
@@ -45,7 +21,7 @@ export default {
   components: {
     NavegationMenuComponent,
     PerfilComponent,
-    //NameChangerComponent
+    LogoutComponent
 
   }
 }
@@ -64,7 +40,7 @@ export default {
     .sidenav {
       float: left;
       background-color: white;
-      border-radius: 20px;
+      border-radius: 30px;
       margin-top: 5%;
       margin-left: 3%; 
     }
@@ -73,6 +49,12 @@ export default {
     .content {
       display: inline-block;
       margin-top: 3%;
+    }
+
+    .salir{
+      position: fixed;
+      top: 16%;
+      right: 14%;
     }
 
     .PerfilView{
