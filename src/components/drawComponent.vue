@@ -154,9 +154,9 @@ export default {
     desplazamientoY:0,
     png:null,       //png a enviar
     fraseRespuesta:"", //Frase a enviar
-    msgTitulo:"",     //Título de la página
+    msgTitulo:"Pictio Phone",     //Título de la página
     idImg:null,       //Id de la imagen a adivinar
-    frase:"",       //Frase que te toca dibujar
+    frase:"Cargando...",       //Frase que te toca dibujar
     dibujar:true,   //true si te toca dibujar
     adivinar:false,   //true si te toca adivinar
     showImg:false,
@@ -387,6 +387,8 @@ export default {
               }
               
           });
+          console.log(getClientMail());
+          console.log(getGameId());
     }
 }
 </script>
