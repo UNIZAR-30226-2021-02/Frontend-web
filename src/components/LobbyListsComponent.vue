@@ -20,7 +20,7 @@
           <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
             <img :src="fotoAmigo(index)">
             <a>{{amigos[index]}} </a>
-            <button class="boton" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
+            <button class="boton" v-on:click="invitarAmigo(amigosMail[index],index)">Invite</button>
           </li>
         </ol>
       </div>
@@ -111,8 +111,12 @@ export default {
         return this.jugadoresFotos[index];
       },
 
-      invitarAmigo(mail){
+      invitarAmigo(mail,index){
         util.inviteFriend(mail).then(() => {
+          this.amigos.splice(index, 1);
+          this.amigosMail.splice(index, 1);
+          this.IterAmigo.splice(index, 1);
+          this.amigosFotos.splice(index, 1);
           alert("La invitación fué enviada correctamente");
         })
         .catch(()=>{
