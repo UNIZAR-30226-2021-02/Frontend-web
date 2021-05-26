@@ -386,6 +386,9 @@ export default {
                 }
               }
               
+          })
+          .catch(()=>{
+            this.$router.push("/Partidas");
           });
           console.log(getClientMail());
           console.log(getGameId());
