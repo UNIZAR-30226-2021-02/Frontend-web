@@ -77,7 +77,7 @@ import {setClientMail} from '@/util/APIKIT'
                     setClientMail(this.mail);                     
                     this.token=response.data.token;
                     auth.SetUserLogged(this.mail, this.token);
-                    this.$router.push("/Home");
+                    this.$router.push("/Partidas");
 
                 }).catch((error)=>{
  

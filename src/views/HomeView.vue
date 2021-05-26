@@ -1,7 +1,7 @@
 <template>
   <div class="HomeView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component  page="HOME" />
     </div>
     <div class="content">
         <img class="logo" src="../assets/logo.png">
@@ -39,7 +39,7 @@ export default {
     .sidenav {
       float: left;
       background-color: white;
-      border-radius: 20px;
+      border-radius: 30px;
       margin-top: 5%;
       margin-left: 3%;
     }

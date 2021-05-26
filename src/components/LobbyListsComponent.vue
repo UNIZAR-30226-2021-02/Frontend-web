@@ -113,7 +113,7 @@ export default {
 
       invitarAmigo(mail){
         util.inviteFriend(mail).then(() => {
-          
+          alert("La invitación fué enviada correctamente");
           
           /*this.amigos = [];
           this.IterAmigo = [];

@@ -31,7 +31,7 @@ export default {
 <template>
   <div class="LobbyView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="PARTIDAS"/>
     </div>
     <div class="content">
         <lobby-lists-component/>
@@ -72,7 +72,7 @@ export default {
     .sidenav {
       float: left;
       background-color: white;
-      border-radius: 20px;
+      border-radius: 30px;
       margin-top: 5%;
       margin-left: 3%;
     }

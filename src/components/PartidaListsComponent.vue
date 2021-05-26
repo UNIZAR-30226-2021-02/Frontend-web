@@ -124,6 +124,7 @@ export default {
         if(this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
+          //alert("La partida aun no está lista");
         }
         else if(this.partidasEstado[index] != "esperando"){
           setGameId(this.partidasId[index]);

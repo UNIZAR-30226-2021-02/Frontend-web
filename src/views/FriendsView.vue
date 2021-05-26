@@ -29,7 +29,7 @@ export default {
 <template>
   <div class="FriendsView">
     <div class="sidenav">
-      <navegation-menu-component/>
+      <navegation-menu-component page="FRIENDS"></navegation-menu-component>
     </div>
     <div class="content">
       <friend-searcher-component/>
@@ -67,7 +67,7 @@ export default {
     .sidenav {
       float: left;
       background-color: white;
-      border-radius: 20px;
+      border-radius: 30px;
       margin-top: 5%;
       margin-left: 3%;
       border: 5px solid rgba(49, 49, 49, );

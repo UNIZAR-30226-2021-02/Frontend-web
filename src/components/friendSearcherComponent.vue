@@ -31,6 +31,7 @@ export default {
               this.amigo = '';
               this.fallo = false;
               console.log(data);
+              alert("Solicitud enviada");
 
           })
           .catch((error)=>{

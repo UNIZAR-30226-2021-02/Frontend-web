@@ -1,11 +1,11 @@
 <template>
-  <div> <!--style="background-color:grey;"-->
+  <div style="background-color:grey;">
       <h1 style="background-color:grey; color:white; margin:15px;">{{this.msgTitulo}}</h1>
 
       <!--toca ver los puntos -->
-      <h4 v-if="this.mostrarPuntos" id="tituloVotos">Votos obtenidos por los jugadores:</h4>
-        <ol v-if="this.mostrarPuntos" id="listaVotos">
-          <li class="list-group-item" v-for="index in puntosJugadores.length"  v-bind:key="index">
+      <h4 v-if="this.mostrarPuntos" style="color: white; margin: 20px;">Votos obtenidos por los jugadores:</h4>
+        <ol v-if="this.mostrarPuntos" class="listaVotos">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in puntosJugadores.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(puntosJugadores[index-1].idUsuario_.fotPerf)">
             <a> {{puntosJugadores[index-1].idUsuario_.nombre}}  -->   </a>
             <img style="height:30px; weight:30px;" src="@/assets/penIcon.png">
@@ -17,26 +17,32 @@
           </li>
         </ol>
 
-      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
-      <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
-      <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
+      <div class="puntos" v-if="this.mostrarPuntos">
+        <div  v-if="this.mostrarPuntos" style="margin: 10px; display:inline-block;">
+          <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/starIcon.png">  
+          <a v-if="this.mostrarPuntos"> +{{coinStar[0]}}     </a>
+        </div>
+        <div v-if="this.mostrarPuntos" style="display:inline-block; margin: 10px;">
+          <img v-if="this.mostrarPuntos" style="height:30px; weight:30px;" src="@/assets/coinsIcon.png">  
+          <a v-if="this.mostrarPuntos"> +{{coinStar[1]}}</a>
+        </div>
+      </div>
 
       <!--toca ver los hilos -->
-      <h4 v-if="this.faseFinal" style="color: white; margin: 10px;">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
-        <ol v-if="this.faseFinal" id="listaHistoria">
-          <li class="list-group-item" v-for="index in hilos[num].size"  v-bind:key="index">
+      <h4 v-if="this.faseFinal" style="color: white; margin: 15px;">Historia de {{hilos[num].jugadorInicial_.nombre}}:</h4>
+        <ol v-if="this.faseFinal" class="listaHistoria">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in hilos[num].size"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[num].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[num].respuestas_[index-1].autor_.nombre}}:  </a>
             <a v-if="!hilos[num].respuestas_[index-1].esDibujo">{{hilos[num].respuestas_[index-1].frase}}</a>
-            <img v-if="hilos[num].respuestas_[index-1].esDibujo" style="height:350px; weight:350px;" :src="theImg(hilos[num].respuestas_[index-1].id_)">
+            <img style="background-color:white; border:1px solid black; margin: 20px; height:300px; weight:300px;" v-if="hilos[num].respuestas_[index-1].esDibujo" :src="theImg(hilos[num].respuestas_[index-1].id_)">
           </li>
         </ol>  
       
       <!--toca votar -->
-        <h4 v-if="this.votando" id="tituloVoto">Vota al {{msgVotacion[numVotacion]}}:</h4>
-        <ol v-if="this.votando" id="listaVotos">
-          <li class="list-group-item" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
+        <h4 v-if="this.votando" style="color:white;">Vota al {{msgVotacion[numVotacion]}}:</h4>
+        <ol v-if="this.votando" class="listaVotos">
+          <li class="list-group-item" style="border-radius: 25px;" v-for="index in hilos[0].respuestas_.length"  v-bind:key="index">
             <img id="imgPerf" :src="imgPerfil(hilos[0].respuestas_[index-1].autor_.fotPerf)">
             <a> {{hilos[0].respuestas_[index-1].autor_.nombre}}  </a>
             <button class="boton" v-on:click="vote(hilos[0].respuestas_[index-1].autor_.mail)">Vote</button>
@@ -45,7 +51,7 @@
 
       <!--toca escribir -->
 
-      <img v-if="this.showImg" :src="theImg(idImg)">
+      <img style="background-color:white; border:1px solid black; margin: 10px; height: 525px; width: 525px;" v-if="this.showImg" :src="theImg(idImg)">
       <form v-if="this.adivinar" action class="form" @submit.prevent="sendAnswer">
             <label id="etiqueta" class="form-label" for="#fraseRespuesta"></label>
             <input v-model="fraseRespuesta" class="form-input" type="text" id="name" required placeholder="TU RESPUESTA">
@@ -53,84 +59,70 @@
 
 
 
-
+    <div class="dibujar">
       <!--Pizarra y dibujar -->
-      <h2 v-if="this.dibujar">{{this.frase}}</h2>
-      <canvas v-if="this.dibujar" id="can" 
-        @mousedown="startPainting" 
-        @mouseup="finishedPainting" 
-        @mousemove="draw"  ></canvas>
-      <div v-if="this.dibujar" id="clr">
-        <div>
-          <button class="colores" @click="color('black')" style="background-color: black "></button>
+        <h2 style="color:black; margin:10px;" v-if="this.dibujar">{{this.frase}}</h2>
+        <div class="lienzo">
+          <canvas v-if="this.dibujar" id="can" 
+            @mousedown="startPainting" 
+            @mouseup="finishedPainting" 
+            @mousemove="draw" ></canvas>
         </div>
-        <div>
-          <button class="colores" @click="color('red')" style="background-color: red "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('green')" style="background-color: green "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('orange')" style="background-color: orange "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#FFFF00')" style="background-color: #FFFF00 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#9ecc3b')" style="background-color: #9ecc3b "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#fbd')" style="background-color: #fbd "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#fff460')" style="background-color: #fff460 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#F43059')" style="background-color: #F43059 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#82B82C')" style="background-color: #82B82C "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#0099FF')" style="background-color: #0099FF "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('#ff00ff')" style="background-color: #ff00ff "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(128,0,255)')" style="background-color: rgb(128,0,255) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(255,128,0)')" style="background-color: rgb(255,128,0) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(153,254,0')" style="background-color: rgb(153,254,0 "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(18,0,255)')" style="background-color: rgb(18,0,255) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(255,28,0)')" style="background-color: rgb(255,28,0) "></button>
-        </div>
-        <div>
-          <button class="colores" @click="color('rgb(13,54,0)')" style="background-color: rgb(13,54,0) "></button>
+        <div v-if="this.dibujar" id="clr">
+          <div>
+            <button class="colores" @click="color('red')" style="background-color: red; margin-top:20px;"></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('orange')" style="background-color: orange "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('yellow')" style="background-color: yellow "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('yellowgreen')" style="background-color: yellowgreen "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('green')" style="background-color: green "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('cyan')" style="background-color: cyan "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('blue')" style="background-color: blue "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('purple')" style="background-color: purple "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('violet')" style="background-color: violet "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('pink')" style="background-color: pink "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('brown')" style="background-color: brown "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('grey')" style="background-color: grey "></button>
+          </div>
+          <div>
+            <button class="colores" @click="color('black')" style="background-color: black; margin-bottom:20px;"></button>
+          </div>
         </div>
 
+      <div v-if="this.dibujar" class="dcha">
+        <div class="tam">
+          <h1 style="color: white;">Pincel:</h1>
+          <button class="boton" @click="puntero('5')">Pequeño</button>
+          <button class="boton" @click="puntero('10')">Mediano</button>
+          <button class="boton" @click="puntero('15')">Grande</button>
+        </div>
+        <div class="borrar">
+          <button class="boton" @click="borrar()" style="margin-right:50px;">LIMPIAR </button> 
+          <button><img  src="../assets/eraser.png" @click="color('white')" class="borrador"></button>
+        </div>
       </div>
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 25" @click="puntero('5')" class="punteroP">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 50" @click="puntero('10')" class="punteroM">
-    <img v-if="this.dibujar" src="../assets/punto.png" alt="tamanyo 100" @click="puntero('15')" class="punteroG">
-
-
-    <button v-if="this.dibujar" id="limpiar" @click="borrar()">LIMPIAR </button> 
-    <img v-if="this.dibujar" src="../assets/eraser.png" alt="Borrador" @click="color('white')" class="borrador">
-    <br>
+    </div>
     <button v-if="!this.faseFinal" class="boton" @click="back()">back</button> 
     <button v-if="this.dibujar || this.adivinar" class="boton" v-on:click="sendAnswer()">send</button> 
     <button v-if="this.faseFinal" class="boton" @click="next(false)">Previous</button>
@@ -162,9 +154,9 @@ export default {
     desplazamientoY:0,
     png:null,       //png a enviar
     fraseRespuesta:"", //Frase a enviar
-    msgTitulo:"A",     //Título de la página
+    msgTitulo:"",     //Título de la página
     idImg:null,       //Id de la imagen a adivinar
-    frase:"A",       //Frase que te toca dibujar
+    frase:"",       //Frase que te toca dibujar
     dibujar:true,   //true si te toca dibujar
     adivinar:false,   //true si te toca adivinar
     showImg:false,
@@ -353,7 +345,7 @@ export default {
                   this.dibujar = false;
                   this.adivinar = false;
                   this.showImg = false;
-                  this.msgTitulo = "Se ha terminado la partida";
+                  this.msgTitulo = "¡Partida finalizada!"//"Esperando a que otros jugadores acaben de votar";
                   util.getPuntosPartida().then((puntos)=>{
                     console.log(puntos.data);
                     console.log("Huola");
@@ -400,60 +392,93 @@ export default {
 </script>
 
 <style scoped>
-*{
-   margin:0;
-   user-select: none;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   font-family: Georgia, sans-serif;
-}
-canvas{
-   cursor: crosshair;
-   border:black solid 1px;
-
-}
-#clr div{
-   cursor:pointer;
-   width:20px;
-   height:20px;
-   float:left;
-}
-
-   .colores{
-     padding: 20px;
-     margin:25px;
-     margin-top: 10px;
-   }
-
-   ol { 
-      width: 50%;
-      margin: 0 auto;
-
-      -webkit-overflow-scrolling: touch;
-    }
-
-  ol li a{
-    margin: 10 px
+  *{
+    margin:0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    font-family: Georgia, sans-serif;
   }
 
-  ol li button{
-    margin: auto;
+  canvas{
+    cursor: crosshair;
+    border:black solid 2px;
+    background-color: white;
+
   }
 
-  ol li img{
-    margin: auto;
-    
+  #clr{
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    background-color: rgb(49,49,49);
+    width: 80px;
+    border-radius: 25px;
   }
 
-  ol li {
-  background: #F4F4F4;
-  border-bottom: 1px solid #7C7C7C;
-  border-top: 1px solid #FFF;
+  #clr div{
+    margin:5px;
   }
 
+  .colores{
+    height:30px;
+    width:30px;
+  }
+
+  .dcha{
+    position: fixed;
+    right: 5%;
+    top: 25%;
+    margin:20px;
+  }
+
+  .tam{
+    margin:20px;
+    margin-bottom: 50px;
+    background-color: rgb(49,49,49);
+    border-radius: 25px;
+  }
+
+  .borrar{
+    margin:20px;
+    background-color: rgb(49,49,49);
+    border-radius: 25px;
+  }
+
+  .listaHistoria{
+    margin-left:25%;
+    margin-right:25%;
+    overflow:hidden; 
+    overflow-y:scroll;
+    height: 525px;
+  }
+
+  .listaVotos{
+    margin-left:25%;
+    margin-right:25%;
+    overflow:hidden; 
+    overflow-y:scroll;
+    height: 470px;
+  }
+
+  .list-group-item{
+    background-color: white;
+    border: 3px solid black;
+    margin: 25px;
+  }
+
+  .puntos{
+    display: inline-block;
+    margin:5px;
+    background-color: white;
+    border:3px solid black;
+    border-radius: 25px;
+    width:10%;
+  }
+  
   .borrador{
-    height: 60px;
-    margin-top: 10px;
+    height: 30px;
+    width: 30px;
   }
 
   .punteroP{
@@ -466,6 +491,10 @@ canvas{
 
   .punteroG{
     height: 100px;
+  }
+
+  .tam{
+    display: block;
   }
 
   .boton{
@@ -491,4 +520,5 @@ canvas{
   .boton:active{
     transform: translateY(4px);
   }
+
 </style>
