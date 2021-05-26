@@ -123,11 +123,13 @@ export default {
         console.log(this.partidasId[index]);
         if(this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
+          util.setGameIdCookies(this.partidasId[index]);
           this.$router.push("/Lobby");
           //alert("La partida aun no está lista");
         }
         else if(this.partidasEstado[index] != "esperando"){
           setGameId(this.partidasId[index]);
+          util.setGameIdCookies(this.partidasId[index]);
           this.$router.push("/Draw");
           /*util.returnResponse(this.partidasId[index])
           .then((response)=>{
@@ -218,6 +220,7 @@ export default {
       }
   },
   beforeMount(){
+      util.setGameIdCookies("")
       this.listInvitaciones()
       this.listGames()
   }
