@@ -135,7 +135,6 @@ export default {
         }else{
           setGameId(this.partidasId[index]);
           util.setGameIdCookies(this.partidasId[index]);
-          util.returnResponse()
           this.$router.push("/Draw");
         }
           

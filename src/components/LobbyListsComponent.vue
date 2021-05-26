@@ -20,7 +20,7 @@
           <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
             <img :src="fotoAmigo(index)">
             <a>{{amigos[index]}} </a>
-            <button class="boton" v-on:click="invitarAmigo(amigosMail[index])">Invite</button>
+            <button class="boton" v-on:click="invitarAmigo(amigosMail[index],index)">Invite</button>
           </li>
         </ol>
       </div>
@@ -111,16 +111,9 @@ export default {
         return this.jugadoresFotos[index];
       },
 
-      invitarAmigo(mail){
+      invitarAmigo(mail,index){
         util.inviteFriend(mail).then(() => {
           alert("La invitación fué enviada correctamente");
-          
-          /*this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];                Esto para cuando tengamos la función de listar amigos que no están invitados.
-          this.listFr();
-          this.$forceUpdate();*/
-
         })
         .catch(()=>{
              alert("Invitación ya enviada");
