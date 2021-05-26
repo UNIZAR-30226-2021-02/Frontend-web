@@ -49,7 +49,7 @@ export default {
         this.token=response.data.token;
         console.log(axios.defaults.headers.common);
         auth.SetUserLogged(this.mail, this.token);
-        this.$router.push("/Home");
+        this.$router.push("/Partidas");
       }).catch(() =>{this.error=true;})
     },
 

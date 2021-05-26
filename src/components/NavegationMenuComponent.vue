@@ -9,6 +9,8 @@
     </div>
 </template>
 
+<a v-if="bHome"  href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a> 
+<a v-if="!bHome" class="active" href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a>     
 
 <script>
 export default {
@@ -17,20 +19,17 @@ export default {
 </script-->
 <template>
     <div class="icon-bar">
-        <a v-if="bHome"  href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a> 
-        <a v-if="!bHome" class="active" href="#/Home"><img style="width:50px; height:50px;" src="../assets/homeIcon.png"></a>
-        
-        <a v-if="bProfile" href="#/Profile"><img style="width:50px; height:50px;" src="../assets/userIcon.png"></a>
-        <a v-if="!bProfile" class="active" href="#/Profile"><img style="width:50px; height:50px;" src="../assets/userIcon.png"></a>
-        
-        <a v-if="bShop" href="#/Shop"><img style="width:50px; height:50px;" src="../assets/carritoIcon.png"></a>
-        <a v-if="!bShop" class="active" href="#/Shop"><img style="width:50px; height:50px;" src="../assets/carritoIcon.png"></a>
-        
-        <a v-if="bFriends" href="#/Friends"><img style="width:50px; height:50px;" src="../assets/amigosIcon.png"></a>
-        <a v-if="!bFriends" class="active" href="#/Friends"><img style="width:50px; height:50px;" src="../assets/amigosIcon.png"></a>
+        <a v-if="bPartidas" href="#/Partidas"><img style="width:70px; height:70px;" src="../assets/mandoIcon.png"></a>
+        <a v-if="!bPartidas" class="active" href="#/Partidas"><img style="width:70px; height:70px;" src="../assets/mandoIcon.png"></a>
 
-        <a v-if="bPartidas" href="#/Partidas"><img style="width:50px; height:50px;" src="../assets/mandoIcon.png"></a>
-        <a v-if="!bPartidas" class="active" href="#/Partidas"><img style="width:50px; height:50px;" src="../assets/mandoIcon.png"></a>
+        <a v-if="bProfile" href="#/Profile"><img style="width:70px; height:70px;" src="../assets/userIcon.png"></a>
+        <a v-if="!bProfile" class="active" href="#/Profile"><img style="width:70px; height:70px;" src="../assets/userIcon.png"></a>
+        
+        <a v-if="bShop" href="#/Shop"><img style="width:70px; height:70px;" src="../assets/carritoIcon.png"></a>
+        <a v-if="!bShop" class="active" href="#/Shop"><img style="width:70px; height:70px;" src="../assets/carritoIcon.png"></a>
+        
+        <a v-if="bFriends" href="#/Friends"><img style="width:70px; height:70px;" src="../assets/amigosIcon.png"></a>
+        <a v-if="!bFriends" class="active" href="#/Friends"><img style="width:70px; height:70px;" src="../assets/amigosIcon.png"></a>
     </div>
 </template>
 
@@ -52,9 +51,9 @@ export default {
      methods: {
         loadTipo(){
             switch(this.page){
-                case "HOME":
-                    this.bHome = false;
-                    break;
+                //case "HOME":
+                  //  this.bHome = false;
+                  //  break;
                 case "PROFILE":
                     this.bProfile = false;
                     break;
@@ -80,10 +79,8 @@ export default {
 <style scoped>
 
     .icon-bar {
-        width: 90px;
         background-color: white;
-        border-radius: 15px;
-        margin: 10px;
+        margin: 20px;
     }
 
     .icon-bar a {

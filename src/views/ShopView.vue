@@ -40,7 +40,7 @@ export default {
     .sidenav {
       float: left;
       background-color: white;
-      border-radius: 20px;
+      border-radius: 30px;
       margin-top: 5%;
       margin-left: 3%;
     }
