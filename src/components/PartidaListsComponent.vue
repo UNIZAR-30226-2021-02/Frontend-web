@@ -94,7 +94,6 @@
 <script> 
 import util from "@/logic/util";
 import {setGameId} from '@/util/APIKIT'
-import {getClientMail} from '@/util/APIKIT'
 
 export default {
   name: 'PartidaListsComponent',
@@ -122,7 +121,7 @@ export default {
         console.log(index)
         console.log(this.partidasHost[index]);
         console.log(this.partidasId[index]);
-        if(getClientMail() == this.partidasHost[index] && this.partidasEstado[index] == "esperando"){
+        if(this.partidasEstado[index] == "esperando"){
           setGameId(this.partidasId[index]);
           this.$router.push("/Lobby");
           //alert("La partida aun no está lista");

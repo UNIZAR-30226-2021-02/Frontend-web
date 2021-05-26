@@ -6,7 +6,6 @@
 
 <script> 
 import util from "@/logic/util";
-import {setGameId} from '@/util/APIKIT'
 import {setInvitedName} from '@/util/APIKIT'
 
 export default {
@@ -20,10 +19,13 @@ export default {
       startGame(){
         
         util.startGame().then(() => {
-            setGameId('');
             setInvitedName('');
-            this.$router.push("/Partidas");
-        }).catch(()=>{});
+            this.$router.push("/Draw");
+        }).catch((error)=>{
+          if(error.response.status == 423) alert("No hay suficientes jugadores");
+          else alert("No eres el líder de la partida")
+          
+        });
 
       }
     }
