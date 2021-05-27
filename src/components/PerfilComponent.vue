@@ -76,6 +76,7 @@ export default {
         auth.viewProfile()
           .then((response)=>{
             console.log(response);
+            
             this.myData = response.data;
             console.log(response.data.fotPerf)
             setIdFoto(response.data.fotPerf)
@@ -93,9 +94,15 @@ export default {
           auth.changeMyName(this.newName)
           .then(()=>{
               this.changing = false;
+              alert("Nombre cambiado con éxito")
           })
-          .catch(()=>{
+          .catch((error)=>{
+              if(error.response.status == 417) alert("Nombre en uso")
+              else  alert("Nombre demasiado largo")
           });
+          this.newName = "";
+          this.myData = null;
+          this.loadData();
       }
   },
   beforeMount(){
