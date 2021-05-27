@@ -114,13 +114,6 @@ export default {
       invitarAmigo(mail){
         util.inviteFriend(mail).then(() => {
           alert("La invitación fué enviada correctamente");
-          
-          /*this.amigos = [];
-          this.IterAmigo = [];
-          this.amigosFotos = [];                Esto para cuando tengamos la función de listar amigos que no están invitados.
-          this.listFr();
-          this.$forceUpdate();*/
-
         })
         .catch(()=>{
              alert("Invitación ya enviada");
