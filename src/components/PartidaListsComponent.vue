@@ -5,8 +5,8 @@
     </div>
     <div class="noVacio" v-if="IterPartida.length!=0">
       <div class="partidas">
-        <h4 class="titulopartidas" style="color:white">Lista de partidas:</h4>
-        <ol class=listapartidas>
+        <h4 class="titulopartidas" style="color:white; position: fixed; right: 22%; top: 29%;">Lista de partidas:</h4>
+        <ol class=listapartidas style="position: fixed; right: 13%; top: 33%;">
           <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterPartida"  v-bind:key="index">
             <a style="font-weight: 600">Partida {{partidas[index]}} {{partidasEstado[index]}} </a>
             <button class="boton" v-on:click="jugarPartida(index)">Play</button>
@@ -21,8 +21,8 @@
         <h4 class="tituloInvitaciones" style="color:white; position: fixed; left: 31%;">Lista de Invitaciones:</h4>
       </div>
       <div class="noVacio" v-if="IterPeti.length!=0">
-        <h4 class="tituloInvitaciones" style="color:white">Lista de Invitaciones:</h4>
-        <ol class="listaInvitaciones">
+        <h4 class="tituloInvitaciones" style="color:white; position: fixed; left: 31%;">Lista de Invitaciones:</h4>
+        <ol class="listaInvitaciones" style="position: fixed; left: 21%; top: 33%;">
           <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterPeti"  v-bind:key="index">
             <a style="font-weight: 600">Game {{Invitaciones[index]}} from {{InvitacionesHost[index]}}</a>
             <button class="boton" v-on:click="aceptarInvitacion(InvitacionesId[index])">Accept</button>
