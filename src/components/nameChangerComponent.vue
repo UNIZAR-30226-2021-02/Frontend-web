@@ -36,9 +36,16 @@ export default {
               this.changing = false;
               alert("Nombre cambiado con éxito")
           })
-          .catch(()=>{
-              alert("Nombre en uso")
+          .catch((error)=>{
+              console.log("Error",error);
+              switch(error){
+                case 417:
+                  alert('Nombre usuario en uso');
+                case 405:
+                  alert('El nombre de usuario no debe superar los 15 carácteres');
+              }
           });
+          
       }
   }
 }
