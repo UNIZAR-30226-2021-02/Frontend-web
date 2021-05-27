@@ -261,13 +261,18 @@ export default {
     sendAnswer(){
       if(this.adivinar){
         console.log("ENVIANDO FRASE")
-        util.textAnswer(this.fraseRespuesta,getClientMail())
-        .then(()=> {
-          setGameId("");
-          this.$router.push("/Partidas");
-        })
-        .catch(()=>{
-        });
+        if(this.fraseRespuesta.length <= 50){
+          util.textAnswer(this.fraseRespuesta,getClientMail())
+          .then(()=> {
+            setGameId("");
+            this.$router.push("/Partidas");
+          })
+          .catch(()=>{
+          });
+        }
+        else{
+          alert("Respuesta demasiado larga")
+        }
 
       }
       else if(this.dibujar){
