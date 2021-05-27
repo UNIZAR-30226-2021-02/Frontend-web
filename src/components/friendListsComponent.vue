@@ -11,8 +11,8 @@
             <a>{{IterAmigo[index]+1}}. </a>
             <img :src="fotoAmigo(index)">
             <a>{{amigos[index]}} </a>
-            <a>{{amigosPts[index]}}pts </a>
-            <img style="width:20px; height:20px; margin:2px;" src="@/assets/starIcon.png">
+            <a>{{amigosPts[index]}}</a>
+            <img style="width:20px; height:20px; margin:5px;" src="@/assets/starIcon.png">
             <button class="boton" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
           </li>
         </ol>
