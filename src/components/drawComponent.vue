@@ -284,8 +284,6 @@ export default {
           this.$router.push("/Partidas");
         })
         .catch(()=>{
-          console.log("EEEEEEEEEEEEEEEEEEE");
-          console.log("AAAAAAAAAAAAAAAAH")
         });
       }
         
@@ -317,7 +315,7 @@ export default {
                   this.adivinar = true;
                   this.idImg = response.data.id_;
                   this.showImg = true;
-                  this.msgTitulo = "Describe la siguiente escena";
+                  this.msgTitulo = "¿Qué ves en el dibujo?";
                   
                 }
                 else{
@@ -338,7 +336,7 @@ export default {
                   //this.desplazamientoY = 0;
                   this.adivinar = false;
                   this.showImg = false;
-                  this.msgTitulo = "Dibuja la siguiente historia";
+                  this.msgTitulo = "Ahora dibuja:";
 
                   this.frase = response.data.frase;
                   
