@@ -114,8 +114,8 @@
         <div class="tam">
           <h1 style="color: white;">Pincel:</h1>
           <button class="boton" @click="puntero('5')">Pequeño</button>
-          <button class="boton" @click="puntero('10')">Mediano</button>
-          <button class="boton" @click="puntero('15')">Grande</button>
+          <button class="boton" @click="puntero('20')">Mediano</button>
+          <button class="boton" @click="puntero('50')">Grande</button>
         </div>
         <div class="borrar">
           <button class="boton" @click="borrar()" style="margin-right:50px;">LIMPIAR </button> 
