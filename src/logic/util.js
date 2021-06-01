@@ -24,6 +24,9 @@ export default {
     return Cookies.get("idPartida");
     },
 
+
+    //Game screen functions
+
     createGame(nombre){
         const partida={nombre};
         return APIKit.post(ENDPOINT_PATH + "newGame", partida);
@@ -78,6 +81,9 @@ export default {
         return APIKit.get(ENDPOINT_PATH + "listGames");
     },
 
+
+    //In game functions
+
     returnResponse(){
         setClientToken(auth.getToken());
         setClientMail(auth.getUserLogged());
@@ -104,10 +110,6 @@ export default {
     vote(who,fase){
         setVotadoMail(who);
         return APIKit.get(ENDPOINT_PATH + "votar" + fase);
-    },
-
-    resetVotes(){
-        return APIKit.get(ENDPOINT_PATH + "resetVotos");
     },
 
     getPuntosPartida(){

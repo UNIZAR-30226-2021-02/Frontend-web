@@ -3,13 +3,11 @@ import VueRouter from 'vue-router'
 import SignInView from '../views/SignInView.vue'
 import PerfilView from '../views/PerfilView.vue'
 import SignUpView from '../views/SignUpView.vue'
-import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 import FriendsView from '../views/FriendsView.vue'
 import PartidasView from '../views/PartidasView.vue'
 import LobbyView from '../views/LobbyView.vue'
 import drawView from '../views/drawView.vue'
-import pruebas from '../views/pruebasDibujoView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,11 +27,6 @@ const routes = [
     name: 'SignUpView',
     component: SignUpView
 
-  },
-  {
-    path: '/Home',
-    name: 'HomeView',
-    component: HomeView
   },
   {
     path: '/Shop',
@@ -59,11 +52,6 @@ const routes = [
     path: '/Draw',
     name: 'drawView',
     component: drawView
-  },
-  {
-    path: '/Pruebas',
-    name: 'pruebasView',
-    component: pruebas
   },
 ]
 
