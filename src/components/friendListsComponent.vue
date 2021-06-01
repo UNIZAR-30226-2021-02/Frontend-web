@@ -5,14 +5,14 @@
     </div>
     <div class="noVacio" v-if="IterAmigo.length!=0">
       <div class="amigos">
-        <h4 class="tituloAmigos">Lista de amigos:</h4>
-        <ol class=listaAmigos>
+        <h4 class="tituloAmigos" style="position: fixed; right: 26%; top: 29%;">Lista de amigos:</h4>
+        <ol class=listaAmigos style="position: fixed; right: 14%; top: 33%;">
           <li class="list-group-item" style="border-radius: 25px;" v-for="index in IterAmigo"  v-bind:key="index">
             <a>{{IterAmigo[index]+1}}. </a>
             <img :src="fotoAmigo(index)">
-            <a>{{amigos[index]}} </a>
-            <a>{{amigosPts[index]}}pts </a>
-            <img style="width:20px; height:20px; margin:2px;" src="@/assets/starIcon.png">
+            <a> {{amigos[index]}} </a>
+            <a>{{amigosPts[index]}} </a>
+            <img style="width:20px; height:20px;" src="@/assets/starIcon.png">
             <button class="boton" v-on:click="eliminarAmigo(amigosMail[index])">Remove</button>
           </li>
         </ol>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="vacio" v-if="IterPeti.length==0">
-        <h4 class="tituloPetis" style="color:white; position: fixed; left: 31%; top: 29%;">Lista de peticiones:</h4>
+        <h4 class="tituloPetis" style="color:white; position: fixed; left: 34%; top: 29%;">Lista de peticiones:</h4>
     </div>
     <div class="noVacio" v-if="IterPeti.length!=0">
       <div class="petis">
